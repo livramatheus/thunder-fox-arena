@@ -24,9 +24,11 @@ const keys = {
     },
     d: {
         pressed: false
+    },
+    w: {
+        pressed: false
     }
 }
-let lastKey;
 
 /**
  * This function gets called recursively every frame, 
@@ -42,9 +44,9 @@ function animate() {
 
     Player.velocity.x = 0;
 
-    if (keys.a.pressed && lastKey === 'a') {
+    if (keys.a.pressed && Player.lastKey === 'a') {
         Player.velocity.x = -1;
-    } else if (keys.d.pressed && lastKey === 'd') {
+    } else if (keys.d.pressed && Player.lastKey === 'd') {
         Player.velocity.x = 1;
     }
 }
@@ -55,12 +57,15 @@ window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'd':
             keys.d.pressed = true;
-            lastKey = 'd';
+            Player.lastKey = 'd';
             break;
         case 'a':
             keys.a.pressed = true;
-            lastKey = 'a';
-            break;    
+            Player.lastKey = 'a';
+            break;
+        case 'w':
+            Player.velocity.y = -10;
+            break;
     }
 });
         

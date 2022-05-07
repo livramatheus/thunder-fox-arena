@@ -7,6 +7,7 @@ export default class Sprite {
      * @param {object} c Canvas context 
      */
     gravity = 0.2;
+    lastKey = null;
 
     constructor({ position, velocity }, c) {
         this.position = position;
