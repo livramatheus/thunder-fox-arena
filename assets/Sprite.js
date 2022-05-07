@@ -22,6 +22,7 @@ export default class Sprite {
 
     update() {
         this.draw();
+        this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
         
         // Checks wether the sprite touches the bottom of the screen

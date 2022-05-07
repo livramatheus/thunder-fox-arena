@@ -18,6 +18,16 @@ const Enemy = new Sprite({
     velocity: { x: 0, y: 0 }
 }, c);
 
+const keys = {
+    a: {
+        pressed: false
+    },
+    d: {
+        pressed: false
+    }
+}
+let lastKey;
+
 /**
  * This function gets called recursively every frame, 
  * in order that every component gets re-rendered continuously
@@ -29,6 +39,38 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     Player.update();
     Enemy.update();
+
+    Player.velocity.x = 0;
+
+    if (keys.a.pressed && lastKey === 'a') {
+        Player.velocity.x = -1;
+    } else if (keys.d.pressed && lastKey === 'd') {
+        Player.velocity.x = 1;
+    }
 }
 
 animate();
+
+window.addEventListener('keydown', (event) => {
+    switch (event.key) {
+        case 'd':
+            keys.d.pressed = true;
+            lastKey = 'd';
+            break;
+        case 'a':
+            keys.a.pressed = true;
+            lastKey = 'a';
+            break;    
+    }
+});
+        
+window.addEventListener('keyup', (event) => {
+    switch (event.key) {
+        case 'd':
+            keys.d.pressed = false;
+            break;
+        case 'a':
+            keys.a.pressed = false;
+            break;
+    }
+});
