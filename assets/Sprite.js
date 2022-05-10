@@ -25,7 +25,8 @@ export default class Sprite {
             offset
         },
         this.color = color;
-        this.isAttacking
+        this.isAttacking;
+        this.health = 100;
     }
 
     draw() {

@@ -78,12 +78,14 @@ function animate() {
     // Collision detection
     if (rectangularCollision({ rectangle1: Player, rectangle2: Enemy }) && Player.isAttacking) {
         Player.isAttacking = false;
-        console.log('Player Landed');
+        Enemy.health -= 20;
+        document.querySelector("#enemy-health").style.width = Enemy.health + "%";
     }
     
     if (rectangularCollision({ rectangle1: Enemy, rectangle2: Player }) && Enemy.isAttacking) {
         Enemy.isAttacking = false;
-        console.log('Enemy Landed');
+        Player.health -= 20;
+        document.querySelector("#player-health").style.width = Player.health + "%";
     }
 }
 
