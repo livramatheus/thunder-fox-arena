@@ -48,6 +48,35 @@ function rectangularCollision({ rectangle1, rectangle2 }) {
     );
 }
 
+function checkWinner({ Player, Enemy, timerId }) {
+    clearTimeout(timerId);
+    const displayText = document.querySelector("#display-text");
+    displayText.style.display = 'flex';
+
+    if (Player.health > Enemy.health) return displayText.innerHTML = 'Player 1 Wins';
+    if (Player.health < Enemy.health) return displayText.innerHTML = 'Player 2 Wins';
+    return displayText.innerHTML = 'Draw';
+}
+
+let timerId = null;
+let timer   = 10;
+
+function decreaseTimer() {
+    
+    if (timer > 0) {
+        timer -= 1;
+        document.querySelector("#timer").innerHTML = timer;
+
+        timerId = setTimeout(() => {
+            decreaseTimer();
+        }, 1000);
+    } else {
+        checkWinner({Player, Enemy, timerId});
+    }
+}
+
+decreaseTimer();
+
 /**
  * This function gets called recursively every frame, 
  * in order that every component gets re-rendered continuously
@@ -86,6 +115,10 @@ function animate() {
         Enemy.isAttacking = false;
         Player.health -= 20;
         document.querySelector("#player-health").style.width = Player.health + "%";
+    }
+
+    if (Player.health <= 0 || Enemy.health <= 0) {
+        checkWinner({Player, Enemy, timerId});
     }
 }
 
