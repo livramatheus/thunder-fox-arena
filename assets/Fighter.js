@@ -5,7 +5,7 @@ export default class Fighter extends Sprite {
     gravity = 0.2;
     lastKey = null;
 
-    constructor({ position, velocity, c, color, offset, imgSrc, scale = 2, frames = 1 }) {
+    constructor({ position, velocity, c, color, offset, imgSrc, scale = 2, frames = 1, sprites }) {
         super({ position, imgSrc, scale, frames });
 
         this.velocity  = velocity;
@@ -27,6 +27,12 @@ export default class Fighter extends Sprite {
         this.curFrame = 0;
         this.framesElapsed = 0;
         // this.frameSkip = 5;
+        this.sprites = sprites;
+
+        for (const sprite in this.sprites) {
+            sprites[sprite].image = new Image();
+            sprites[sprite].image.src = sprites[sprite].imgSrc;
+        }
     }
 
     attack() {

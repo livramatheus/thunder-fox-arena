@@ -25,7 +25,17 @@ const Player = new Fighter({
         y: 0
     },
     imgSrc: './img/fighters/thunder/thunder_idle.png',
-    scale: 3
+    scale: 3,
+    sprites: {
+        idle: {
+            imgSrc: './img/fighters/thunder/thunder_idle.png',
+            frames: 1
+        },
+        walking: {
+            imgSrc: './img/fighters/thunder/thunder_walking.png',
+            frames: 5
+        }
+    }
 });
 Player.frameSkip = 15;
 const Enemy = new Fighter({
@@ -104,9 +114,15 @@ function animate() {
     Player.velocity.x = 0;
     Enemy.velocity.x  = 0;
 
+    Player.image = Player.sprites.idle.image;
+    Player.frames = Player.sprites.idle.frames; 
     if (keys.a.pressed && Player.lastKey === 'a') {
+        Player.frames = Player.sprites.walking.frames; 
+        Player.image = Player.sprites.walking.image;
         Player.velocity.x = -1.2;
     } else if (keys.d.pressed && Player.lastKey === 'd') {
+        Player.frames = Player.sprites.walking.frames; 
+        Player.image = Player.sprites.walking.image;
         Player.velocity.x = 2.2;
     }
 
