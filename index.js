@@ -1,3 +1,4 @@
+import Background from "./assets/Background.js";
 import Fighter from "./assets/Fighter.js"
 
 const canvas = document.querySelector('canvas');
@@ -7,6 +8,12 @@ canvas.width  = 1024;
 canvas.height = 576;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
+
+const Bg = new Background({
+    position: {x: 0, y: 0},
+    imgSrc: './img/background.png',
+    c
+});
 
 const Player = new Fighter({
     position: { x: 0, y: 0 },
@@ -86,6 +93,7 @@ function animate() {
 
     c.fillStyle = 'black';
     c.fillRect(0, 0, canvas.width, canvas.height);
+    Bg.update();
     Player.update();
     Enemy.update();
 
