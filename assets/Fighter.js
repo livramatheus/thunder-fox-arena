@@ -61,7 +61,7 @@ export default class Fighter {
         this.position.y += this.velocity.y;
 
         // Checks wether the sprite touches the bottom of the screen
-        if (this.position.y + this.height + this.velocity.y >= 576) {
+        if (this.position.y + this.height + this.velocity.y >= 576 - 80) {
             this.velocity.y = 0;
         } else {
             // Applies gravity to velocity as long if the Sprite is in the air
