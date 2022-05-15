@@ -28,12 +28,16 @@ export default class Sprite {
         );
     }
 
-    update() {
-        this.draw();
+    animateFrame() {
         this.framesElapsed ++;
 
         if (this.framesElapsed % this.frameSkip === 0) {
             this.curFrame < (this.frames - 1) ? this.curFrame ++ : this.curFrame = 0;
         }
+    }
+
+    update() {
+        this.draw();
+        this.animateFrame();
     }
 }

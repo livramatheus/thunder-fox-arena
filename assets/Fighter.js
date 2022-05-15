@@ -1,24 +1,21 @@
-export default class Fighter {
+import Sprite from './Sprite.js';
+
+export default class Fighter extends Sprite {
     
-    /**
-     * Fighter constructor
-     * 
-     * @param {object} param0 Fighter data 
-     * @param {object} c Canvas context 
-     */
     gravity = 0.2;
     lastKey = null;
 
-    constructor({ position, velocity, c, color, offset }) {
-        this.position  = position;
+    constructor({ position, velocity, c, color, offset, imgSrc, scale = 2, frames = 1 }) {
+        super({ position, imgSrc, scale, frames });
+
         this.velocity  = velocity;
         this.height    = 150;
         this.width     = 50;
         this.c         = c;
         this.attackBox = {
             position: {
-                x: this.position.x,
-                y: this.position.y,
+                x: position.x,
+                y: position.y,
             },
             width: 100,
             height: 50,
@@ -27,21 +24,9 @@ export default class Fighter {
         this.color = color;
         this.isAttacking;
         this.health = 100;
-    }
-
-    draw() {
-        this.c.fillStyle = this.color;
-        this.c.fillRect(this.position.x, this.position.y, this.width, this.height);
-        
-        if(this.isAttacking) {
-            this.c.fillStyle = 'green';
-            this.c.fillRect(
-                this.attackBox.position.x,
-                this.attackBox.position.y,
-                this.attackBox.width,
-                this.attackBox.height
-            );
-        }
+        this.curFrame = 0;
+        this.framesElapsed = 0;
+        // this.frameSkip = 5;
     }
 
     attack() {
@@ -54,6 +39,8 @@ export default class Fighter {
 
     update() {
         this.draw();
+        this.animateFrame();
+
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
         this.attackBox.position.y = this.position.y;
 
@@ -61,7 +48,7 @@ export default class Fighter {
         this.position.y += this.velocity.y;
 
         // Checks wether the sprite touches the bottom of the screen
-        if (this.position.y + this.height + this.velocity.y >= 576 - 80) {
+        if (this.position.y + this.height + this.velocity.y >= 576 - 110) {
             this.velocity.y = 0;
         } else {
             // Applies gravity to velocity as long if the Sprite is in the air

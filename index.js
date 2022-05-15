@@ -23,18 +23,22 @@ const Player = new Fighter({
     offset: {
         x: 0,
         y: 0
-    }
+    },
+    imgSrc: './img/fighters/thunder/thunder_idle.png',
+    scale: 3
 });
-
+Player.frameSkip = 15;
 const Enemy = new Fighter({
     position: { x: 400, y: 150 },
     velocity: { x: 0, y: 0 },
     c: c,
-    color: 'blue',
+    color: 'red',
     offset: {
-        x: -50,
+        x: 0,
         y: 0
-    }
+    },
+    imgSrc: './img/fighters/thunder/thunder_idle.png',
+    scale: 3.1
 });
 
 const keys = {
@@ -101,9 +105,9 @@ function animate() {
     Enemy.velocity.x  = 0;
 
     if (keys.a.pressed && Player.lastKey === 'a') {
-        Player.velocity.x = -1;
+        Player.velocity.x = -1.2;
     } else if (keys.d.pressed && Player.lastKey === 'd') {
-        Player.velocity.x = 1;
+        Player.velocity.x = 2.2;
     }
 
     if (keys.ArrowRight.pressed && Enemy.lastKey === 'ArrowRight') {
