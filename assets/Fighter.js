@@ -1,9 +1,9 @@
-export default class Sprite {
+export default class Fighter {
     
     /**
-     * Sprite constructor
+     * Fighter constructor
      * 
-     * @param {object} param0 Sprite data (Position and Velocity)
+     * @param {object} param0 Fighter data 
      * @param {object} c Canvas context 
      */
     gravity = 0.2;

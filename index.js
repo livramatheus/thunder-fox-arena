@@ -1,4 +1,4 @@
-import Sprite from "./assets/Sprite.js"
+import Fighter from "./assets/Fighter.js"
 
 const canvas = document.querySelector('canvas');
 const c      = canvas.getContext('2d');
@@ -8,7 +8,7 @@ canvas.height = 576;
 
 c.fillRect(0, 0, canvas.width, canvas.height);
 
-const Player = new Sprite({
+const Player = new Fighter({
     position: { x: 0, y: 0 },
     velocity: { x: 0, y: 0 },
     c: c,
@@ -19,7 +19,7 @@ const Player = new Sprite({
     }
 });
 
-const Enemy = new Sprite({
+const Enemy = new Fighter({
     position: { x: 400, y: 150 },
     velocity: { x: 0, y: 0 },
     c: c,
