@@ -2,7 +2,7 @@ import Sprite from './Sprite.js';
 
 export default class Fighter extends Sprite {
     
-    gravity = 0.2;
+    gravity = 0.4;
     lastKey = null;
 
     constructor({ position, velocity, c, color, offset, imgSrc, scale = 2, frames = 1, sprites }) {
@@ -43,6 +43,39 @@ export default class Fighter extends Sprite {
         }, 100);
     }
 
+    switchSprite(sprite) {
+        switch (sprite) {
+            case 'idle':
+                if (this.image !== this.sprites.idle.image) {
+                    this.image  = this.sprites.idle.image;
+                    this.frames = this.sprites.idle.frames;
+                    this.curFrame = 0;
+                }
+                break;
+            case 'walking':
+                if (this.image !== this.sprites.walking.image) {
+                    this.frames = this.sprites.walking.frames; 
+                    this.image  = this.sprites.walking.image;
+                    this.curFrame = 0;
+                }
+                break;
+            case 'jumping':
+                if (this.image !== this.sprites.jumping.image) {
+                    this.frames = this.sprites.jumping.frames; 
+                    this.image  = this.sprites.jumping.image;
+                    this.curFrame = 0;
+                }
+                break;
+            case 'falling':
+                if (this.image !== this.sprites.falling.image) {
+                    this.frames = this.sprites.falling.frames; 
+                    this.image  = this.sprites.falling.image;
+                    this.curFrame = 0;
+                }
+                break;
+        }
+    }
+
     update() {
         this.draw();
         this.animateFrame();
@@ -56,6 +89,7 @@ export default class Fighter extends Sprite {
         // Checks wether the sprite touches the bottom of the screen
         if (this.position.y + this.height + this.velocity.y >= 576 - 110) {
             this.velocity.y = 0;
+            this.position.y = 330;
         } else {
             // Applies gravity to velocity as long if the Sprite is in the air
             // The velocity increases every frame

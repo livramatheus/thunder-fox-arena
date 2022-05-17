@@ -19,7 +19,6 @@ const Player = new Fighter({
     position: { x: 0, y: 0 },
     velocity: { x: 0, y: 0 },
     c: c,
-    color: 'red',
     offset: {
         x: 0,
         y: 0
@@ -34,6 +33,14 @@ const Player = new Fighter({
         walking: {
             imgSrc: './img/fighters/thunder/thunder_walking.png',
             frames: 5
+        },
+        jumping: {
+            imgSrc: './img/fighters/thunder/thunder_jumping.png',
+            frames: 3
+        },
+        falling: {
+            imgSrc: './img/fighters/thunder/thunder_falling.png',
+            frames: 2
         }
     }
 });
@@ -42,13 +49,30 @@ const Enemy = new Fighter({
     position: { x: 400, y: 150 },
     velocity: { x: 0, y: 0 },
     c: c,
-    color: 'red',
     offset: {
         x: 0,
         y: 0
     },
     imgSrc: './img/fighters/thunder/thunder_idle.png',
-    scale: 3.1
+    scale: 3,
+    sprites: {
+        idle: {
+            imgSrc: './img/fighters/thunder/thunder_idle.png',
+            frames: 1
+        },
+        walking: {
+            imgSrc: './img/fighters/thunder/thunder_walking.png',
+            frames: 5
+        },
+        jumping: {
+            imgSrc: './img/fighters/thunder/thunder_jumping.png',
+            frames: 3
+        },
+        falling: {
+            imgSrc: './img/fighters/thunder/thunder_falling.png',
+            frames: 2
+        }
+    }
 });
 
 const keys = {
@@ -109,21 +133,25 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     Bg.update();
     Player.update();
-    Enemy.update();
+    // Enemy.update();
 
     Player.velocity.x = 0;
     Enemy.velocity.x  = 0;
 
-    Player.image = Player.sprites.idle.image;
-    Player.frames = Player.sprites.idle.frames; 
     if (keys.a.pressed && Player.lastKey === 'a') {
-        Player.frames = Player.sprites.walking.frames; 
-        Player.image = Player.sprites.walking.image;
+        Player.switchSprite('walking');
         Player.velocity.x = -1.2;
     } else if (keys.d.pressed && Player.lastKey === 'd') {
-        Player.frames = Player.sprites.walking.frames; 
-        Player.image = Player.sprites.walking.image;
+        Player.switchSprite('walking');
         Player.velocity.x = 2.2;
+    } else {
+        Player.switchSprite('idle');
+    }
+
+    if (Player.velocity.y < 0) {
+        Player.switchSprite('jumping');
+    } else if (Player.velocity.y > 0) {
+        Player.switchSprite('falling');
     }
 
     if (keys.ArrowRight.pressed && Enemy.lastKey === 'ArrowRight') {
@@ -164,7 +192,7 @@ window.addEventListener('keydown', (event) => {
             Player.lastKey = 'a';
             break;
         case 'w':
-            Player.velocity.y = -10;
+            Player.velocity.y = -13;
             break;
         case ' ':
             Player.attack();
