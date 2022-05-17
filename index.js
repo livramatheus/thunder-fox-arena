@@ -41,6 +41,10 @@ const Player = new Fighter({
         falling: {
             imgSrc: './img/fighters/thunder/thunder_falling.png',
             frames: 2
+        },
+        knife_attack: {
+            imgSrc: './img/fighters/thunder/thunder_knife_attack.png',
+            frames: 5
         }
     }
 });

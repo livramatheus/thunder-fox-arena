@@ -36,6 +36,7 @@ export default class Fighter extends Sprite {
     }
 
     attack() {
+        this.switchSprite('knife_attack');
         this.isAttacking = true;
 
         setTimeout(() => {
@@ -44,6 +45,8 @@ export default class Fighter extends Sprite {
     }
 
     switchSprite(sprite) {
+        if (this.image == this.sprites.knife_attack.image && this.curFrame < this.sprites.knife_attack.frames - 1) return;
+
         switch (sprite) {
             case 'idle':
                 if (this.image !== this.sprites.idle.image) {
@@ -70,6 +73,13 @@ export default class Fighter extends Sprite {
                 if (this.image !== this.sprites.falling.image) {
                     this.frames = this.sprites.falling.frames; 
                     this.image  = this.sprites.falling.image;
+                    this.curFrame = 0;
+                }
+                break;
+            case 'knife_attack':
+                if (this.image !== this.sprites.knife_attack.image) {
+                    this.frames = this.sprites.knife_attack.frames; 
+                    this.image  = this.sprites.knife_attack.image;
                     this.curFrame = 0;
                 }
                 break;
