@@ -5,8 +5,8 @@ export default class Fighter extends Sprite {
     gravity = 0.4;
     lastKey = null;
 
-    constructor({ position, velocity, c, color, offset, imgSrc, scale = 2, frames = 1, sprites }) {
-        super({ position, imgSrc, scale, frames });
+    constructor({ position, velocity, c, color, offset = {x: 0, y: 0}, imgSrc, scale = 2, frames = 1, sprites }) {
+        super({ position, imgSrc, scale, frames, offset });
 
         this.velocity  = velocity;
         this.height    = 150;

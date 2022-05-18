@@ -19,10 +19,6 @@ const Player = new Fighter({
     position: { x: 0, y: 0 },
     velocity: { x: 0, y: 0 },
     c: c,
-    offset: {
-        x: 0,
-        y: 0
-    },
     imgSrc: './img/fighters/thunder/thunder_idle.png',
     scale: 3,
     sprites: {
@@ -50,31 +46,35 @@ const Player = new Fighter({
 });
 Player.frameSkip = 15;
 const Enemy = new Fighter({
-    position: { x: 400, y: 150 },
+    position: { x: 0, y: 150 },
     velocity: { x: 0, y: 0 },
     c: c,
     offset: {
         x: 0,
-        y: 0
+        y: 142
     },
-    imgSrc: './img/fighters/thunder/thunder_idle.png',
+    imgSrc: './img/fighters/gonza/gonza_idle.png',
     scale: 3,
     sprites: {
         idle: {
-            imgSrc: './img/fighters/thunder/thunder_idle.png',
+            imgSrc: './img/fighters/gonza/gonza_idle.png',
             frames: 1
         },
         walking: {
-            imgSrc: './img/fighters/thunder/thunder_walking.png',
+            imgSrc: './img/fighters/gonza/gonza_walking.png',
             frames: 5
         },
         jumping: {
-            imgSrc: './img/fighters/thunder/thunder_jumping.png',
-            frames: 3
+            imgSrc: './img/fighters/gonza/gonza_jumping.png',
+            frames: 2
         },
         falling: {
-            imgSrc: './img/fighters/thunder/thunder_falling.png',
-            frames: 2
+            imgSrc: './img/fighters/gonza/gonza_falling.png',
+            frames: 3
+        },
+        attack_1: {
+            imgSrc: './img/fighters/gonza/gonza_attack_1.png',
+            frames: 3
         }
     }
 });
@@ -137,7 +137,7 @@ function animate() {
     c.fillRect(0, 0, canvas.width, canvas.height);
     Bg.update();
     Player.update();
-    // Enemy.update();
+    Enemy.update();
 
     Player.velocity.x = 0;
     Enemy.velocity.x  = 0;
@@ -159,9 +159,19 @@ function animate() {
     }
 
     if (keys.ArrowRight.pressed && Enemy.lastKey === 'ArrowRight') {
-        Enemy.velocity.x = 1;
+        Enemy.switchSprite('walking');
+        Enemy.velocity.x = 2.2;
     } else if (keys.ArrowLeft.pressed && Enemy.lastKey === 'ArrowLeft') {
-        Enemy.velocity.x = -1;
+        Enemy.switchSprite('walking');
+        Enemy.velocity.x = -1.2;
+    } else {
+        Enemy.switchSprite('idle');
+    }
+
+    if (Enemy.velocity.y < 0) {
+        Enemy.switchSprite('jumping');
+    } else if (Enemy.velocity.y > 0) {
+        Enemy.switchSprite('falling');
     }
 
     // Collision detection

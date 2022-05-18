@@ -1,6 +1,6 @@
 export default class Sprite {
     
-    constructor({ position, imgSrc, c, scale = 2, frames = 1}) {
+    constructor({ position, imgSrc, c, scale = 2, frames = 1, offset = {x: 0, y: 0}}) {
         this.position      = position;
         this.height        = 150;
         this.width         = 50;
@@ -12,6 +12,7 @@ export default class Sprite {
         this.curFrame      = 0;
         this.framesElapsed = 0;
         this.frameSkip     = 5;
+        this.offset        = offset;
     }
 
     draw() {
@@ -21,8 +22,8 @@ export default class Sprite {
             0,
             this.image.width / this.frames,
             this.image.height,
-            this.position.x,
-            this.position.y,
+            this.position.x - this.offset.x,
+            this.position.y - this.offset.y,
             this.image.width * this.scale / this.frames,
             this.image.height * this.scale
         );
