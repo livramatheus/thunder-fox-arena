@@ -42,6 +42,11 @@ const Player = new Fighter({
             imgSrc: './img/fighters/thunder/thunder_attack_1.png',
             frames: 5
         }
+    },
+    attackBox: {
+        offset: {x: 70, y: 30},
+        width: 100,
+        height: 50
     }
 });
 Player.frameSkip = 15;
@@ -76,6 +81,11 @@ const Enemy = new Fighter({
             imgSrc: './img/fighters/gonza/gonza_attack_1.png',
             frames: 3
         }
+    },
+    attackBox: {
+        offset: {x: 140, y: 50},
+        width: 120,
+        height: 80
     }
 });
 
@@ -175,16 +185,34 @@ function animate() {
     }
 
     // Collision detection
-    if (rectangularCollision({ rectangle1: Player, rectangle2: Enemy }) && Player.isAttacking) {
+    if (
+        rectangularCollision({ rectangle1: Player, rectangle2: Enemy }) &&
+        Player.isAttacking &&
+        Player.curFrame === 3
+    ) {
         Player.isAttacking = false;
         Enemy.health -= 20;
         document.querySelector("#enemy-health").style.width = Enemy.health + "%";
     }
+
+    // If player misses
+    if (Player.isAttacking && Player.curFrame === 3) {
+        Player.isAttacking = false;
+    }
     
-    if (rectangularCollision({ rectangle1: Enemy, rectangle2: Player }) && Enemy.isAttacking) {
+    if (
+        rectangularCollision({ rectangle1: Enemy, rectangle2: Player }) &&
+        Enemy.isAttacking &&
+        Enemy.curFrame === 1
+    ) {
         Enemy.isAttacking = false;
         Player.health -= 20;
         document.querySelector("#player-health").style.width = Player.health + "%";
+    }
+
+    // If enemy misses
+    if (Enemy.isAttacking && Enemy.curFrame === 1) {
+        Enemy.isAttacking = false;
     }
 
     if (Player.health <= 0 || Enemy.health <= 0) {
