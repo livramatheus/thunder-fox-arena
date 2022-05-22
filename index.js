@@ -41,6 +41,10 @@ const Player = new Fighter({
         attack_1: {
             imgSrc: './img/fighters/thunder/thunder_attack_1.png',
             frames: 5
+        },
+        hit: {
+            imgSrc: './img/fighters/thunder/thunder_hit.png',
+            frames: 8
         }
     },
     attackBox: {
@@ -80,6 +84,10 @@ const Enemy = new Fighter({
         attack_1: {
             imgSrc: './img/fighters/gonza/gonza_attack_1.png',
             frames: 3
+        },
+        hit: {
+            imgSrc: './img/fighters/gonza/gonza_hit.png',
+            frames: 6
         }
     },
     attackBox: {
@@ -191,7 +199,7 @@ function animate() {
         Player.curFrame === 3
     ) {
         Player.isAttacking = false;
-        Enemy.health -= 20;
+        Enemy.hit();
         document.querySelector("#enemy-health").style.width = Enemy.health + "%";
     }
 
@@ -206,7 +214,7 @@ function animate() {
         Enemy.curFrame === 1
     ) {
         Enemy.isAttacking = false;
-        Player.health -= 20;
+        Player.hit();
         document.querySelector("#player-health").style.width = Player.health + "%";
     }
 

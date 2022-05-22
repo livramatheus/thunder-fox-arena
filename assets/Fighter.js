@@ -51,8 +51,14 @@ export default class Fighter extends Sprite {
         this.isAttacking = true;
     }
 
+    hit() {
+        this.switchSprite('hit')
+        this.health -= 20;
+    }
+
     switchSprite(sprite) {
         if (this.image == this.sprites.attack_1.image && this.curFrame < this.sprites.attack_1.frames - 1) return;
+        if (this.image == this.sprites.hit.image && this.curFrame < this.sprites.hit.frames - 1) return;
 
         switch (sprite) {
             case 'idle':
@@ -87,6 +93,13 @@ export default class Fighter extends Sprite {
                 if (this.image !== this.sprites.attack_1.image) {
                     this.frames = this.sprites.attack_1.frames; 
                     this.image  = this.sprites.attack_1.image;
+                    this.curFrame = 0;
+                }
+                break;
+            case 'hit':
+                if (this.image !== this.sprites.hit.image) {
+                    this.frames = this.sprites.hit.frames; 
+                    this.image  = this.sprites.hit.image;
                     this.curFrame = 0;
                 }
                 break;
