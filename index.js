@@ -16,33 +16,39 @@ const Bg = new Background({
 });
 
 const Player = new Fighter({
-    position: { x: 0, y: 0 },
+    position: { x: 100, y: 0 },
     velocity: { x: 0, y: 0 },
     c: c,
     imgSrc: './img/fighters/thunder/thunder_idle.png',
     scale: 3,
     sprites: {
         idle: {
+            id: 'idle',
             imgSrc: './img/fighters/thunder/thunder_idle.png',
             frames: 1
         },
         walking: {
+            id: 'walking',
             imgSrc: './img/fighters/thunder/thunder_walking.png',
             frames: 5
         },
         jumping: {
+            id: 'jumping',
             imgSrc: './img/fighters/thunder/thunder_jumping.png',
             frames: 3
         },
         falling: {
+            id: 'falling',
             imgSrc: './img/fighters/thunder/thunder_falling.png',
             frames: 2
         },
         attack_1: {
+            id: 'attack_1',
             imgSrc: './img/fighters/thunder/thunder_attack_1.png',
             frames: 5
         },
         hit: {
+            id: 'hit',
             imgSrc: './img/fighters/thunder/thunder_hit.png',
             frames: 8
         }
@@ -55,7 +61,7 @@ const Player = new Fighter({
 });
 Player.frameSkip = 15;
 const Enemy = new Fighter({
-    position: { x: 0, y: 150 },
+    position: { x: 700, y: 150 },
     velocity: { x: 0, y: 0 },
     c: c,
     offset: {
@@ -66,26 +72,32 @@ const Enemy = new Fighter({
     scale: 3,
     sprites: {
         idle: {
+            id: 'idle',
             imgSrc: './img/fighters/gonza/gonza_idle.png',
             frames: 1
         },
         walking: {
+            id: 'walking',
             imgSrc: './img/fighters/gonza/gonza_walking.png',
             frames: 5
         },
         jumping: {
+            id: 'jumping',
             imgSrc: './img/fighters/gonza/gonza_jumping.png',
             frames: 2
         },
         falling: {
+            id: 'falling',
             imgSrc: './img/fighters/gonza/gonza_falling.png',
             frames: 3
         },
         attack_1: {
+            id: 'attack_1',
             imgSrc: './img/fighters/gonza/gonza_attack_1.png',
             frames: 3
         },
         hit: {
+            id: 'hit',
             imgSrc: './img/fighters/gonza/gonza_hit.png',
             frames: 6
         }
@@ -170,9 +182,9 @@ function animate() {
         Player.switchSprite('idle');
     }
 
-    if (Player.velocity.y < 0) {
+    if (Player.isJumping()) {
         Player.switchSprite('jumping');
-    } else if (Player.velocity.y > 0) {
+    } else if (Player.isFalling()) {
         Player.switchSprite('falling');
     }
 
@@ -186,9 +198,9 @@ function animate() {
         Enemy.switchSprite('idle');
     }
 
-    if (Enemy.velocity.y < 0) {
+    if (Enemy.isJumping()) {
         Enemy.switchSprite('jumping');
-    } else if (Enemy.velocity.y > 0) {
+    } else if (Enemy.isFalling()) {
         Enemy.switchSprite('falling');
     }
 
@@ -226,6 +238,15 @@ function animate() {
     if (Player.health <= 0 || Enemy.health <= 0) {
         checkWinner({Player, Enemy, timerId});
     }
+
+    if (Player.position.x + Player.width < Enemy.position.x + Enemy.width) {
+        Enemy.reverse  = true;
+        Player.reverse = false;
+    } else {
+        Enemy.reverse  = false;
+        Player.reverse = true;
+    }
+    
 }
 
 animate();

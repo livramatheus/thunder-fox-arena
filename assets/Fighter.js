@@ -39,11 +39,17 @@ export default class Fighter extends Sprite {
         this.framesElapsed = 0;
         // this.frameSkip = 5;
         this.sprites = sprites;
+        this.reverse = true;
+        this.lastSprite = 'jumping';
 
         for (const sprite in this.sprites) {
-            sprites[sprite].image = new Image();
-            sprites[sprite].image.src = sprites[sprite].imgSrc;
+            sprites[sprite].image  = new Image();
+            sprites[sprite].imageR = new Image();
+
+            sprites[sprite].image.src  = sprites[sprite].imgSrc;
+            sprites[sprite].imageR.src = sprites[sprite].imgSrc.split('.png')[0] + '_r.png';
         }
+        console.log(this.sprites)
     }
 
     attack() {
@@ -57,53 +63,72 @@ export default class Fighter extends Sprite {
     }
 
     switchSprite(sprite) {
-        if (this.image == this.sprites.attack_1.image && this.curFrame < this.sprites.attack_1.frames - 1) return;
-        if (this.image == this.sprites.hit.image && this.curFrame < this.sprites.hit.frames - 1) return;
+        
+        if (this.lastSprite == 'attack_1' && this.curFrame < this.sprites.attack_1.frames - 1) return;
+        if (this.lastSprite == 'hit' && this.curFrame < this.sprites.hit.frames - 1) return;
 
         switch (sprite) {
             case 'idle':
-                if (this.image !== this.sprites.idle.image) {
-                    this.image  = this.sprites.idle.image;
+                if (this.lastSprite !== 'idle') {
                     this.frames = this.sprites.idle.frames;
+                    this.lastSprite  = 'idle';
+                    this.image = this.reverse ? this.sprites.idle.imageR : this.sprites.idle.image;
                     this.curFrame = 0;
                 }
                 break;
             case 'walking':
-                if (this.image !== this.sprites.walking.image) {
+                if (this.lastSprite !== 'walking') {
                     this.frames = this.sprites.walking.frames; 
-                    this.image  = this.sprites.walking.image;
+                    this.lastSprite  = 'walking';
+                    this.image = this.reverse ? this.sprites.walking.imageR : this.sprites.walking.image;
                     this.curFrame = 0;
                 }
                 break;
             case 'jumping':
-                if (this.image !== this.sprites.jumping.image) {
+                if (this.lastSprite !== 'jumping') {
                     this.frames = this.sprites.jumping.frames; 
-                    this.image  = this.sprites.jumping.image;
+                    this.lastSprite  = 'jumping';
+                    this.image = this.reverse ? this.sprites.jumping.imageR : this.sprites.jumping.image;
                     this.curFrame = 0;
                 }
                 break;
             case 'falling':
-                if (this.image !== this.sprites.falling.image) {
+                if (this.lastSprite !== 'falling') {
                     this.frames = this.sprites.falling.frames; 
-                    this.image  = this.sprites.falling.image;
+                    this.lastSprite  = 'falling';
+                    this.image = this.reverse ? this.sprites.falling.imageR : this.sprites.falling.image;
                     this.curFrame = 0;
                 }
                 break;
             case 'attack_1':
-                if (this.image !== this.sprites.attack_1.image) {
+                if (this.lastSprite !== 'attack_1') {
                     this.frames = this.sprites.attack_1.frames; 
-                    this.image  = this.sprites.attack_1.image;
+                    this.lastSprite  = 'attack_1';
+                    this.image = this.reverse ? this.sprites.attack_1.imageR : this.sprites.attack_1.image;
                     this.curFrame = 0;
                 }
                 break;
             case 'hit':
-                if (this.image !== this.sprites.hit.image) {
+                if (this.lastSprite !== 'hit') {
                     this.frames = this.sprites.hit.frames; 
-                    this.image  = this.sprites.hit.image;
+                    this.lastSprite  = 'hit';
+                    this.image = this.reverse ? this.sprites.hit.imageR : this.sprites.hit.image;
                     this.curFrame = 0;
                 }
                 break;
         }
+    }
+
+    isJumping() {
+        return this.velocity.y < 0;
+    }
+
+    isFalling() {
+        return this.velocity.y > 0;
+    }
+
+    isInAir() {
+        return this.isJumping() || this.isFalling();
     }
 
     update() {
