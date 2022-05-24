@@ -65,7 +65,7 @@ const Enemy = new Fighter({
     velocity: { x: 0, y: 0 },
     c: c,
     offset: {
-        x: 0,
+        x: 100,
         y: 142
     },
     imgSrc: './img/fighters/gonza/gonza_idle.png',
@@ -109,6 +109,8 @@ const Enemy = new Fighter({
     }
 });
 
+Player.changePosition('left');
+
 const keys = {
     a         : { pressed: false },
     d         : { pressed: false },
@@ -118,7 +120,7 @@ const keys = {
     ArrowUp   : { pressed: false }
 }
 
-function rectangularCollision({ rectangle1, rectangle2 }) {
+function attackCollision({ rectangle1, rectangle2 }) {
     return (
         rectangle1.attackBox.position.x + rectangle1.attackBox.width >= rectangle2.position.x &&
         rectangle1.attackBox.position.x <= rectangle2.position.x + rectangle2.width &&
@@ -206,7 +208,7 @@ function animate() {
 
     // Collision detection
     if (
-        rectangularCollision({ rectangle1: Player, rectangle2: Enemy }) &&
+        attackCollision({ rectangle1: Player, rectangle2: Enemy }) &&
         Player.isAttacking &&
         Player.curFrame === 3
     ) {
@@ -221,7 +223,7 @@ function animate() {
     }
     
     if (
-        rectangularCollision({ rectangle1: Enemy, rectangle2: Player }) &&
+        attackCollision({ rectangle1: Enemy, rectangle2: Player }) &&
         Enemy.isAttacking &&
         Enemy.curFrame === 1
     ) {
@@ -239,12 +241,12 @@ function animate() {
         checkWinner({Player, Enemy, timerId});
     }
 
-    if (Player.position.x + Player.width < Enemy.position.x + Enemy.width) {
-        Enemy.reverse  = true;
-        Player.reverse = false;
+    if (!(Player.position.x + Player.width > Enemy.position.x + Enemy.width)) {
+        Player.changePosition('right');
+        Enemy.changePosition('left');
     } else {
-        Enemy.reverse  = false;
-        Player.reverse = true;
+        Player.changePosition('left');
+        Enemy.changePosition('right');
     }
     
 }

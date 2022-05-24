@@ -39,8 +39,8 @@ export default class Fighter extends Sprite {
         this.framesElapsed = 0;
         // this.frameSkip = 5;
         this.sprites = sprites;
-        this.reverse = true;
-        this.lastSprite = 'jumping';
+        this.isReversed = false;
+        this.lastSprite = 'idle';
 
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
@@ -49,7 +49,16 @@ export default class Fighter extends Sprite {
             sprites[sprite].image.src  = sprites[sprite].imgSrc;
             sprites[sprite].imageR.src = sprites[sprite].imgSrc.split('.png')[0] + '_r.png';
         }
-        console.log(this.sprites)
+    }
+
+    changePosition(position) {
+        if (!['left', 'right'].includes(position)) return;
+        
+        if (this.facing != position) {
+            this.facing = position;
+            this.isReversed = !this.isReversed;
+            this.attackBox.offset.x = (this.attackBox.offset.x * -1);
+        }
     }
 
     attack() {
@@ -72,7 +81,7 @@ export default class Fighter extends Sprite {
                 if (this.lastSprite !== 'idle') {
                     this.frames = this.sprites.idle.frames;
                     this.lastSprite  = 'idle';
-                    this.image = this.reverse ? this.sprites.idle.imageR : this.sprites.idle.image;
+                    this.image = this.isReversed ? this.sprites.idle.imageR : this.sprites.idle.image;
                     this.curFrame = 0;
                 }
                 break;
@@ -80,7 +89,7 @@ export default class Fighter extends Sprite {
                 if (this.lastSprite !== 'walking') {
                     this.frames = this.sprites.walking.frames; 
                     this.lastSprite  = 'walking';
-                    this.image = this.reverse ? this.sprites.walking.imageR : this.sprites.walking.image;
+                    this.image = this.isReversed ? this.sprites.walking.imageR : this.sprites.walking.image;
                     this.curFrame = 0;
                 }
                 break;
@@ -88,7 +97,7 @@ export default class Fighter extends Sprite {
                 if (this.lastSprite !== 'jumping') {
                     this.frames = this.sprites.jumping.frames; 
                     this.lastSprite  = 'jumping';
-                    this.image = this.reverse ? this.sprites.jumping.imageR : this.sprites.jumping.image;
+                    this.image = this.isReversed ? this.sprites.jumping.imageR : this.sprites.jumping.image;
                     this.curFrame = 0;
                 }
                 break;
@@ -96,7 +105,7 @@ export default class Fighter extends Sprite {
                 if (this.lastSprite !== 'falling') {
                     this.frames = this.sprites.falling.frames; 
                     this.lastSprite  = 'falling';
-                    this.image = this.reverse ? this.sprites.falling.imageR : this.sprites.falling.image;
+                    this.image = this.isReversed ? this.sprites.falling.imageR : this.sprites.falling.image;
                     this.curFrame = 0;
                 }
                 break;
@@ -104,7 +113,7 @@ export default class Fighter extends Sprite {
                 if (this.lastSprite !== 'attack_1') {
                     this.frames = this.sprites.attack_1.frames; 
                     this.lastSprite  = 'attack_1';
-                    this.image = this.reverse ? this.sprites.attack_1.imageR : this.sprites.attack_1.image;
+                    this.image = this.isReversed ? this.sprites.attack_1.imageR : this.sprites.attack_1.image;
                     this.curFrame = 0;
                 }
                 break;
@@ -112,7 +121,7 @@ export default class Fighter extends Sprite {
                 if (this.lastSprite !== 'hit') {
                     this.frames = this.sprites.hit.frames; 
                     this.lastSprite  = 'hit';
-                    this.image = this.reverse ? this.sprites.hit.imageR : this.sprites.hit.image;
+                    this.image = this.isReversed ? this.sprites.hit.imageR : this.sprites.hit.image;
                     this.curFrame = 0;
                 }
                 break;
@@ -138,7 +147,7 @@ export default class Fighter extends Sprite {
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
-        // this.c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        this.c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
