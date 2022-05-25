@@ -19,6 +19,10 @@ const Player = new Fighter({
     position: { x: 100, y: 0 },
     velocity: { x: 0, y: 0 },
     c: c,
+    offset: {
+        x: 100,
+        y: 0
+    },
     imgSrc: './img/fighters/thunder/thunder_idle.png',
     scale: 3,
     sprites: {
@@ -30,7 +34,7 @@ const Player = new Fighter({
         walking: {
             id: 'walking',
             imgSrc: './img/fighters/thunder/thunder_walking.png',
-            frames: 5
+            frames: 4
         },
         jumping: {
             id: 'jumping',
@@ -45,7 +49,7 @@ const Player = new Fighter({
         attack_1: {
             id: 'attack_1',
             imgSrc: './img/fighters/thunder/thunder_attack_1.png',
-            frames: 5
+            frames: 3
         },
         hit: {
             id: 'hit',
@@ -54,8 +58,8 @@ const Player = new Fighter({
         }
     },
     attackBox: {
-        offset: {x: 70, y: 30},
-        width: 100,
+        offset: {x: 60, y: 30},
+        width: 90,
         height: 50
     }
 });
@@ -103,8 +107,8 @@ const Enemy = new Fighter({
         }
     },
     attackBox: {
-        offset: {x: 140, y: 50},
-        width: 120,
+        offset: {x: 120, y: 50},
+        width: 200,
         height: 80
     }
 });
@@ -210,16 +214,16 @@ function animate() {
     if (
         attackCollision({ rectangle1: Player, rectangle2: Enemy }) &&
         Player.isAttacking &&
-        Player.curFrame === 3
+        Player.curFrame === 1
     ) {
         Player.isAttacking = false;
-        Enemy.knockBack(60);
+        Enemy.knockBack(20);
         Enemy.hit();
         document.querySelector("#enemy-health").style.width = Enemy.health + "%";
     }
 
     // If player misses
-    if (Player.isAttacking && Player.curFrame === 3) {
+    if (Player.isAttacking && Player.curFrame === 1) {
         Player.isAttacking = false;
     }
     
@@ -229,7 +233,7 @@ function animate() {
         Enemy.curFrame === 1
     ) {
         Enemy.isAttacking = false;
-        Player.knockBack(60);
+        Player.knockBack(40);
         Player.hit();
         document.querySelector("#player-health").style.width = Player.health + "%";
     }
