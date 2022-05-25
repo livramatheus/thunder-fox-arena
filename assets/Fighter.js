@@ -140,6 +140,14 @@ export default class Fighter extends Sprite {
         return this.isJumping() || this.isFalling();
     }
 
+    knockBack(force) {
+        if(this.facing == 'left') {
+            this.velocity.x += force;
+        } else {
+            this.velocity.x -= force;
+        }
+    }
+
     update() {
         this.draw();
         this.animateFrame();
@@ -147,7 +155,7 @@ export default class Fighter extends Sprite {
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
-        this.c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        // this.c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;

@@ -213,6 +213,7 @@ function animate() {
         Player.curFrame === 3
     ) {
         Player.isAttacking = false;
+        Enemy.knockBack(60);
         Enemy.hit();
         document.querySelector("#enemy-health").style.width = Enemy.health + "%";
     }
@@ -228,6 +229,7 @@ function animate() {
         Enemy.curFrame === 1
     ) {
         Enemy.isAttacking = false;
+        Player.knockBack(60);
         Player.hit();
         document.querySelector("#player-health").style.width = Player.health + "%";
     }
