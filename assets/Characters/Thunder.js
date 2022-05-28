@@ -40,6 +40,11 @@ const Thunder = new Fighter({
             id: 'hit',
             imgSrc: './img/fighters/thunder/thunder_hit.png',
             frames: 8
+        },
+        defeat: {
+            id: 'defeat',
+            imgSrc: './img/fighters/thunder/thunder_defeat.png',
+            frames: 5
         }
     },
     attackBox: {

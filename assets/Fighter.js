@@ -41,6 +41,7 @@ export default class Fighter extends Sprite {
         this.sprites = sprites;
         this.isReversed = false;
         this.lastSprite = 'idle';
+        this.alive = true;
 
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
@@ -67,12 +68,23 @@ export default class Fighter extends Sprite {
     }
 
     hit() {
-        this.switchSprite('hit')
         this.health -= 20;
+
+        if (this.health <= 0) {
+            this.switchSprite('defeat');
+        } else {
+            this.switchSprite('hit');
+        }
     }
 
     switchSprite(sprite) {
-        
+        if (this.lastSprite == 'defeat') {
+            if (this.curFrame === this.sprites.defeat.frames - 1) {
+                this.alive = false;
+            }
+            return;
+        }
+
         if (this.lastSprite == 'attack_1' && this.curFrame < this.sprites.attack_1.frames - 1) return;
         if (this.lastSprite == 'hit' && this.curFrame < this.sprites.hit.frames - 1) return;
 
@@ -125,6 +137,14 @@ export default class Fighter extends Sprite {
                     this.curFrame = 0;
                 }
                 break;
+            case 'defeat':
+                if (this.lastSprite !== 'defeat') {
+                    this.frames = this.sprites.defeat.frames; 
+                    this.lastSprite  = 'defeat';
+                    this.image = this.isReversed ? this.sprites.defeat.imageR : this.sprites.defeat.image;
+                    this.curFrame = 0;
+                }
+                break;
         }
     }
 
@@ -150,14 +170,14 @@ export default class Fighter extends Sprite {
 
     update() {
         this.draw();
-        this.animateFrame();
+        if (this.alive) this.animateFrame();
 
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
-        this.c.globalAlpha = 0.5;
-        this.c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
-        this.c.globalAlpha = 1.0;
+        // this.c.globalAlpha = 0.5;
+        // this.c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        // this.c.globalAlpha = 1.0;
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
