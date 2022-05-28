@@ -142,9 +142,9 @@ export default class Fighter extends Sprite {
 
     knockBack(force) {
         if(this.facing == 'left') {
-            this.velocity.x += force;
+            // this.velocity.x += force;
         } else {
-            this.velocity.x -= force;
+            // this.velocity.x -= force;
         }
     }
 
@@ -155,9 +155,9 @@ export default class Fighter extends Sprite {
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
-        // this.c.globalAlpha = 0.5;
-        // this.c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
-        // this.c.globalAlpha = 1.0;
+        this.c.globalAlpha = 0.5;
+        this.c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        this.c.globalAlpha = 1.0;
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;

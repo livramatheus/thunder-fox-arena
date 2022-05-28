@@ -5,7 +5,7 @@ const Gonza = new Fighter({
     velocity: { x: 0, y: 0 },
     c: c,
     offset: {
-        x: 100,
+        x: 180,
         y: 142
     },
     imgSrc: './img/fighters/gonza/gonza_idle.png',
@@ -43,8 +43,8 @@ const Gonza = new Fighter({
         }
     },
     attackBox: {
-        offset: {x: 120, y: 50},
-        width: 200,
+        offset: {x: 100, y: 50},
+        width: 140,
         height: 80
     }
 });

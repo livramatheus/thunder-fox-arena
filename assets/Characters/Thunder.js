@@ -43,7 +43,7 @@ const Thunder = new Fighter({
         }
     },
     attackBox: {
-        offset: { x: 60, y: 30 },
+        offset: { x: 50, y: 30 },
         width: 90,
         height: 50
     }
