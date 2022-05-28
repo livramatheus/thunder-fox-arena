@@ -24,12 +24,12 @@ const Thunder = new Fighter({
         jumping: {
             id: 'jumping',
             imgSrc: './img/fighters/thunder/thunder_jumping.png',
-            frames: 3
+            frames: 2
         },
         falling: {
             id: 'falling',
             imgSrc: './img/fighters/thunder/thunder_falling.png',
-            frames: 2
+            frames: 3
         },
         attack_1: {
             id: 'attack_1',
