@@ -35,7 +35,6 @@ export default class Fighter extends Sprite {
         this.health = 100;
         this.curFrame = 0;
         this.framesElapsed = 0;
-        // this.frameSkip = 5;
         this.sprites = sprites;
         this.isReversed = false;
         this.lastSprite = 'idle';
@@ -45,6 +44,7 @@ export default class Fighter extends Sprite {
             sprites[sprite].image  = new Image();
             sprites[sprite].imageR = new Image();
 
+            sprites[sprite].frameSkip  = sprites[sprite].frameSkip ?  sprites[sprite].frameSkip : 5;
             sprites[sprite].image.src  = sprites[sprite].imgSrc;
             sprites[sprite].imageR.src = sprites[sprite].imgSrc.split('.png')[0] + '_r.png';
         }
@@ -109,6 +109,7 @@ export default class Fighter extends Sprite {
                 break;
             case 'walking':
                 if (this.lastSprite !== 'walking') {
+                    this.frameSkip = this.sprites.walking.frameSkip;
                     this.frames = this.sprites.walking.frames; 
                     this.lastSprite  = 'walking';
                     this.image = this.isReversed ? this.sprites.walking.imageR : this.sprites.walking.image;
@@ -133,7 +134,8 @@ export default class Fighter extends Sprite {
                 break;
             case 'attack_1':
                 if (this.lastSprite !== 'attack_1') {
-                    this.frames = this.sprites.attack_1.frames; 
+                    this.frameSkip = this.sprites.attack_1.frameSkip;
+                    this.frames = this.sprites.attack_1.frames;
                     this.lastSprite  = 'attack_1';
                     this.image = this.isReversed ? this.sprites.attack_1.imageR : this.sprites.attack_1.image;
                     this.curFrame = 0;
@@ -172,6 +174,7 @@ export default class Fighter extends Sprite {
                 }
                 break;
         }
+
     }
 
     isJumping() {

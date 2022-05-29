@@ -18,7 +18,8 @@ const Thunder = new Fighter({
         walking: {
             id: 'walking',
             imgSrc: './img/fighters/thunder/thunder_walking.png',
-            frames: 4
+            frames: 4,
+            frameSkip: 15
         },
         jumping: {
             id: 'jumping',
