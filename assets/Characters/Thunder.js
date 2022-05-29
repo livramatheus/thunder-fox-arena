@@ -46,7 +46,8 @@ const Thunder = new Fighter({
             id: 'defeat',
             imgSrc: './img/fighters/thunder/thunder_defeat.png',
             frames: 5,
-            sound: './sound/sound_56.wav'
+            sound: './sound/sound_56.wav',
+            frameSkip: 10
         },
         ducking: {
             id: 'ducking',

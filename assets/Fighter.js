@@ -34,7 +34,6 @@ export default class Fighter extends Sprite {
         this.isAttacking;
         this.health = 100;
         this.curFrame = 0;
-        this.framesElapsed = 0;
         this.sprites = sprites;
         this.isReversed = false;
         this.lastSprite = 'idle';
@@ -44,7 +43,7 @@ export default class Fighter extends Sprite {
             sprites[sprite].image  = new Image();
             sprites[sprite].imageR = new Image();
 
-            sprites[sprite].frameSkip  = sprites[sprite].frameSkip ?  sprites[sprite].frameSkip : 5;
+            sprites[sprite].frameSkip  = sprites[sprite].frameSkip ? sprites[sprite].frameSkip : 5;
             sprites[sprite].image.src  = sprites[sprite].imgSrc;
             sprites[sprite].imageR.src = sprites[sprite].imgSrc.split('.png')[0] + '_r.png';
         }
@@ -61,7 +60,6 @@ export default class Fighter extends Sprite {
     }
 
     attack() {
-        console.log(this.lastKey)
         if (this.lastKey === 's') {
             this.switchSprite('attack_ducking');
         } else {
