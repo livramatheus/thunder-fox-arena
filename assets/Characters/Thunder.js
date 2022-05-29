@@ -45,6 +45,16 @@ const Thunder = new Fighter({
             id: 'defeat',
             imgSrc: './img/fighters/thunder/thunder_defeat.png',
             frames: 5
+        },
+        ducking: {
+            id: 'ducking',
+            imgSrc: './img/fighters/thunder/thunder_ducking.png',
+            frames: 1
+        },
+        attack_ducking: {
+            id: 'attack_ducking',
+            imgSrc: './img/fighters/thunder/thunder_attack_ducking.png',
+            frames: 3
         }
     },
     attackBox: {

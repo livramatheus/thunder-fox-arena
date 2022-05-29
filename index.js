@@ -14,6 +14,7 @@ const keys = {
     a         : { pressed: false },
     d         : { pressed: false },
     w         : { pressed: false },
+    s         : { pressed: false },
     ArrowRight: { pressed: false },
     ArrowLeft : { pressed: false },
     ArrowUp   : { pressed: false }
@@ -79,6 +80,8 @@ function animate() {
     } else if (keys.d.pressed && Player.lastKey === 'd') {
         Player.switchSprite('walking');
         Player.velocity.x = 2.2;
+    } else if (keys.s.pressed && Player.lastKey === 's') {
+        Player.switchSprite('ducking');
     } else {
         Player.switchSprite('idle');
     }
@@ -168,6 +171,10 @@ window.addEventListener('keydown', (event) => {
             case 'w':
                 Player.velocity.y = -13;
                 break;
+            case 's':
+                keys.s.pressed = true;
+                Player.lastKey = 's';
+                break;
             case ' ':
                 Player.attack();
                 break;
@@ -203,8 +210,11 @@ window.addEventListener('keyup', (event) => {
         case 'a':
             keys.a.pressed = false;
             break;
+        case 's':
+            keys.s.pressed = false;
+            break;
 
-        // Player
+        // Enemy
         case 'ArrowRight':
             keys.ArrowRight.pressed = false;
             break;

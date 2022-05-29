@@ -63,7 +63,13 @@ export default class Fighter extends Sprite {
     }
 
     attack() {
-        this.switchSprite('attack_1');
+        console.log(this.lastKey)
+        if (this.lastKey === 's') {
+            this.switchSprite('attack_ducking');
+        } else {
+            this.switchSprite('attack_1');
+        }
+
         this.isAttacking = true;
     }
 
@@ -86,6 +92,7 @@ export default class Fighter extends Sprite {
         }
 
         if (this.lastSprite == 'attack_1' && this.curFrame < this.sprites.attack_1.frames - 1) return;
+        if (this.lastSprite == 'attack_ducking' && this.curFrame < this.sprites.attack_ducking.frames - 1) return;
         if (this.lastSprite == 'hit' && this.curFrame < this.sprites.hit.frames - 1) return;
 
         switch (sprite) {
@@ -142,6 +149,22 @@ export default class Fighter extends Sprite {
                     this.frames = this.sprites.defeat.frames; 
                     this.lastSprite  = 'defeat';
                     this.image = this.isReversed ? this.sprites.defeat.imageR : this.sprites.defeat.image;
+                    this.curFrame = 0;
+                }
+                break;
+            case 'ducking':
+                if (this.lastSprite !== 'ducking') {
+                    this.frames = this.sprites.ducking.frames; 
+                    this.lastSprite  = 'ducking';
+                    this.image = this.isReversed ? this.sprites.ducking.imageR : this.sprites.ducking.image;
+                    this.curFrame = 0;
+                }
+                break;
+            case 'attack_ducking':
+                if (this.lastSprite !== 'attack_ducking') {
+                    this.frames = this.sprites.attack_ducking.frames; 
+                    this.lastSprite  = 'attack_ducking';
+                    this.image = this.isReversed ? this.sprites.attack_ducking.imageR : this.sprites.attack_ducking.image;
                     this.curFrame = 0;
                 }
                 break;
