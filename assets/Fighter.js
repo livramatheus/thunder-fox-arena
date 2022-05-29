@@ -121,9 +121,9 @@ export default class Fighter extends Sprite {
 
     knockBack(force) {
         if(this.facing == 'left') {
-            // this.velocity.x += force;
+            this.velocity.x += force;
         } else {
-            // this.velocity.x -= force;
+            this.velocity.x -= force;
         }
     }
 
