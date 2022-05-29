@@ -1,10 +1,9 @@
 export default class Background {
     
-    constructor({ position, imgSrc, c, music }) {
+    constructor({ position, imgSrc, music }) {
         this.position  = position;
         this.height    = 150;
         this.width     = 50;
-        this.c         = c;
         this.image     = new Image();
         this.image.src = imgSrc;
         this.music     = music
@@ -17,7 +16,7 @@ export default class Background {
     }
 
     draw() {
-        this.c.drawImage(this.image, this.position.x, this.position.y);
+        c.drawImage(this.image, this.position.x, this.position.y);
         
 
     }

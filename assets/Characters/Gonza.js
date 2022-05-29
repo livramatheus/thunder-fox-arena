@@ -3,7 +3,6 @@ import Fighter from '../Fighter.js';
 const Gonza = new Fighter({
     position: { x: 700, y: 150 },
     velocity: { x: 0, y: 0 },
-    c: c,
     offset: {
         x: 180,
         y: 142

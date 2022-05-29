@@ -5,7 +5,6 @@ import Player from "./assets/Characters/Thunder.js"
 const Bg = new Background({
     position: {x: 0, y: 0},
     imgSrc: './img/background.png',
-    c,
     music: './sound/music_03.wav'
 });
 

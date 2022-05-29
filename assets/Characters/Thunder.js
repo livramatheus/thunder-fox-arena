@@ -3,7 +3,6 @@ import Fighter from '../Fighter.js';
 const Thunder = new Fighter({
     position: { x: 100, y: 0 },
     velocity: { x: 0, y: 0 },
-    c: c,
     offset: {
         x: 100,
         y: 0

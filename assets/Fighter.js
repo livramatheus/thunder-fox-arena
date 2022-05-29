@@ -8,7 +8,6 @@ export default class Fighter extends Sprite {
     constructor({
         position,
         velocity,
-        c,
         color,
         offset = {x: 0, y: 0},
         imgSrc,
@@ -22,7 +21,6 @@ export default class Fighter extends Sprite {
         this.velocity  = velocity;
         this.height    = 150;
         this.width     = 50;
-        this.c         = c;
         this.attackBox = {
             position: {
                 x: position.x,
@@ -32,7 +30,7 @@ export default class Fighter extends Sprite {
             height: attackBox.height,
             offset: attackBox.offset
         },
-        this.color = color;
+        color = color;
         this.isAttacking;
         this.health = 100;
         this.curFrame = 0;
@@ -203,9 +201,9 @@ export default class Fighter extends Sprite {
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
-        // this.c.globalAlpha = 0.5;
-        // this.c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
-        // this.c.globalAlpha = 1.0;
+        // c.globalAlpha = 0.5;
+        // c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
+        // c.globalAlpha = 1.0;
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
