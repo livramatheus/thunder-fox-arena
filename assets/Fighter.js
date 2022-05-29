@@ -95,6 +95,11 @@ export default class Fighter extends Sprite {
         if (this.lastSprite == 'attack_ducking' && this.curFrame < this.sprites.attack_ducking.frames - 1) return;
         if (this.lastSprite == 'hit' && this.curFrame < this.sprites.hit.frames - 1) return;
 
+        if (this.sprites[sprite].sound) {
+            let snd = new Audio(this.sprites[sprite].sound);
+            snd.play();  
+        }
+
         switch (sprite) {
             case 'idle':
                 if (this.lastSprite !== 'idle') {

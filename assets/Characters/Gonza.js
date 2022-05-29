@@ -39,12 +39,14 @@ const Gonza = new Fighter({
         hit: {
             id: 'hit',
             imgSrc: './img/fighters/gonza/gonza_hit.png',
-            frames: 6
+            frames: 6,
+            sound: './sound/sound_50.wav'
         },
         defeat: {
             id: 'defeat',
             imgSrc: './img/fighters/gonza/gonza_defeat.png',
-            frames: 15
+            frames: 15,
+            sound: './sound/sound_52.wav'
         }
     },
     attackBox: {

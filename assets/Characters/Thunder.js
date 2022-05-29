@@ -34,7 +34,8 @@ const Thunder = new Fighter({
         attack_1: {
             id: 'attack_1',
             imgSrc: './img/fighters/thunder/thunder_attack_1.png',
-            frames: 3
+            frames: 3,
+            sound: './sound/sound_07.wav'
         },
         hit: {
             id: 'hit',
@@ -44,7 +45,8 @@ const Thunder = new Fighter({
         defeat: {
             id: 'defeat',
             imgSrc: './img/fighters/thunder/thunder_defeat.png',
-            frames: 5
+            frames: 5,
+            sound: './sound/sound_56.wav'
         },
         ducking: {
             id: 'ducking',
@@ -54,7 +56,8 @@ const Thunder = new Fighter({
         attack_ducking: {
             id: 'attack_ducking',
             imgSrc: './img/fighters/thunder/thunder_attack_ducking.png',
-            frames: 3
+            frames: 3,
+            sound: './sound/sound_07.wav'
         }
     },
     attackBox: {
