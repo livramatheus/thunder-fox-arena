@@ -97,84 +97,14 @@ export default class Fighter extends Sprite {
             let snd = new Audio(this.sprites[sprite].sound);
             snd.play();  
         }
-
-        switch (sprite) {
-            case 'idle':
-                if (this.lastSprite !== 'idle') {
-                    this.frames = this.sprites.idle.frames;
-                    this.lastSprite  = 'idle';
-                    this.image = this.isReversed ? this.sprites.idle.imageR : this.sprites.idle.image;
-                    this.curFrame = 0;
-                }
-                break;
-            case 'walking':
-                if (this.lastSprite !== 'walking') {
-                    this.frameSkip = this.sprites.walking.frameSkip;
-                    this.frames = this.sprites.walking.frames; 
-                    this.lastSprite  = 'walking';
-                    this.image = this.isReversed ? this.sprites.walking.imageR : this.sprites.walking.image;
-                    this.curFrame = 0;
-                }
-                break;
-            case 'jumping':
-                if (this.lastSprite !== 'jumping') {
-                    this.frames = this.sprites.jumping.frames; 
-                    this.lastSprite  = 'jumping';
-                    this.image = this.isReversed ? this.sprites.jumping.imageR : this.sprites.jumping.image;
-                    this.curFrame = 0;
-                }
-                break;
-            case 'falling':
-                if (this.lastSprite !== 'falling') {
-                    this.frames = this.sprites.falling.frames; 
-                    this.lastSprite  = 'falling';
-                    this.image = this.isReversed ? this.sprites.falling.imageR : this.sprites.falling.image;
-                    this.curFrame = 0;
-                }
-                break;
-            case 'attack_1':
-                if (this.lastSprite !== 'attack_1') {
-                    this.frameSkip = this.sprites.attack_1.frameSkip;
-                    this.frames = this.sprites.attack_1.frames;
-                    this.lastSprite  = 'attack_1';
-                    this.image = this.isReversed ? this.sprites.attack_1.imageR : this.sprites.attack_1.image;
-                    this.curFrame = 0;
-                }
-                break;
-            case 'hit':
-                if (this.lastSprite !== 'hit') {
-                    this.frames = this.sprites.hit.frames; 
-                    this.lastSprite  = 'hit';
-                    this.image = this.isReversed ? this.sprites.hit.imageR : this.sprites.hit.image;
-                    this.curFrame = 0;
-                }
-                break;
-            case 'defeat':
-                if (this.lastSprite !== 'defeat') {
-                    this.frames = this.sprites.defeat.frames; 
-                    this.lastSprite  = 'defeat';
-                    this.image = this.isReversed ? this.sprites.defeat.imageR : this.sprites.defeat.image;
-                    this.curFrame = 0;
-                }
-                break;
-            case 'ducking':
-                if (this.lastSprite !== 'ducking') {
-                    this.frames = this.sprites.ducking.frames; 
-                    this.lastSprite  = 'ducking';
-                    this.image = this.isReversed ? this.sprites.ducking.imageR : this.sprites.ducking.image;
-                    this.curFrame = 0;
-                }
-                break;
-            case 'attack_ducking':
-                if (this.lastSprite !== 'attack_ducking') {
-                    this.frames = this.sprites.attack_ducking.frames; 
-                    this.lastSprite  = 'attack_ducking';
-                    this.image = this.isReversed ? this.sprites.attack_ducking.imageR : this.sprites.attack_ducking.image;
-                    this.curFrame = 0;
-                }
-                break;
+        
+        if (this.lastSprite !== this.sprites[sprite].id) {
+            this.frameSkip   = this.sprites[sprite].frameSkip;
+            this.frames      = this.sprites[sprite].frames; 
+            this.lastSprite  = this.sprites[sprite].id;
+            this.image       = this.isReversed ? this.sprites[sprite].imageR : this.sprites[sprite].image;
+            this.curFrame    = 0;
         }
-
     }
 
     isJumping() {
