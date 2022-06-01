@@ -2,11 +2,6 @@ import Fighter from '../Fighter.js';
 
 const Gonza = new Fighter({
     position: { x: 700, y: 150 },
-    velocity: { x: 0, y: 0 },
-    offset: {
-        x: 180,
-        y: 142
-    },
     imgSrc: './img/fighters/gonza/gonza_idle.png',
     scale: 3,
     sprites: {
@@ -54,5 +49,10 @@ const Gonza = new Fighter({
         height: 80
     }
 });
+
+Gonza.offset = {
+    x: 180,
+    y: 142
+};
 
 export default Gonza;

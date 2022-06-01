@@ -7,17 +7,15 @@ export default class Fighter extends Sprite {
 
     constructor({
         position,
-        velocity,
-        offset = {x: 0, y: 0},
         imgSrc,
-        scale = 2,
+        scale  = 2,
         frames = 1,
         sprites,
         attackBox = { offset: {}, width: undefined, height: undefined }
     }) {
-        super({ position, imgSrc, scale, frames, offset });
+        super({ position, imgSrc, scale, frames });
 
-        this.velocity  = velocity;
+        this.velocity = { x: 0, y: 0 };
         this.height    = 150;
         this.width     = 50;
         this.attackBox = {
