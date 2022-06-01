@@ -1,6 +1,7 @@
 import Background from "./assets/Background.js";
 import Enemy from "./assets/Characters/Gonza.js"
 import Player from "./assets/Characters/Thunder.js"
+import Fight from "./events/Fight.js";
 
 const Bg = new Background({
     position: {x: 0, y: 0},
@@ -8,7 +9,7 @@ const Bg = new Background({
     // music: './sound/music_03.wav'
 });
 
-Player.changePosition('left');
+new Fight(Player, Enemy, Bg);
 
 const keys = {
     a         : { pressed: false },
@@ -28,35 +29,6 @@ function attackCollision({ rectangle1, rectangle2 }) {
         rectangle1.attackBox.position.y < rectangle2.position.y + rectangle2.height
     );
 }
-
-function checkWinner({ Player, Enemy, timerId }) {
-    clearTimeout(timerId);
-    const displayText = document.querySelector("#display-text");
-    displayText.style.display = 'flex';
-
-    if (Player.health > Enemy.health) return displayText.innerHTML = 'Player 1 Wins';
-    if (Player.health < Enemy.health) return displayText.innerHTML = 'Player 2 Wins';
-    return displayText.innerHTML = 'Draw';
-}
-
-let timerId = null;
-let timer   = 10;
-
-function decreaseTimer() {
-    
-    if (timer > 0) {
-        timer -= 1;
-        document.querySelector("#timer").innerHTML = timer;
-
-        timerId = setTimeout(() => {
-            decreaseTimer();
-        }, 1000);
-    } else {
-        checkWinner({Player, Enemy, timerId});
-    }
-}
-
-decreaseTimer();
 
 /**
  * This function gets called recursively every frame, 
