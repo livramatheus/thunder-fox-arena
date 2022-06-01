@@ -8,7 +8,6 @@ export default class Fighter extends Sprite {
     constructor({
         position,
         velocity,
-        color,
         offset = {x: 0, y: 0},
         imgSrc,
         scale = 2,
@@ -30,7 +29,6 @@ export default class Fighter extends Sprite {
             height: attackBox.height,
             offset: attackBox.offset
         },
-        color = color;
         this.isAttacking;
         this.health = 100;
         this.curFrame = 0;
