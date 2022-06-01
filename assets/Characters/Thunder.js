@@ -68,4 +68,9 @@ const Thunder = new Fighter({
     }
 });
 
+Thunder.defeatKnock = {
+    x: 0,
+    y: -10
+};
+
 export default Thunder;

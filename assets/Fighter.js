@@ -38,6 +38,10 @@ export default class Fighter extends Sprite {
         this.isReversed = false;
         this.lastSprite = 'idle';
         this.alive = true;
+        this.defeatKnock = {
+            x: 0,
+            y: 0
+        };
 
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
@@ -73,6 +77,7 @@ export default class Fighter extends Sprite {
         this.health -= 20;
 
         if (this.health <= 0) {
+            this.knockBack(this.defeatKnock);
             this.switchSprite('defeat');
         } else {
             this.switchSprite('hit');
@@ -118,11 +123,9 @@ export default class Fighter extends Sprite {
     }
 
     knockBack(force) {
-        if(this.facing == 'left') {
-            this.velocity.x += force;
-        } else {
-            this.velocity.x -= force;
-        }
+        if (this.facing == 'right') force.x = force.x * -1;
+        this.velocity.x += force.x;
+        this.velocity.y += force.y;
     }
 
     update() {
