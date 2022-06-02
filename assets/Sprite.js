@@ -12,6 +12,8 @@ export default class Sprite {
         this.framesElapsed = 0;
         this.frameSkip     = 5;
         this.offset        = {x: 0, y: 0};
+        this.gravity       = 0.4;
+        this.lastKey       = null;
     }
 
     draw() {

@@ -2,9 +2,6 @@ import Sprite from './Sprite.js';
 
 export default class Fighter extends Sprite {
     
-    gravity = 0.4;
-    lastKey = null;
-
     constructor({
         position,
         imgSrc,
@@ -139,7 +136,7 @@ export default class Fighter extends Sprite {
         this.position.y += this.velocity.y;
 
         // Checks wether the sprite touches the bottom of the screen
-        if (this.position.y + this.height + this.velocity.y >= 576 - 110) {
+        if (this.position.y + this.height + this.velocity.y >= CANVAS_HEIGHT - 110) {
             this.velocity.y = 0;
             this.position.y = 330;
         } else {
