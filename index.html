@@ -5,27 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thunder Fox Arena</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-    </style>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <div style="position: relative; display: inline-block;">
-        <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
-            <div style="position: relative; height: 30px; width: 100%; display: flex; justify-content: flex-end;">
-                <div style="background-color: yellow; height: 30px; width: 100%;"></div>
-                <div id="player-health" style="background: blue; height: 30px; position: absolute; top: 0; right: 0; bottom: 0; width: 100%;"></div>
+    <div id="canvas">
+        <div id="top-bar">
+            <div id="player-health-outer">
+                <div id="player-health-inside"></div>
+                <div id="player-health"></div>
             </div>
-            <div id="timer" style="background-color: red; width: 100px; height: 100px; flex-shrink: 0; display: flex; justify-content: center; align-items: center;">10</div>
-            <div style="position: relative; height: 30px; width: 100%;">
-                <div style="background-color: yellow; height: 30px;"></div>
-                <div id="enemy-health" style="background: blue; height: 30px; position: absolute; top: 0; right: 0; bottom: 0; left: 0; width: 100%;"></div>
+            <div id="timer">10</div>
+            <div id="enemy-health-outer">
+                <div id="enemy-health-inside"></div>
+                <div id="enemy-health"></div>
             </div>
         </div>
-        <div id="display-text" style="color: white; position: absolute; display: none; justify-content: center; align-items: center; top: 0; right: 0; bottom: 0; left: 0; ">Draw</div>
+        <div id="display-text">Draw</div>
         <canvas></canvas>
     </div>
     <script src="canvas/canvas.js"></script>
