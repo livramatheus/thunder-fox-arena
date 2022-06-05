@@ -79,7 +79,7 @@ const getPagesData = () => {
         </p>
         <p>You can find more info about Matheus at:</p>
         <ul>
-            <li><a href="https://www.livramento.dev/about">Personal website</a></li>
+            <li><a href="https://www.livramento.dev">Personal website</a></li>
             <li><a href="https://github.com/livramatheus">GitHub</a></li>
         </ul>`
     }
