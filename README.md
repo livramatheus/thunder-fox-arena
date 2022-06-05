@@ -11,6 +11,7 @@
 
 <ul>
     <li><a href="#legal">Legal - Information to Taito</a></li>
+    <li><a href="#current-status">Current Status</a></li>
     <li><a href="#about-the-project">About the project</a></li>
     <li><a href="#live-demo">Live demo</a></li>
     <li><a href="#technologies-front">Technologies</a></li>
@@ -39,6 +40,19 @@
     <li>I <b>don't sell</b> Thunder Fox Arena.</li>
     <li>I <b>will never</b> monetize Thunder Fox Arena in any shape or form.</li>
 </ul>
+
+<h2 id="current-status">⌚ Current Status</h2>
+<p>
+    In this section, I'll constantly update Thunder Fox Arena current status.
+</p>
+
+<p>
+    <b>Start date:</b> May, 9th 2022
+    <br/>
+    <b>Hours taken so far:</b> ~13
+    <br/>
+    <b>Estimate completion:</b> 30%
+</p>
 
 <h2 id="about-the-project">💻 About the project</h2>
 
@@ -97,12 +111,26 @@
 <h2>📜 Tabela de conteúdo</h2>
 
 <ul>
+    <li><a href="#current-status-br">Status Atual</a></li>
     <li><a href="#about-the-project-br">Sobre o projeto</a></li>
     <li><a href="#live-demo-br">Live demo</a></li>
     <li><a href="#technologies-front-br">Tecnologias</a></li>
     <li><a href="#code-contributing-br">Código/Contribuindo</a></li>
     <li><a href="#autor-br">Autor</a></li>
 </ul>
+
+<h2 id="current-status-br">⌚ Status Atual</h2>
+<p>
+    Nesta seção, irei atualizar constantemente o estado atual do Thunder Fox Arena.
+</p>
+
+<p>
+    <b>Data de início:</b> 9 de maio de 2022
+    <br/>
+    <b>Horas de trabalho até o momento:</b> ~13
+    <br/>
+    <b>Estimativa de conclusão:</b> 30%
+</p>
 
 <h2 id="about-the-project-br">💻 Sobre o projeto</h2>
 
