@@ -20,9 +20,14 @@ export default class Fight {
         Player1.changePosition('left');
         this.initStageMusic();
         this.decreaseTimer();
+        this.enableTopBar();
         this.manageKeys();
     }
     
+    enableTopBar() {
+        document.querySelector("#top-bar").style.display = 'flex';
+    }
+
     initStageMusic() {
         this.Stage.sound.volume = 0.4;
         this.Stage.sound.loop = true;
