@@ -9,9 +9,7 @@ export default class Background {
         this.music     = music
 
         if (this.music) {
-            let snd = new Audio(this.music);
-            snd.volume = 0.1;
-            snd.play();  
+            this.sound = new Audio(this.music);
         }
     }
 
