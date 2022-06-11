@@ -1,6 +1,15 @@
 const CANVAS_WIDTH  = 1024;
 const CANVAS_HEIGHT = 576;
 
+const globalData = {
+    animFramId: null,
+    currentScene: null,
+    next: 'stageselect',
+    ST: null,
+    P1: null,
+    P2: null
+}
+
 const canvas = document.querySelector('canvas');
 const c      = canvas.getContext('2d');
 
