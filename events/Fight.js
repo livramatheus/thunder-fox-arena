@@ -71,8 +71,6 @@ export default class Fight {
      * in order that every component gets re-rendered continuously
      */
     animate = () => {
-        window.requestAnimationFrame(this.animate);
-
         c.fillStyle = 'black';
         c.fillRect(0, 0, canvas.width, canvas.height);
         this.Stage.update();
