@@ -26,6 +26,8 @@ export default class Fight {
     
     enableTopBar() {
         document.querySelector("#top-bar").style.display = 'flex';
+        document.querySelector("#player-name").innerText = this.Player1.name;
+        document.querySelector("#enemy-name").innerText  = this.Player2.name;
     }
 
     initStageMusic() {
