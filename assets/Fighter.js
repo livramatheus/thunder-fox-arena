@@ -8,7 +8,8 @@ export default class Fighter extends Sprite {
         scale  = 2,
         frames = 1,
         sprites,
-        attackBox = { offset: {}, width: undefined, height: undefined }
+        attackBox = { offset: {}, width: undefined, height: undefined },
+        name
     }) {
         super({ position, imgSrc, scale, frames });
 
@@ -35,6 +36,7 @@ export default class Fighter extends Sprite {
             x: 0,
             y: 0
         };
+        this.name = name;
 
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
