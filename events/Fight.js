@@ -26,6 +26,8 @@ export default class Fight {
     
     enableTopBar() {
         document.querySelector("#top-bar").style.display = 'flex';
+        document.querySelector("#player-name").innerText = this.Player1.name;
+        document.querySelector("#enemy-name").innerText  = this.Player2.name;
     }
 
     initStageMusic() {
@@ -39,9 +41,9 @@ export default class Fight {
         const displayText = document.querySelector("#display-text");
         displayText.style.display = 'flex';
     
-        if (this.Player1.health > this.Player2.health) return displayText.innerHTML = 'Player 1 Wins';
-        if (this.Player1.health < this.Player2.health) return displayText.innerHTML = 'Player 2 Wins';
-        return displayText.innerHTML = 'Draw';
+        if (this.Player1.health > this.Player2.health) return displayText.innerHTML = 'PLAYER 1 WINS';
+        if (this.Player1.health < this.Player2.health) return displayText.innerHTML = 'PLAYER 2 WINS';
+        return displayText.innerHTML = 'DRAW';
     }
 
     decreaseTimer() {

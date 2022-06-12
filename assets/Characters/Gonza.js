@@ -47,7 +47,8 @@ const Gonza = new Fighter({
         offset: {x: 100, y: 50},
         width: 140,
         height: 80
-    }
+    },
+    name: 'GONZA'
 });
 
 Gonza.offset = {

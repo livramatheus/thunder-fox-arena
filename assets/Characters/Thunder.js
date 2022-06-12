@@ -60,7 +60,8 @@ const Thunder = new Fighter({
         offset: { x: 50, y: 30 },
         width: 90,
         height: 50
-    }
+    },
+    name: 'THUNDER'
 });
 
 Thunder.defeatKnock = {
