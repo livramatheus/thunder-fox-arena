@@ -47,7 +47,7 @@ export default class Fight {
     }
 
     decreaseTimer() {
-        if (this.timer > 0) {
+        if (!this.isRoundOver()) {
             this.timer -= 1;
             document.querySelector("#timer").innerHTML = this.timer;
     
@@ -162,8 +162,14 @@ export default class Fight {
         }   
     }
 
+    isRoundOver() {
+        return this.timer <= 0;
+    }
+
     manageKeys() {
         window.addEventListener('keydown', (event) => {
+            if (this.isRoundOver()) return;
+
             if (this.Player1.alive) {
                 switch (event.key) {
                     case 'd':
