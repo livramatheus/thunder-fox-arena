@@ -181,6 +181,7 @@ export default class Fight {
                         this.Player1.lastKey = 'a';
                         break;
                     case 'w':
+                        if (this.Player1.isInAir()) return;
                         this.Player1.velocity.y = -13;
                         break;
                     case 's':
@@ -204,6 +205,7 @@ export default class Fight {
                         this.Player2.lastKey = 'ArrowLeft';
                         break;
                     case 'ArrowUp':
+                        if (this.Player2.isInAir()) return;
                         this.Player2.velocity.y = -10;
                         break;
                     case 'ArrowDown':
