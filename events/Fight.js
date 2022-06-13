@@ -162,8 +162,12 @@ export default class Fight {
         }   
     }
 
-    isRoundOver() {
+    isTimeOver() {
         return this.timer <= 0;
+    }
+
+    isRoundOver() {
+        return this.isTimeOver() || (!this.Player1.alive || !this.Player2.alive);
     }
 
     manageKeys() {
