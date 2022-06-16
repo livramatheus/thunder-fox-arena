@@ -1,3 +1,5 @@
+const DEBUG_MODE = false;
+
 const CANVAS_WIDTH  = 1024;
 const CANVAS_HEIGHT = 576;
 
