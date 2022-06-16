@@ -1,12 +1,12 @@
 export default class Sprite {
     
-    constructor({ position, imgSrc, scale = 2, frames = 1 }) {
+    constructor({ position, imgSrc, frames = 1 }) {
         this.position      = position;
         this.height        = 150;
         this.width         = 50;
         this.image         = new Image();
         this.image.src     = imgSrc;
-        this.scale         = scale;
+        this.scale         = 1;
         this.frames        = frames
         this.curFrame      = 0;
         this.framesElapsed = 0;

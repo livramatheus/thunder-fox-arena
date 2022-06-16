@@ -3,7 +3,6 @@ import Fighter from '../Fighter.js';
 const Gonza = new Fighter({
     position: { x: 700, y: 150 },
     imgSrc: './img/fighters/gonza/gonza_idle.png',
-    scale: 1,
     sprites: {
         idle: {
             id: 'idle',

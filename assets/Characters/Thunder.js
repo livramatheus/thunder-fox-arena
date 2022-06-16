@@ -3,7 +3,6 @@ import Fighter from '../Fighter.js';
 const Thunder = new Fighter({
     position: { x: 100, y: 0 },
     imgSrc: './img/fighters/thunder/thunder_idle.png',
-    scale: 1,
     sprites: {
         idle: {
             id: 'idle',
