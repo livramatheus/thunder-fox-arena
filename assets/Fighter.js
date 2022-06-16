@@ -37,6 +37,9 @@ export default class Fighter extends Sprite {
             y: 0
         };
         this.name = name;
+        this.jumpForce = -13;
+        this.walkFrontSpeed = 2;
+        this.walkBackSpeed  = -2;
 
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
@@ -123,6 +126,24 @@ export default class Fighter extends Sprite {
         this.velocity.y += force.y;
     }
 
+    manageJumpingSprites() {
+        if (this.isJumping()) {
+            this.switchSprite('jumping');
+        } else if (this.isFalling()) {
+            this.switchSprite('falling');
+        }
+    }
+
+    walkFront() {
+        this.switchSprite('walking');
+        this.velocity.x = this.walkFrontSpeed;
+    }
+
+    walkBack() {
+        this.switchSprite('walking');
+        this.velocity.x = this.walkBackSpeed;
+    }
+
     update() {
         this.draw();
         if (this.alive) this.animateFrame();
@@ -146,5 +167,11 @@ export default class Fighter extends Sprite {
             // The velocity increases every frame
             this.velocity.y += this.gravity;
         }
+    }
+
+    // Actions
+    jump() {
+        if (this.isInAir()) return;
+        this.velocity.y = this.jumpForce;
     }
 }
