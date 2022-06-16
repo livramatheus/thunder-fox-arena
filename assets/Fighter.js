@@ -5,17 +5,16 @@ export default class Fighter extends Sprite {
     constructor({
         position,
         imgSrc,
-        scale  = 2,
         frames = 1,
         sprites,
         attackBox = { offset: {}, width: undefined, height: undefined },
         name
     }) {
-        super({ position, imgSrc, scale, frames });
+        super({ position, imgSrc, frames });
 
         this.velocity = { x: 0, y: 0 };
-        this.height    = 150;
-        this.width     = 50;
+        this.height    = 0;
+        this.width     = 0;
         this.attackBox = {
             position: {
                 x: position.x,
@@ -40,6 +39,7 @@ export default class Fighter extends Sprite {
         this.jumpForce = -13;
         this.walkFrontSpeed = 2;
         this.walkBackSpeed  = -2;
+        this.boxOffset = {x: 0, y: 0};
 
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
@@ -144,6 +144,24 @@ export default class Fighter extends Sprite {
         this.velocity.x = this.walkBackSpeed;
     }
 
+    showCollBox() {
+        c.globalAlpha = 0.5;
+        
+        // Attack Box
+        c.fillStyle = "red";
+        c.fillRect(
+            this.attackBox.position.x + this.boxOffset.x,
+            this.attackBox.position.y + this.boxOffset.y,
+            this.attackBox.width, this.attackBox.height
+        );
+        
+        // Hit Box
+        c.fillStyle = "yellow";
+        c.fillRect(this.position.x + this.boxOffset.x, this.position.y + this.boxOffset.y, this.width, this.height);
+        
+        c.globalAlpha = 1.0;
+    }
+
     update() {
         this.draw();
         if (this.alive) this.animateFrame();
@@ -151,9 +169,7 @@ export default class Fighter extends Sprite {
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
 
-        // c.globalAlpha = 0.5;
-        // c.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height);
-        // c.globalAlpha = 1.0;
+        if (DEBUG_MODE) this.showCollBox();
 
         this.position.x += this.velocity.x;
         this.position.y += this.velocity.y;
@@ -161,7 +177,7 @@ export default class Fighter extends Sprite {
         // Checks wether the sprite touches the bottom of the screen
         if (this.position.y + this.height + this.velocity.y >= CANVAS_HEIGHT - 110) {
             this.velocity.y = 0;
-            this.position.y = 330;
+            this.position.y = CANVAS_HEIGHT - this.height - 110;
         } else {
             // Applies gravity to velocity as long if the Sprite is in the air
             // The velocity increases every frame

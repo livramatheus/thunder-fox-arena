@@ -59,12 +59,12 @@ export default class Fight {
         }
     }
 
-    attackCollision() {
+    attackCollision(Attacker, Victim) {
         return (
-            this.Player1.attackBox.position.x + this.Player1.attackBox.width >= this.Player2.position.x &&
-            this.Player1.attackBox.position.x <= this.Player2.position.x + this.Player2.width &&
-            this.Player1.attackBox.position.y + this.Player1.attackBox.height >= this.Player2.position.y &&
-            this.Player1.attackBox.position.y < this.Player2.position.y + this.Player2.height
+            Attacker.attackBox.position.x + Attacker.boxOffset.x + Attacker.attackBox.width >= Victim.position.x + Victim.boxOffset.x &&
+            Attacker.attackBox.position.x + Attacker.boxOffset.x <= Victim.position.x + Victim.boxOffset.x + Victim.width &&
+            Attacker.attackBox.position.y + Attacker.boxOffset.y + Attacker.attackBox.height >= Victim.position.y + Victim.boxOffset.y &&
+            Attacker.attackBox.position.y + Attacker.boxOffset.y < Victim.position.y + Victim.boxOffset.y + Victim.height
         );
     }
 
@@ -87,7 +87,7 @@ export default class Fight {
 
         // Collision detection
         if (
-            this.attackCollision() &&
+            this.attackCollision(this.Player1, this.Player2) &&
             this.Player1.isAttacking &&
             this.Player1.curFrame === 1
         ) {
@@ -103,7 +103,7 @@ export default class Fight {
         }
         
         if (
-            this.attackCollision() &&
+            this.attackCollision(this.Player2, this.Player1) &&
             this.Player2.isAttacking &&
             this.Player2.curFrame === 1
         ) {
@@ -153,7 +153,7 @@ export default class Fight {
     }
 
     checkPositions() {
-        if (!(this.Player1.position.x + this.Player1.width > this.Player2.position.x + this.Player2.width)) {
+        if (!(this.Player1.position.x + this.Player1.boxOffset.x + this.Player1.width > this.Player2.position.x + this.Player2.boxOffset.x + this.Player2.width)) {
             this.Player1.changePosition('right');
             this.Player2.changePosition('left');
         } else {

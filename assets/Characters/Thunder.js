@@ -1,7 +1,7 @@
 import Fighter from '../Fighter.js';
 
 const Thunder = new Fighter({
-    position: { x: 100, y: 0 },
+    position: { x: 0, y: 0 },
     imgSrc: './img/fighters/thunder/thunder_idle.png',
     sprites: {
         idle: {
@@ -68,9 +68,17 @@ Thunder.defeatKnock = {
     y: -10
 };
 
+Thunder.width  = 50;
+Thunder.height = 180;
+
+Thunder.boxOffset = {
+    x: 120,
+    y: 50
+};
+
 Thunder.offset = {
-    x: 100,
-    y: 0
+    x: 0,
+    y: -45
 };
 
 export default Thunder;
