@@ -59,8 +59,8 @@ export default class StageSelect {
         this.draw();
     }
 
-    moveCursor(key) {
-        switch (key) {
+    moveCursor = (event) => {
+        switch (event.key) {
             case 'ArrowUp':
                 if (this.cursorPos <= 0) return;
                 this.cursorPos --;
@@ -79,15 +79,11 @@ export default class StageSelect {
         }    
     }
 
-    keysa = (event) => {
-        this.moveCursor(event.key);
-    }
-
     removeKeys() {
-        window.removeEventListener('keydown', this.keysa);
+        window.removeEventListener('keydown', this.moveCursor);
     }
 
     manageKeys() {
-        window.addEventListener('keydown', this.keysa);
+        window.addEventListener('keydown', this.moveCursor);
     }
 }
