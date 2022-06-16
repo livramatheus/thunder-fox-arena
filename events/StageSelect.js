@@ -4,13 +4,13 @@ export default class StageSelect {
 
     constructor() {
         this.stageList = [
-            { id: 'barriers'    , name: 'BARRIERS', class: 'Barriers' },
-            { id: 'hangar'      , name: 'HANGAR', class: 'Hangar' },
-            { id: 'carrier'     , name: 'CARRIER', class: 'Carrier' },
-            { id: 'mining_site' , name: 'MINING SITE', class: 'MiningSite' },
-            { id: 'cold_fields' , name: 'COLD FIELDS', class: 'ColdFields' },
+            { id: 'barriers'    , name: 'BARRIERS'    , class: 'Barriers'    },
+            { id: 'hangar'      , name: 'HANGAR'      , class: 'Hangar'      },
+            { id: 'carrier'     , name: 'CARRIER'     , class: 'Carrier'     },
+            { id: 'mining_site' , name: 'MINING SITE' , class: 'MiningSite'  },
+            { id: 'cold_fields' , name: 'COLD FIELDS' , class: 'ColdFields'  },
             { id: 'control_room', name: 'CONTROL ROOM', class: 'ControlRoom' },
-            { id: 'ginarzas_hq' , name: `GINARZA'S HQ`, class: 'GinarzasHq' },
+            { id: 'ginarzas_hq' , name: `GINARZA'S HQ`, class: 'GinarzasHq'  },
         ];
         this.Background = new Background({
             position: {x: 0, y: 0},
@@ -37,10 +37,7 @@ export default class StageSelect {
         this.Background.image.src = `./img/stages/${this.stageList[this.cursorPos].id}.png`;
         this.Background.update();
         this.Overlay.update();
-        this.update();
-    }
 
-    draw() {
         let y          = 220;
         let lineHeight = 30;
         
@@ -55,12 +52,8 @@ export default class StageSelect {
         c.fillText('►', 30, 216 + (lineHeight * this.cursorPos));
     }
 
-    update() {
-        this.draw();
-    }
-
-    moveCursor(key) {
-        switch (key) {
+    moveCursor = (event) => {
+        switch (event.key) {
             case 'ArrowUp':
                 if (this.cursorPos <= 0) return;
                 this.cursorPos --;
@@ -70,24 +63,24 @@ export default class StageSelect {
                 this.cursorPos ++;
                 break;
             case ' ':
-                this.removeKeys();
-                globalData.ST = this.stageList[this.cursorPos].class;
-                globalData.next = 'fight';
-                this.Overlay.sound.pause();
-                this.Overlay.sound.currentTime = 0;
+                this.shutDown();
                 break;
         }    
     }
 
-    keysa = (event) => {
-        this.moveCursor(event.key);
-    }
-
     removeKeys() {
-        window.removeEventListener('keydown', this.keysa);
+        window.removeEventListener('keydown', this.moveCursor);
     }
 
     manageKeys() {
-        window.addEventListener('keydown', this.keysa);
+        window.addEventListener('keydown', this.moveCursor);
+    }
+
+    shutDown() {
+        this.removeKeys();
+        globalData.ST = this.stageList[this.cursorPos].class;
+        globalData.next = 'fight';
+        this.Overlay.sound.pause();
+        this.Overlay.sound.currentTime = 0;
     }
 }

@@ -5,7 +5,7 @@ export default class Fight {
         this.Player2 = Player2;
         this.Stage   = Stage;
         this.timerId = null;
-        this.timer   = 10;
+        this.timer   = 99;
 
         this.keys = {
             a         : { pressed: false },
@@ -80,41 +80,10 @@ export default class Fight {
         this.Player2.update();
 
         this.Player1.velocity.x = 0;
-        this.Player2.velocity.x  = 0;
+        this.Player2.velocity.x = 0;
 
-        if (this.keys.a.pressed && this.Player1.lastKey === 'a') {
-            this.Player1.switchSprite('walking');
-            this.Player1.velocity.x = -1.2;
-        } else if (this.keys.d.pressed && this.Player1.lastKey === 'd') {
-            this.Player1.switchSprite('walking');
-            this.Player1.velocity.x = 2.2;
-        } else if (this.keys.s.pressed && this.Player1.lastKey === 's') {
-            this.Player1.switchSprite('ducking');
-        } else {
-            this.Player1.switchSprite('idle');
-        }
-
-        if (this.Player1.isJumping()) {
-            this.Player1.switchSprite('jumping');
-        } else if (this.Player1.isFalling()) {
-            this.Player1.switchSprite('falling');
-        }
-
-        if (this.keys.ArrowRight.pressed && this.Player2.lastKey === 'ArrowRight') {
-            this.Player2.switchSprite('walking');
-            this.Player2.velocity.x = 2.2;
-        } else if (this.keys.ArrowLeft.pressed && this.Player2.lastKey === 'ArrowLeft') {
-            this.Player2.switchSprite('walking');
-            this.Player2.velocity.x = -1.2;
-        } else {
-            this.Player2.switchSprite('idle');
-        }
-
-        if (this.Player2.isJumping()) {
-            this.Player2.switchSprite('jumping');
-        } else if (this.Player2.isFalling()) {
-            this.Player2.switchSprite('falling');
-        }
+        this.initPlayer1Actions();
+        this.initPlayer2Actions();
 
         // Collision detection
         if (
@@ -153,13 +122,44 @@ export default class Fight {
             this.checkWinner();
         }
 
+        this.checkPositions();
+    }
+
+    initPlayer1Actions() {
+        if (this.keys.a.pressed && this.Player1.lastKey === 'a') {
+            this.Player1.walkBack();
+        } else if (this.keys.d.pressed && this.Player1.lastKey === 'd') {
+            this.Player1.walkFront();
+        } else
+        if (this.keys.s.pressed && this.Player1.lastKey === 's') {
+            this.Player1.switchSprite('ducking');
+        } else {
+            this.Player1.switchSprite('idle');
+        }
+
+        this.Player1.manageJumpingSprites();
+    }
+
+    initPlayer2Actions() {
+        if (this.keys.ArrowRight.pressed && this.Player2.lastKey === 'ArrowRight') {
+            this.Player2.walkFront();
+        } else if (this.keys.ArrowLeft.pressed && this.Player2.lastKey === 'ArrowLeft') {
+            this.Player2.walkBack();
+        } else {
+            this.Player2.switchSprite('idle');
+        }
+
+        this.Player2.manageJumpingSprites();
+    }
+
+    checkPositions() {
         if (!(this.Player1.position.x + this.Player1.width > this.Player2.position.x + this.Player2.width)) {
             this.Player1.changePosition('right');
             this.Player2.changePosition('left');
         } else {
             this.Player1.changePosition('left');
             this.Player2.changePosition('right');
-        }   
+        }
     }
 
     isTimeOver() {
@@ -185,8 +185,7 @@ export default class Fight {
                         this.Player1.lastKey = 'a';
                         break;
                     case 'w':
-                        if (this.Player1.isInAir()) return;
-                        this.Player1.velocity.y = -13;
+                        this.Player1.jump();
                         break;
                     case 's':
                         this.keys.s.pressed = true;
@@ -209,8 +208,7 @@ export default class Fight {
                         this.Player2.lastKey = 'ArrowLeft';
                         break;
                     case 'ArrowUp':
-                        if (this.Player2.isInAir()) return;
-                        this.Player2.velocity.y = -10;
+                        this.Player2.jump();
                         break;
                     case 'ArrowDown':
                         this.Player2.attack();
@@ -243,4 +241,5 @@ export default class Fight {
         });
     }
 
+    shutDown() {}
 }
