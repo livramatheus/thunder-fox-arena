@@ -62,21 +62,23 @@ export default class Fight {
     attackCollision(Attacker, Victim) {
         let attackerBox = Attacker.getAttackBoxCoordinates();
         let victimBox   = Victim.getHitBoxCoordinates();
-        
+        let vertConds   = (
+            attackerBox.y + attackerBox.h >= victimBox.y &&
+            attackerBox.y < victimBox.y + victimBox.h
+        )
+
         if (Attacker.facing === 'right') {
             return (
                 attackerBox.x + attackerBox.w >= victimBox.x + victimBox.w &&
                 attackerBox.x <= victimBox.x + victimBox.w &&
-                attackerBox.y + attackerBox.h >= victimBox.y &&
-                attackerBox.y < victimBox.y + victimBox.h
+                vertConds
             );
         }
 
         return (
             attackerBox.x > victimBox.x &&
             attackerBox.x + attackerBox.w < victimBox.x + victimBox.w &&
-            attackerBox.y + attackerBox.h >= victimBox.y &&
-            attackerBox.y < victimBox.y + victimBox.h
+            vertConds
         );
     }
 
@@ -165,7 +167,10 @@ export default class Fight {
     }
 
     checkPositions() {
-        if (!(this.Player1.position.x + this.Player1.boxOffset.x + this.Player1.width > this.Player2.position.x + this.Player2.boxOffset.x + this.Player2.width)) {
+        if (!(
+            this.Player1.position.x + this.Player1.boxOffset.x + this.Player1.width >
+            this.Player2.position.x + this.Player2.boxOffset.x + this.Player2.width
+        )) {
             this.Player1.changePosition('right');
             this.Player2.changePosition('left');
         } else {
