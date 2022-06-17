@@ -57,7 +57,6 @@ export default class Fighter extends Sprite {
         if (this.facing != position) {
             this.facing = position;
             this.isReversed = !this.isReversed;
-            this.attackBox.offset.x = (this.attackBox.offset.x * -1);
         }
     }
 
@@ -144,20 +143,56 @@ export default class Fighter extends Sprite {
         this.velocity.x = this.walkBackSpeed;
     }
 
+    getAttackBoxCoordinates() {
+        let xPos, width;
+        
+        if (this.facing === 'right') {
+            xPos  = this.position.x + this.attackBox.offset.x + this.boxOffset.x;
+            width = this.attackBox.width;
+        } else {
+            xPos  = this.position.x - this.boxOffset.x + this.sprites['idle'].image.width - this.width;
+            width = this.attackBox.width * -1;
+        }
+
+        return {
+            x: xPos,
+            y: this.attackBox.position.y + this.boxOffset.y,
+            w: width,
+            h: this.attackBox.height
+        }
+    }
+
+    getHitBoxCoordinates() {
+        let xPos, width;
+        
+        if (this.facing === 'right') {
+            xPos  = this.position.x + this.boxOffset.x;
+            width = this.width;
+        } else {
+            xPos  = this.position.x - this.boxOffset.x + this.sprites['idle'].image.width;
+            width = this.width * -1;
+        }
+
+        return {
+            x: xPos,
+            y: this.position.y + this.boxOffset.y,
+            w: width,
+            h: this.height,
+        }
+    }
+
     showCollBox() {
         c.globalAlpha = 0.5;
-        
+        let attackBox = this.getAttackBoxCoordinates();
+        let hitBox    = this.getHitBoxCoordinates();
+
         // Attack Box
-        c.fillStyle = "red";
-        c.fillRect(
-            this.attackBox.position.x + this.boxOffset.x,
-            this.attackBox.position.y + this.boxOffset.y,
-            this.attackBox.width, this.attackBox.height
-        );
+        c.fillStyle = "blue";
+        c.fillRect(attackBox.x, attackBox.y, attackBox.w, attackBox.h);
         
         // Hit Box
         c.fillStyle = "yellow";
-        c.fillRect(this.position.x + this.boxOffset.x, this.position.y + this.boxOffset.y, this.width, this.height);
+        c.fillRect(hitBox.x, hitBox.y, hitBox.w, hitBox.h);
         
         c.globalAlpha = 1.0;
     }

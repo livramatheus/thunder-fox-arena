@@ -43,8 +43,8 @@ const Gonza = new Fighter({
         }
     },
     attackBox: {
-        offset: {x: 100, y: 50},
-        width: 140,
+        offset: {x: 80, y: 50},
+        width: 130,
         height: 80
     },
     name: 'GONZA'
@@ -54,7 +54,7 @@ Gonza.height = 230;
 Gonza.width  = 80;
 
 Gonza.boxOffset = {
-    x: 220,
+    x: 140,
     y: 55
 };
 
