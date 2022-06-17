@@ -60,11 +60,23 @@ export default class Fight {
     }
 
     attackCollision(Attacker, Victim) {
+        let attackerBox = Attacker.getAttackBoxCoordinates();
+        let victimBox   = Victim.getHitBoxCoordinates();
+        
+        if (Attacker.facing === 'right') {
+            return (
+                attackerBox.x + attackerBox.w >= victimBox.x + victimBox.w &&
+                attackerBox.x <= victimBox.x + victimBox.w &&
+                attackerBox.y + attackerBox.h >= victimBox.y &&
+                attackerBox.y < victimBox.y + victimBox.h
+            );
+        }
+
         return (
-            Attacker.attackBox.position.x + Attacker.boxOffset.x + Attacker.attackBox.width >= Victim.position.x + Victim.boxOffset.x &&
-            Attacker.attackBox.position.x + Attacker.boxOffset.x <= Victim.position.x + Victim.boxOffset.x + Victim.width &&
-            Attacker.attackBox.position.y + Attacker.boxOffset.y + Attacker.attackBox.height >= Victim.position.y + Victim.boxOffset.y &&
-            Attacker.attackBox.position.y + Attacker.boxOffset.y < Victim.position.y + Victim.boxOffset.y + Victim.height
+            attackerBox.x > victimBox.x &&
+            attackerBox.x + attackerBox.w < victimBox.x + victimBox.w &&
+            attackerBox.y + attackerBox.h >= victimBox.y &&
+            attackerBox.y < victimBox.y + victimBox.h
         );
     }
 
