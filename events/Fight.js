@@ -3,6 +3,8 @@ export default class Fight {
     constructor(Player1, Player2, Stage) {
         this.Player1 = Player1;
         this.Player2 = Player2;
+        this.Player1.lifebarId = '#player-health';
+        this.Player2.lifebarId = '#enemy-health';
         this.Stage   = Stage;
         this.timerId = null;
         this.timer   = 99;
@@ -59,29 +61,6 @@ export default class Fight {
         }
     }
 
-    attackCollision(Attacker, Victim) {
-        let attackerBox = Attacker.getAttackBoxCoordinates();
-        let victimBox   = Victim.getHitBoxCoordinates();
-        let vertConds   = (
-            attackerBox.y + attackerBox.h >= victimBox.y &&
-            attackerBox.y < victimBox.y + victimBox.h
-        )
-
-        if (Attacker.facing === 'right') {
-            return (
-                attackerBox.x + attackerBox.w >= victimBox.x + victimBox.w &&
-                attackerBox.x <= victimBox.x + victimBox.w &&
-                vertConds
-            );
-        }
-
-        return (
-            attackerBox.x > victimBox.x &&
-            attackerBox.x + attackerBox.w < victimBox.x + victimBox.w &&
-            vertConds
-        );
-    }
-
     /**
      * This function gets called recursively every frame, 
      * in order that every component gets re-rendered continuously
@@ -98,39 +77,6 @@ export default class Fight {
 
         this.initPlayer1Actions();
         this.initPlayer2Actions();
-
-        // Collision detection
-        if (
-            this.attackCollision(this.Player1, this.Player2) &&
-            this.Player1.isAttacking &&
-            this.Player1.curFrame === 1
-        ) {
-            this.Player1.isAttacking = false;
-            this.Player2.knockBack({ x: 20, y: 0 });
-            this.Player2.hit();
-            document.querySelector("#enemy-health").style.width = this.Player2.health + "%";
-        }
-
-        // If this.Player1 misses
-        if (this.Player1.isAttacking && this.Player1.curFrame === 1) {
-            this.Player1.isAttacking = false;
-        }
-        
-        if (
-            this.attackCollision(this.Player2, this.Player1) &&
-            this.Player2.isAttacking &&
-            this.Player2.curFrame === 1
-        ) {
-            this.Player2.isAttacking = false;
-            this.Player1.knockBack({ x: 40, y: 0 });
-            this.Player1.hit();
-            document.querySelector("#player-health").style.width = this.Player1.health + "%";
-        }
-
-        // If this.Player2 misses
-        if (this.Player2.isAttacking && this.Player2.curFrame === 1) {
-            this.Player2.isAttacking = false;
-        }
 
         if (this.Player1.health <= 0 || this.Player2.health <= 0) {
             this.checkWinner();
@@ -208,10 +154,11 @@ export default class Fight {
                         this.keys.s.pressed = true;
                         this.Player1.lastKey = 's';
                         break;
-                    case ' ':
-                        this.Player1.attack();
-                        break;
                 }
+
+                this.Player1.attacks.forEach((Attack) => {
+                    if (Attack.key === event.key) this.Player1.attack(Attack, this.Player2);
+                });
             }
         
             if (this.Player2.alive) {
@@ -227,10 +174,11 @@ export default class Fight {
                     case 'ArrowUp':
                         this.Player2.jump();
                         break;
-                    case 'ArrowDown':
-                        this.Player2.attack();
-                        break;
                 }
+                
+                this.Player2.attacks.forEach((Attack) => {
+                    if (Attack.key === event.key) this.Player2.attack(Attack, this.Player1);
+                });
             }
         });
                 

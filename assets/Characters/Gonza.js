@@ -1,4 +1,5 @@
 import Fighter from '../Fighter.js';
+import Attack from '../Attack.js';
 
 const Gonza = new Fighter({
     position: { x: 600, y: 0 },
@@ -62,5 +63,7 @@ Gonza.offset = {
     x: 0,
     y: 70
 };
+
+Gonza.attacks.push(new Attack('attack_1', 'ArrowDown', 20, 0));
 
 export default Gonza;

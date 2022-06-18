@@ -1,4 +1,5 @@
 import Fighter from '../Fighter.js';
+import Attack from '../Attack.js';
 
 const Thunder = new Fighter({
     position: { x: 0, y: 0 },
@@ -80,5 +81,7 @@ Thunder.offset = {
     x: 0,
     y: -45
 };
+
+Thunder.attacks.push(new Attack('attack_1', ' ', 20, 0));
 
 export default Thunder;

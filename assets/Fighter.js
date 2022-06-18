@@ -40,6 +40,8 @@ export default class Fighter extends Sprite {
         this.walkFrontSpeed = 2;
         this.walkBackSpeed  = -2;
         this.boxOffset = {x: 0, y: 0};
+        this.attacks = [];
+        this.lifebarId;
 
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
@@ -60,18 +62,51 @@ export default class Fighter extends Sprite {
         }
     }
 
-    attack() {
-        if (this.lastKey === 's') {
-            this.switchSprite('attack_ducking');
-        } else {
-            this.switchSprite('attack_1');
+    attackCollision(Victim) {
+        let attackerBox = this.getAttackBoxCoordinates();
+        let victimBox   = Victim.getHitBoxCoordinates();
+        let vertConds   = (
+            attackerBox.y + attackerBox.h >= victimBox.y &&
+            attackerBox.y < victimBox.y + victimBox.h
+        )
+
+        if (this.facing === 'right') {
+            return (
+                attackerBox.x + attackerBox.w >= victimBox.x + victimBox.w &&
+                attackerBox.x <= victimBox.x + victimBox.w &&
+                vertConds
+            );
         }
 
+        return (
+            attackerBox.x > victimBox.x &&
+            attackerBox.x + attackerBox.w < victimBox.x + victimBox.w &&
+            vertConds
+        );
+    }
+    
+    attack(Attack, Victim) {
+        this.switchSprite(Attack.sprite);
         this.isAttacking = true;
+        
+        if (
+            this.attackCollision(Victim) &&
+            this.isAttacking &&
+            this.curFrame === Attack.frameDmg
+        ) {
+            this.isAttacking = false;
+            Victim.knockBack({ x: 20, y: 0 }); // Bug here
+            Victim.hit(Attack.damage);
+            document.querySelector(Victim.lifebarId).style.width = Victim.health + "%";
+        }
+
+        if (this.isAttacking && this.curFrame === Attack.frameDmg) {
+            this.isAttacking = false;
+        }
     }
 
-    hit() {
-        this.health -= 20;
+    hit(damage) {
+        this.health -= damage;
 
         if (this.health <= 0) {
             this.knockBack(this.defeatKnock);
@@ -95,7 +130,7 @@ export default class Fighter extends Sprite {
 
         if (this.sprites[sprite].sound) {
             let snd = new Audio(this.sprites[sprite].sound);
-            snd.play();  
+            snd.play();
         }
         
         if (this.lastSprite !== this.sprites[sprite].id) {
