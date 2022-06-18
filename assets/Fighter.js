@@ -7,7 +7,6 @@ export default class Fighter extends Sprite {
         imgSrc,
         frames = 1,
         sprites,
-        attackBox = { offset: {}, width: undefined, height: undefined },
         name
     }) {
         super({ position, imgSrc, frames });
@@ -15,15 +14,6 @@ export default class Fighter extends Sprite {
         this.velocity = { x: 0, y: 0 };
         this.height    = 0;
         this.width     = 0;
-        this.attackBox = {
-            position: {
-                x: position.x,
-                y: position.y,
-            },
-            width: attackBox.width,
-            height: attackBox.height,
-            offset: attackBox.offset
-        },
         this.isAttacking;
         this.health = 100;
         this.curFrame = 0;
@@ -62,8 +52,8 @@ export default class Fighter extends Sprite {
         }
     }
 
-    attackCollision(Victim) {
-        let attackerBox = this.getAttackBoxCoordinates();
+    attackCollision(Attack, Victim) {
+        let attackerBox = this.getAttackBoxCoordinates(Attack.sprite);
         let victimBox   = Victim.getHitBoxCoordinates();
         let vertConds   = (
             attackerBox.y + attackerBox.h >= victimBox.y &&
@@ -90,7 +80,7 @@ export default class Fighter extends Sprite {
         this.isAttacking = true;
         
         if (
-            this.attackCollision(Victim) &&
+            this.attackCollision(Attack, Victim) &&
             this.isAttacking &&
             this.curFrame === Attack.frameDmg
         ) {
@@ -178,22 +168,23 @@ export default class Fighter extends Sprite {
         this.velocity.x = this.walkBackSpeed;
     }
 
-    getAttackBoxCoordinates() {
+    getAttackBoxCoordinates(id) {
         let xPos, width;
+        let Attack = this.attacks.find((atk) => atk.sprite === id);
         
         if (this.facing === 'right') {
-            xPos  = this.position.x + this.attackBox.offset.x + this.boxOffset.x;
-            width = this.attackBox.width;
+            xPos  = this.position.x + Attack.offset.x + this.boxOffset.x;
+            width = Attack.width;
         } else {
             xPos  = this.position.x - this.boxOffset.x + this.sprites['idle'].image.width - this.width;
-            width = this.attackBox.width * -1;
+            width = Attack.width * -1;
         }
 
         return {
             x: xPos,
-            y: this.attackBox.position.y + this.boxOffset.y,
+            y: Attack.position.y + this.boxOffset.y,
             w: width,
-            h: this.attackBox.height
+            h: Attack.height
         }
     }
 
@@ -218,13 +209,15 @@ export default class Fighter extends Sprite {
 
     showCollBox() {
         c.globalAlpha = 0.5;
-        let attackBox = this.getAttackBoxCoordinates();
         let hitBox    = this.getHitBoxCoordinates();
 
         // Attack Box
-        c.fillStyle = "blue";
-        c.fillRect(attackBox.x, attackBox.y, attackBox.w, attackBox.h);
-        
+        this.attacks.forEach((Attack) => {
+            let attackBox = this.getAttackBoxCoordinates(Attack.sprite);
+            c.fillStyle = Attack.color;
+            c.fillRect(attackBox.x, attackBox.y, attackBox.w, attackBox.h);
+        });
+
         // Hit Box
         c.fillStyle = "yellow";
         c.fillRect(hitBox.x, hitBox.y, hitBox.w, hitBox.h);
@@ -235,9 +228,11 @@ export default class Fighter extends Sprite {
     update() {
         this.draw();
         if (this.alive) this.animateFrame();
-
-        this.attackBox.position.x = this.position.x + this.attackBox.offset.x;
-        this.attackBox.position.y = this.position.y + this.attackBox.offset.y;
+        
+        this.attacks.forEach((Attack) => {
+            Attack.position.x = this.position.x + Attack.offset.x;
+            Attack.position.y = this.position.y + Attack.offset.y;
+        });
 
         if (DEBUG_MODE) this.showCollBox();
 
