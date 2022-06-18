@@ -1,6 +1,6 @@
 export default class Attack {
 
-    constructor(sprite, key, damage, frameDmg) {
+    constructor(sprite, key, damage, frameDmg, offset, width, height) {
         this.sprite   = sprite;
         this.key      = key;
         this.damage   = damage;
@@ -9,14 +9,10 @@ export default class Attack {
             x: 0,
             y: 0
         };
-        this.attackBox = {
-            offset: {x: 80, y: 50},
-            width: 130,
-            height: 80
-        },
-        this.knockBack = {
-            x: 30,
-            y: 0
-        };
+        this.offset = offset;
+        this.width  = width;
+        this.height = height;
+        this.knockBack = { x: 0, y: 0 };
+        this.color = 'blue';
     }
 }

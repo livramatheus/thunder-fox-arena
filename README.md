@@ -49,9 +49,9 @@
 <p>
     <b>Start date:</b> May, 9th 2022
     <br/>
-    <b>Hours taken so far:</b> ~13
+    <b>Hours taken so far:</b> ~30
     <br/>
-    <b>Estimate completion:</b> 30%
+    <b>Estimate completion:</b> 60%
 </p>
 
 <h2 id="about-the-project">💻 About the project</h2>

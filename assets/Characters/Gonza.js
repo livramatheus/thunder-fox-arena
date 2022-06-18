@@ -43,11 +43,6 @@ const Gonza = new Fighter({
             sound: './sound/sound_52.wav'
         }
     },
-    attackBox: {
-        offset: {x: 80, y: 50},
-        width: 130,
-        height: 80
-    },
     name: 'GONZA'
 });
 
@@ -64,6 +59,10 @@ Gonza.offset = {
     y: 70
 };
 
-Gonza.attacks.push(new Attack('attack_1', 'ArrowDown', 20, 0));
+const Attack1 = new Attack('attack_1', 'ArrowDown', 20, 0, {x: 80, y: 50}, 130, 80);
+Attack1.knockBack = { x: 30, y: 0 };
+Attack1.color = 'green';
+
+Gonza.attacks.push(Attack1);
 
 export default Gonza;

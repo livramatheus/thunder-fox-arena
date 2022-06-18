@@ -56,11 +56,6 @@ const Thunder = new Fighter({
             sound: './sound/sound_07.wav'
         }
     },
-    attackBox: {
-        offset: { x: 50, y: 20 },
-        width: 90,
-        height: 50
-    },
     name: 'THUNDER'
 });
 
@@ -82,6 +77,7 @@ Thunder.offset = {
     y: -45
 };
 
-Thunder.attacks.push(new Attack('attack_1', ' ', 20, 0));
+const Attack1 = new Attack('attack_1', ' ', 20, 0, { x: 50, y: 20 }, 90, 50)
+Thunder.attacks.push(Attack1);
 
 export default Thunder;
