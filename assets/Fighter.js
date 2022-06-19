@@ -79,14 +79,14 @@ export default class Fighter extends Sprite {
         if (Attack.callback) {
             Attack.callback(this);
         }
-        console.log(this.curFrame)
+        
         if (
             this.attackCollision(Attack, Victim) &&
             this.isAttacking &&
             this.curFrame === Attack.frameDmg
         ) {
             this.isAttacking = false;
-            Victim.knockBack({ x: 20, y: 0 }); // Bug here
+            Victim.knockBack(Attack.knockBack);
             Victim.hit(Attack.damage);
             document.querySelector(Victim.lifebarId).style.width = Victim.health + "%";
         }
@@ -156,8 +156,8 @@ export default class Fighter extends Sprite {
 
     knockBack(force) {
         if (this.facing == 'right') force.x = force.x * -1;
-        this.velocity.x += force.x;
-        this.velocity.y += force.y;
+        this.velocity.x = force.x;
+        this.velocity.y = force.y;
     }
 
     manageJumpingSprites() {
