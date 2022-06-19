@@ -121,7 +121,8 @@ export default class Fighter extends Sprite {
         }
 
         if (this.lastSprite == 'attack_1' && this.curFrame < this.sprites.attack_1.frames - 1) return;
-        if (this.lastSprite == 'attack_2' && this.curFrame < this.sprites.attack_1.frames - 1) return;
+        if (this.lastSprite == 'attack_2' && this.curFrame < this.sprites.attack_2.frames - 1) return;
+        if (this.lastSprite == 'attack_3' && this.curFrame < this.sprites.attack_3.frames - 1) return;
         if (this.lastSprite == 'attack_ducking' && this.curFrame < this.sprites.attack_ducking.frames - 1) return;
         if (this.lastSprite == 'hit' && this.curFrame < this.sprites.hit.frames - 1) return;
 

@@ -39,6 +39,13 @@ const Thunder = new Fighter({
             sound: './sound/sound_10.mp3',
             frameSkip: 20
         },
+        attack_3: {
+            id: 'attack_3',
+            imgSrc: './img/fighters/thunder/thunder_attack_3.png',
+            frames: 6,
+            sound: './sound/sound_43.mp3',
+            frameSkip: 10
+        },
         hit: {
             id: 'hit',
             imgSrc: './img/fighters/thunder/thunder_hit.png',
@@ -85,6 +92,7 @@ Thunder.offset = {
 };
 
 const Attack1 = new Attack('attack_1', ' ', 20, 0, { x: 50, y: 20 } , 90, 50);
+
 const Attack2 = new Attack('attack_2', 'b', 30, 0, { x: 50, y: 100 }, 70, 50);
 Attack2.color = 'black';
 Attack2.condition = (Fighter) => !Fighter.isInAir();
@@ -95,7 +103,17 @@ Attack2.callback = (Fighter) => {
     }
 }
 
+const Attack3 = new Attack('attack_3', 'n', 30, 0, { x: 20, y: 50 }, 70, 150);
+Attack3.color = 'brown';
+Attack3.condition = (Fighter) => !Fighter.isInAir();
+Attack3.callback = (Fighter) => {
+    if (Attack3.condition(Fighter)) {
+        Fighter.velocity.y -= 15;
+    }
+} 
+
 Thunder.attacks.push(Attack1);
 Thunder.attacks.push(Attack2);
+Thunder.attacks.push(Attack3);
 
 export default Thunder;
