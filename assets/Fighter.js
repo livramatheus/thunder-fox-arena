@@ -173,6 +173,14 @@ export default class Fighter extends Sprite {
         }
     }
 
+    canWalkFront() {
+        return !(this.position.x + this.boxOffset.x + (this.width * 1.5) >= CANVAS_WIDTH);
+    }
+
+    canWalkBack() {
+        return !(this.position.x + this.boxOffset.x <= 0);
+    }
+
     walkFront() {
         this.switchSprite('walking');
         this.velocity.x = this.walkFrontSpeed;

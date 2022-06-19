@@ -93,9 +93,17 @@ export default class Fight {
 
     initPlayer1Actions() {
         if (this.keys.a.pressed && this.Player1.lastKey === 'a') {
-            this.Player1.walkBack();
+            if (this.Player1.canWalkBack()) {
+                this.Player1.walkBack();
+            } else {
+                this.keys.a.pressed = false;
+            }
         } else if (this.keys.d.pressed && this.Player1.lastKey === 'd') {
-            this.Player1.walkFront();
+            if (this.Player1.canWalkFront()) {
+                this.Player1.walkFront();
+            } else {
+                this.keys.d.pressed = false;
+            }
         } else
         if (this.keys.s.pressed && this.Player1.lastKey === 's') {
             this.Player1.switchSprite('ducking');
@@ -108,9 +116,17 @@ export default class Fight {
 
     initPlayer2Actions() {
         if (this.keys.ArrowRight.pressed && this.Player2.lastKey === 'ArrowRight') {
-            this.Player2.walkFront();
+            if (this.Player2.canWalkFront()) {
+                this.Player2.walkFront();
+            } else {
+                this.keys.ArrowRight.pressed = false;
+            }
         } else if (this.keys.ArrowLeft.pressed && this.Player2.lastKey === 'ArrowLeft') {
-            this.Player2.walkBack();
+            if (this.Player2.canWalkBack()) {
+                this.Player2.walkBack();
+            } else {
+                this.keys.ArrowLeft.pressed = false;
+            }
         } else {
             this.Player2.switchSprite('idle');
         }
