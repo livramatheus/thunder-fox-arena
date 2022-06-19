@@ -76,8 +76,14 @@ export default class Fighter extends Sprite {
     }
     
     attack(Attack, Victim) {
+        if (Attack.condition && !Attack.condition(this)) return;
+        
         this.switchSprite(Attack.sprite);
         this.isAttacking = true;
+
+        if (Attack.callback) {
+            Attack.callback(this);
+        }
         
         if (
             this.attackCollision(Attack, Victim) &&
@@ -115,6 +121,7 @@ export default class Fighter extends Sprite {
         }
 
         if (this.lastSprite == 'attack_1' && this.curFrame < this.sprites.attack_1.frames - 1) return;
+        if (this.lastSprite == 'attack_2' && this.curFrame < this.sprites.attack_1.frames - 1) return;
         if (this.lastSprite == 'attack_ducking' && this.curFrame < this.sprites.attack_ducking.frames - 1) return;
         if (this.lastSprite == 'hit' && this.curFrame < this.sprites.hit.frames - 1) return;
 
