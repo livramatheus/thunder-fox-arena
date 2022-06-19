@@ -73,6 +73,13 @@ Attack1.color = 'green';
 const Attack2 = new Attack('attack_2', 'i', 30, 0, {x: 0, y: -60}, 140, 220);
 Attack2.knockBack = { x: 30, y: -5 };
 Attack2.color = 'white';
+Attack2.callback = (Fighter) => {
+    if (Fighter.facing === 'right') {
+        Fighter.velocity.x = Fighter.walkFrontSpeed / 2;
+    } else {
+        Fighter.velocity.x = Fighter.walkFrontSpeed / 2 * -1;
+    }
+};
 
 Gonza.attacks.push(Attack1);
 Gonza.attacks.push(Attack2);
