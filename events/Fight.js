@@ -78,6 +78,12 @@ export default class Fight {
         this.initPlayer1Actions();
         this.initPlayer2Actions();
 
+        let atkp1 = this.Player1.attacks.find((atk) => atk.sprite === this.Player1.lastSprite);
+        let atkp2 = this.Player2.attacks.find((atk) => atk.sprite === this.Player2.lastSprite);
+
+        if (atkp1) this.Player1.manageAttack(atkp1, this.Player2);
+        if (atkp2) this.Player2.manageAttack(atkp2, this.Player1);
+        
         if (this.Player1.health <= 0 || this.Player2.health <= 0) {
             this.checkWinner();
         }

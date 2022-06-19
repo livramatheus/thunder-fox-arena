@@ -75,16 +75,11 @@ export default class Fighter extends Sprite {
         );
     }
     
-    attack(Attack, Victim) {
-        if (Attack.condition && !Attack.condition(this)) return;
-        
-        this.switchSprite(Attack.sprite);
-        this.isAttacking = true;
-
+    manageAttack(Attack, Victim) {
         if (Attack.callback) {
             Attack.callback(this);
         }
-        
+        console.log(this.curFrame)
         if (
             this.attackCollision(Attack, Victim) &&
             this.isAttacking &&
@@ -99,6 +94,13 @@ export default class Fighter extends Sprite {
         if (this.isAttacking && this.curFrame === Attack.frameDmg) {
             this.isAttacking = false;
         }
+    }
+
+    attack(Attack, Victim) {
+        if (Attack.condition && !Attack.condition(this)) return;
+        
+        this.switchSprite(Attack.sprite);
+        this.isAttacking = true;
     }
 
     hit(damage) {
