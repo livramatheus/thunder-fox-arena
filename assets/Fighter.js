@@ -82,17 +82,22 @@ export default class Fighter extends Sprite {
         
         if (
             this.attackCollision(Attack, Victim) &&
-            this.isAttacking &&
-            this.curFrame === Attack.frameDmg
+            this.isAttacking && (
+                (typeof Attack.frameDmg === 'number' && this.curFrame === Attack.frameDmg) ||
+                (typeof Attack.frameDmg === 'object' && Attack.frameDmg.includes(this.curFrame))
+            )
         ) {
             this.isAttacking = false;
             Victim.knockBack(Attack.knockBack);
             Victim.hit(Attack.damage);
-            document.querySelector(Victim.lifebarId).style.width = Victim.health + "%";
+            document.querySelector(Victim.lifebarId).style.width = Victim.health + "%";   
         }
-
-        if (this.isAttacking && this.curFrame === Attack.frameDmg) {
-            this.isAttacking = false;
+        
+        if (this.isAttacking && (
+            (typeof Attack.frameDmg === 'number' && this.curFrame === Attack.frameDmg) ||
+            (typeof Attack.frameDmg === 'object' && Attack.frameDmg.includes(this.curFrame))
+        )) {
+            this.isAttacking = !this.attackCollision(Attack, Victim);
         }
     }
 
