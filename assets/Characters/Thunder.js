@@ -91,9 +91,11 @@ Thunder.offset = {
     y: -45
 };
 
-const Attack1 = new Attack('attack_1', ' ', 20, 0, { x: 50, y: 20 } , 90, 50);
+const Attack1 = new Attack('attack_1', ' ', 20, 1, { x: 50, y: 20 } , 90, 50);
+Attack1.knockBack = { x: 20, y: 0 };
 
-const Attack2 = new Attack('attack_2', 'b', 30, 0, { x: 50, y: 100 }, 70, 50);
+const Attack2 = new Attack('attack_2', 'b', 30, 1, { x: 50, y: 100 }, 70, 50);
+Attack2.knockBack = { x: 30, y: -3 };
 Attack2.color = 'black';
 Attack2.condition = (Fighter) => !Fighter.isInAir();
 Attack2.callback = (Fighter) => {
@@ -103,7 +105,8 @@ Attack2.callback = (Fighter) => {
     }
 }
 
-const Attack3 = new Attack('attack_3', 'n', 30, 0, { x: 20, y: 50 }, 70, 150);
+const Attack3 = new Attack('attack_3', 'n', 30, 2, { x: 20, y: 20 }, 80, 160);
+Attack3.knockBack = { x: 40, y: -7 };
 Attack3.color = 'brown';
 Attack3.condition = (Fighter) => !Fighter.isInAir();
 Attack3.callback = (Fighter) => {
