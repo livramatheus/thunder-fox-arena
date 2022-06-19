@@ -28,7 +28,14 @@ const Gonza = new Fighter({
         attack_1: {
             id: 'attack_1',
             imgSrc: './img/fighters/gonza/gonza_attack_1.png',
-            frames: 3
+            frames: 3,
+            frameSkip: 40
+        },
+        attack_2: {
+            id: 'attack_2',
+            imgSrc: './img/fighters/gonza/gonza_attack_2.png',
+            frames: 15,
+            frameSkip: 7
         },
         hit: {
             id: 'hit',
@@ -59,10 +66,15 @@ Gonza.offset = {
     y: 70
 };
 
-const Attack1 = new Attack('attack_1', 'ArrowDown', 20, 0, {x: 80, y: 50}, 130, 80);
+const Attack1 = new Attack('attack_1', 'u', 20, 1, {x: 80, y: 50}, 130, 80);
 Attack1.knockBack = { x: 30, y: 0 };
 Attack1.color = 'green';
 
+const Attack2 = new Attack('attack_2', 'i', 30, 0, {x: 0, y: -60}, 140, 220);
+Attack2.knockBack = { x: 30, y: -5 };
+Attack2.color = 'white';
+
 Gonza.attacks.push(Attack1);
+Gonza.attacks.push(Attack2);
 
 export default Gonza;
