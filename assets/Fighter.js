@@ -173,12 +173,28 @@ export default class Fighter extends Sprite {
         }
     }
 
-    canWalkFront() {
-        return !(this.position.x + this.boxOffset.x + (this.width * 1.5) >= CANVAS_WIDTH);
+    canWalkRight(Enemy) {
+        let canWalk             = true;
+        let verticalCollision   = this.position.y + this.height < Enemy.position.y;
+        let screenEdgeCollision = (this.position.x + this.boxOffset.x + (this.width * 1.5) >= CANVAS_WIDTH);
+
+        if (this.facing === 'right') {
+            canWalk = this.position.x + this.width + this.boxOffset.x <= Enemy.position.x + Enemy.boxOffset.x || verticalCollision;
+        }
+
+        return !screenEdgeCollision && canWalk;
     }
 
-    canWalkBack() {
-        return !(this.position.x + this.boxOffset.x <= 0);
+    canWalkLeft(Enemy) {
+        let canWalk             = true;
+        let verticalCollision   = this.position.y + this.height < Enemy.position.y;
+        let screenEdgeCollision = this.position.x + this.boxOffset.x <= 0;
+
+        if (this.facing === 'left') {
+            canWalk = this.position.x + this.boxOffset.x >= Enemy.position.x + Enemy.boxOffset.x + Enemy.width || verticalCollision;
+        }
+
+        return !screenEdgeCollision && canWalk;
     }
 
     walkFront() {

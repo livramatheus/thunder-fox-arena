@@ -93,13 +93,13 @@ export default class Fight {
 
     initPlayer1Actions() {
         if (this.keys.a.pressed && this.Player1.lastKey === 'a') {
-            if (this.Player1.canWalkBack()) {
+            if (this.Player1.canWalkLeft(this.Player2)) {
                 this.Player1.walkBack();
             } else {
                 this.keys.a.pressed = false;
             }
         } else if (this.keys.d.pressed && this.Player1.lastKey === 'd') {
-            if (this.Player1.canWalkFront()) {
+            if (this.Player1.canWalkRight(this.Player2)) {
                 this.Player1.walkFront();
             } else {
                 this.keys.d.pressed = false;
@@ -116,13 +116,13 @@ export default class Fight {
 
     initPlayer2Actions() {
         if (this.keys.ArrowRight.pressed && this.Player2.lastKey === 'ArrowRight') {
-            if (this.Player2.canWalkFront()) {
+            if (this.Player2.canWalkRight(this.Player1)) {
                 this.Player2.walkFront();
             } else {
                 this.keys.ArrowRight.pressed = false;
             }
         } else if (this.keys.ArrowLeft.pressed && this.Player2.lastKey === 'ArrowLeft') {
-            if (this.Player2.canWalkBack()) {
+            if (this.Player2.canWalkLeft(this.Player1)) {
                 this.Player2.walkBack();
             } else {
                 this.keys.ArrowLeft.pressed = false;
@@ -145,6 +145,7 @@ export default class Fight {
             this.Player1.changePosition('left');
             this.Player2.changePosition('right');
         }
+        this.Player2.switchSprite(this.Player2.lastSprite);
     }
 
     isTimeOver() {
