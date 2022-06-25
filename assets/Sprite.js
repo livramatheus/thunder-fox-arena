@@ -14,9 +14,16 @@ export default class Sprite {
         this.offset        = {x: 0, y: 0};
         this.gravity       = 0.4;
         this.lastKey       = null;
+        this.opacity       = 1;
+        this.outSpeed      = null;
+        this.inSpeed       = null;
     }
 
     draw() {
+        if (this.outSpeed) this.updateFadeOut();
+        if (this.inSpeed)  this.updateFadeIn();
+
+        c.globalAlpha = this.opacity;
         c.drawImage(
             this.image,
             this.curFrame * (this.image.width / this.frames),
@@ -28,6 +35,7 @@ export default class Sprite {
             this.image.width * this.scale / this.frames,
             this.image.height * this.scale
         );
+        c.globalAlpha = 1;
     }
 
     animateFrame() {
@@ -41,5 +49,32 @@ export default class Sprite {
     update() {
         this.draw();
         this.animateFrame();
+    }
+
+    fadeIn(inSpeed) {
+        this.inSpeed = inSpeed;
+    }
+
+    updateFadeIn() {
+        if (this.opacity < 1) {
+            this.opacity += this.inSpeed;
+        } else {
+            this.opacity = 1;
+            this.inSpeed = 0;
+        }
+    }
+
+    fadeOut(outSpeed) {
+        this.opacity  = 1;
+        this.outSpeed = outSpeed;
+    }
+
+    updateFadeOut() {
+        if (this.opacity >= 0) {
+            this.opacity -= this.outSpeed;
+        } else {
+            this.opacity  = 0;
+            this.outSpeed = 0;
+        }
     }
 }
