@@ -1,6 +1,10 @@
-export default class Sprite {
+import Element from './Element.js';
+
+export default class Sprite extends Element {
     
     constructor({ position, imgSrc, frames = 1 }) {
+        super();
+
         this.position      = position;
         this.height        = 150;
         this.width         = 50;
@@ -17,6 +21,10 @@ export default class Sprite {
     }
 
     draw() {
+        if (this.outSpeed) this.updateFadeOut();
+        if (this.inSpeed)  this.updateFadeIn();
+
+        c.globalAlpha = this.opacity;
         c.drawImage(
             this.image,
             this.curFrame * (this.image.width / this.frames),
@@ -28,6 +36,7 @@ export default class Sprite {
             this.image.width * this.scale / this.frames,
             this.image.height * this.scale
         );
+        c.globalAlpha = 1;
     }
 
     animateFrame() {

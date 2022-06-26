@@ -1,20 +1,19 @@
 import Enemy from "./assets/Characters/Gonza.js"
 import Player from "./assets/Characters/Thunder.js"
 import Fight from "./events/Fight.js";
+import FirstScreen from "./events/FirstScreen.js";
+import Introduction from "./events/Introduction.js";
 import StageSelect from "./events/StageSelect.js";
-
-canvas.addEventListener('click', async () => {
-    if (!canvas.interacted) {
-        canvas.interacted = true;
-        await animate();
-    }
-});
 
 async function animate() {
     globalData.animFramId = window.requestAnimationFrame(animate);
 
     if (globalData.next) {
-        if (globalData.ST == null || globalData.next == 'stageselect') {
+        if (globalData.next === 'firstscreen') {
+            globalData.currentScene = new FirstScreen();
+        } else if (globalData.next === 'introduction') {
+            globalData.currentScene = new Introduction();
+        } else if (globalData.ST == null || globalData.next == 'stageselect') {
             globalData.currentScene = new StageSelect();
         } else if (globalData.next === 'fight') {
             const Stage = await import(`./assets/Stages/${globalData.ST}.js`);
@@ -26,3 +25,5 @@ async function animate() {
     globalData.currentScene.animate();
 
 }
+
+await animate();
