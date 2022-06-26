@@ -1,6 +1,10 @@
-export default class Sprite {
+import Element from './Element.js';
+
+export default class Sprite extends Element {
     
     constructor({ position, imgSrc, frames = 1 }) {
+        super();
+
         this.position      = position;
         this.height        = 150;
         this.width         = 50;
@@ -14,9 +18,6 @@ export default class Sprite {
         this.offset        = {x: 0, y: 0};
         this.gravity       = 0.4;
         this.lastKey       = null;
-        this.opacity       = 1;
-        this.outSpeed      = null;
-        this.inSpeed       = null;
     }
 
     draw() {
@@ -49,32 +50,5 @@ export default class Sprite {
     update() {
         this.draw();
         this.animateFrame();
-    }
-
-    fadeIn(inSpeed) {
-        this.inSpeed = inSpeed;
-    }
-
-    updateFadeIn() {
-        if (this.opacity < 1) {
-            this.opacity += this.inSpeed;
-        } else {
-            this.opacity = 1;
-            this.inSpeed = 0;
-        }
-    }
-
-    fadeOut(outSpeed) {
-        this.opacity  = 1;
-        this.outSpeed = outSpeed;
-    }
-
-    updateFadeOut() {
-        if (this.opacity >= 0) {
-            this.opacity -= this.outSpeed;
-        } else {
-            this.opacity  = 0;
-            this.outSpeed = 0;
-        }
     }
 }

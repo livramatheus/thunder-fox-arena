@@ -1,6 +1,10 @@
-export default class Background {
+import Element from './Element.js';
+
+export default class Background extends Element {
     
     constructor({ position, imgSrc, music }) {
+        super();
+
         this.position  = position;
         this.height    = 150;
         this.width     = 50;
@@ -14,7 +18,12 @@ export default class Background {
     }
 
     draw() {
+        if (this.outSpeed) this.updateFadeOut();
+        if (this.inSpeed)  this.updateFadeIn();
+
+        c.globalAlpha = this.opacity;
         c.drawImage(this.image, this.position.x, this.position.y);
+        c.globalAlpha = 1;
     }
 
     update() {
