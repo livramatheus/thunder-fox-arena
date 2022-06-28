@@ -134,7 +134,9 @@ export default class Introduction {
         this.Thunder.fadeOut(0.009);
         this.Fox.fadeOut(0.009);
 
-        this.subScene = 4;
+        setTimeout(() => {
+            this.subScene = 4;
+        }, 5000);
         
         this.BlackOverlay.update();
         this.Thunder.update();
@@ -157,6 +159,8 @@ export default class Introduction {
             inPosition.fx = true;
         }
         
+        this.BlackOverlay.update();
+
         if (inPosition.th && inPosition.fx) {
             this.WhiteOverlay.fadeIn(0.05);
 
@@ -167,14 +171,14 @@ export default class Introduction {
                 this.PressSpace.opacity = 1;
                 this.WhiteOverlay.fadeOut(0.05);
             }, 1000);
+
+            this.WhiteOverlay.update();
+            this.logo.update();
+            this.PressSpace.update();
+        } else {
+            this.ThunderFont.update();
+            this.FoxFont.update();
         }
-        
-        this.BlackOverlay.update();
-        this.logo.update();
-        this.ThunderFont.update();
-        this.FoxFont.update();
-        this.PressSpace.update();
-        this.WhiteOverlay.update();
 
         c.fillText('DEVELOPED BY MATHEUS DO LIVRAMENTO - 2022', 186, 500);
         c.fillText('ALL ASSETS, MUSIC, STAGES, SOUNDS AND THE', 186, 525);
