@@ -212,3 +212,28 @@ body {
     bottom: 0;
     left: 0;
 }
+
+#progress {
+    font-family: 'Press Start 2P', cursive;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#progress_bar{
+    width: calc(240px);
+    height: 24px;
+    border: 2px solid black;
+}
+
+#bar_percentage{
+    width: 1%;
+    height: 100%;
+    background: url('../img/ui/life_bar_square.png');
+    background-size: auto 24px;
+}
