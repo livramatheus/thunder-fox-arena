@@ -36,7 +36,9 @@ const FileList = [
     './sound/music_11.mp3',
     
     // SOUNDS
-    './sound/sound_10.mp3', './sound/sound_43.mp3',
+    './sound/sound_07.mp3', './sound/sound_10.mp3',
+    './sound/sound_43.mp3', './sound/sound_50.mp3',
+    './sound/sound_52.mp3', './sound/sound_56.mp3',
 
     // STAGES
     './img/stages/barriers.png', './img/stages/carrier.png',
