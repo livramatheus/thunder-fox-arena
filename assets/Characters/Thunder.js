@@ -30,7 +30,7 @@ const Thunder = new Fighter({
             id: 'attack_1',
             imgSrc: './img/fighters/thunder/thunder_attack_1.png',
             frames: 3,
-            sound: './sound/sound_07.wav'
+            sound: './sound/sound_07.mp3'
         },
         attack_2: {
             id: 'attack_2',
@@ -55,7 +55,7 @@ const Thunder = new Fighter({
             id: 'defeat',
             imgSrc: './img/fighters/thunder/thunder_defeat.png',
             frames: 5,
-            sound: './sound/sound_56.wav',
+            sound: './sound/sound_56.mp3',
             frameSkip: 10
         },
         ducking: {
@@ -67,7 +67,7 @@ const Thunder = new Fighter({
             id: 'attack_ducking',
             imgSrc: './img/fighters/thunder/thunder_attack_ducking.png',
             frames: 3,
-            sound: './sound/sound_07.wav'
+            sound: './sound/sound_07.mp3'
         }
     },
     name: 'THUNDER'
