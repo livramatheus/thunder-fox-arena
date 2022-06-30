@@ -9,7 +9,8 @@ const globalData = {
     next: 'firstscreen',
     ST: null,
     P1: null,
-    P2: null
+    P2: null,
+    gameLoading: true
 }
 
 const canvas = document.querySelector('canvas');

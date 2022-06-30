@@ -42,12 +42,13 @@ export default class FirstScreen {
         this.logo.update();
         this.Thunder.update();
         this.Fox.update();
-        this.Click.update();
+        if (!globalData.gameLoading) this.Click.update();
     }
 
     startIntroduction = (event) => {
-        this.removeKeys();
+        if (globalData.gameLoading) return;
 
+        this.removeKeys();
         [this.logo, this.Thunder, this.Fox, this.Click].forEach((spr) => {
             spr.fadeOut(0.05);
         });
