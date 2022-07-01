@@ -175,14 +175,15 @@ export default class Introduction {
             this.WhiteOverlay.update();
             this.logo.update();
             this.PressSpace.update();
+
+            c.fillText('DEVELOPED BY MATHEUS DO LIVRAMENTO - 2022', 186, 500);
+            c.fillText('ALL ASSETS, MUSIC, STAGES, SOUNDS AND THE', 186, 525);
+            c.fillText('THUNDER FOX BRAND BELONG TO TAITO CORPORATION', 153, 550);
+            c.fillText('V' + globalData.version, 920, 550);
         } else {
             this.ThunderFont.update();
             this.FoxFont.update();
         }
-
-        c.fillText('DEVELOPED BY MATHEUS DO LIVRAMENTO - 2022', 186, 500);
-        c.fillText('ALL ASSETS, MUSIC, STAGES, SOUNDS AND THE', 186, 525);
-        c.fillText('THUNDER FOX BRAND BELONG TO TAITO CORPORATION', 153, 550);
     }
 
     drawTexts() {

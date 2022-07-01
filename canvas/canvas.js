@@ -10,7 +10,8 @@ const globalData = {
     ST: null,
     P1: null,
     P2: null,
-    gameLoading: true
+    gameLoading: true,
+    version: '0.1.0'
 }
 
 const canvas = document.querySelector('canvas');
