@@ -86,7 +86,7 @@
 <h3 id="technologies-front">🔨 Technologies</h3>
 
 <p>
-    This project was developed with <b>HTML, CSS and JavaScript</b>. No third-party libraries were used.
+    This project was developed with <b>HTML, CSS and JavaScript</b>. The only third-party library used was <a href="https://createjs.com/preloadjs" target="_black">preloadjs</a> in order to prevent broken sprites and delayed sounds.
 </p>
 
 <p>
@@ -156,7 +156,7 @@
 <h3 id="technologies-front-br">🔨 Tecnologias</h3>
 
 <p>
-    Este projeto foi desenvolvido apenas com <b>HTML, CSS e JavaScript</b>. Nenhuma biblioteca de terceiros foi utilizada
+    Este projeto foi desenvolvido apenas com <b>HTML, CSS e JavaScript</b>. A única biblioteca de terceiros utilizada foi o <a href="https://createjs.com/preloadjs" target="_black">preloadjs</a> para previnir sprites quebrados ou atrasos no carregamento de sons.
 </p>
 
 <p>
