@@ -226,7 +226,7 @@ export default class Introduction {
         this.removeKeys();
         this.Background.sound.pause();
         this.Background.sound.currentTime = 0;
-        globalData.next = 'stageselect';
+        globalData.next = 'characterselect';
     }
 
 }
