@@ -1,4 +1,6 @@
-<img src="./img/logo_git.gif"/>
+<img src="./img/horizontal_banner.png" style="width: 100%"/>
+
+<br />
 
 <ul>
 <li><a href="#english-documentation">English documentation</a></li>
