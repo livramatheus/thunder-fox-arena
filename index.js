@@ -1,5 +1,3 @@
-import Enemy from "./assets/Characters/Gonza.js"
-import Player from "./assets/Characters/Thunder.js"
 import Fight from "./events/Fight.js";
 import FirstScreen from "./events/FirstScreen.js";
 import Introduction from "./events/Introduction.js";
@@ -24,8 +22,11 @@ async function animate() {
                 globalData.currentScene = new CharacterSelect();
                 break;
             case 'fight':
-                const Stage = await import(`./assets/Stages/${globalData.ST}.js`);
-                globalData.currentScene = new Fight(Player, Enemy, Stage.default);
+                const Player = await import(`./assets/Characters/${globalData.P1.class}.js`);
+                const Enemy  = await import(`./assets/Characters/${globalData.P2.class}.js`);
+                const Stage  = await import(`./assets/Stages/${globalData.ST}.js`);
+
+                globalData.currentScene = new Fight(Player.default, Enemy.default, Stage.default);
                 break;
             default:
                 break;

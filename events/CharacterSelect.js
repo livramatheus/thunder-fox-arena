@@ -1,22 +1,23 @@
 import Background from '../assets/Background.js';
 import Sprite from '../assets/Sprite.js';
+import SolidColor from '../assets/SolidColor.js';
 
 export default class CharacterSelect {
 
     constructor() {
         this.characterList = [
             [
-                { id: 'thunder' , name: 'THUNDER' , class: 'Thunder', country: {name: 'germany' , x: 490, y: 32  } },
-                { id: 'fox'     , name: 'FOX'     , class: 'Fox'    , country: {name: 'belgium' , x: 470, y: 40  } },
-                { id: 'gonza'   , name: 'GONZA'   , class: 'Gonza'  , country: {name: 'colombia', x: 340, y: 110 } }
+                { id: 'thunder' , name: 'THUNDER' , class: 'Thunder', country: { name: 'germany' , x: 490, y: 32  } },
+                { id: 'fox'     , name: 'FOX'     , class: 'Fox'    , country: { name: 'belgium' , x: 470, y: 40  } },
+                { id: 'gonza'   , name: 'GONZA'   , class: 'Gonza'  , country: { name: 'colombia', x: 340, y: 110 } }
             ],
             [
-                { id: 'gyro_man', name: 'GYRO MAN', class: 'GyroMan', country: {name: 'peru'   , x: 330, y: 128 } },
-                { id: 'grazan'  , name: 'GRAZAN'  , class: 'Grazan' , country: {name: 'japan'  , x: 680, y: 62  } },
-                { id: 'eider'   , name: 'EIDER'   , class: 'Eider'  , country: {name: 'unknown', x: 710, y: 92  } }
+                { id: 'gyro_man', name: 'GYRO MAN', class: 'GyroMan', country: { name: 'peru'   , x: 330, y: 128 } },
+                { id: 'grazan'  , name: 'GRAZAN'  , class: 'Grazan' , country: { name: 'japan'  , x: 680, y: 62  } },
+                { id: 'eider'   , name: 'EIDER'   , class: 'Eider'  , country: { name: 'unknown', x: 710, y: 92  } }
             ], [
                 null,
-                { id: 'ginarza' , name: 'GINARZA' , class: 'Ginarza', country: {name: 'hungary', x: 500, y: 42}},
+                { id: 'ginarza' , name: 'GINARZA' , class: 'Ginarza', country: { name: 'hungary', x: 500, y: 42 } },
                 null,
             ]
         ];
@@ -68,14 +69,23 @@ export default class CharacterSelect {
             imgSrc: `./img/flags/${this.P2Selected.country.name}.png`,
             frames: 5
         });
+
+        this.BlackOverlay         = new SolidColor({ position: { x:0, y: 0 }, color: 'black'});
+        this.BlackOverlay.width   = CANVAS_WIDTH;
+        this.BlackOverlay.height  = CANVAS_HEIGHT;
+        this.BlackOverlay.opacity = 1;
+
         this.P2Flag.frameSkip = 10;
+        this.cursorSound = new Audio('./sound/sound_21h.mp3');
+        this.selectSound = new Audio('./sound/sound_22h.mp3');
         
         this.initMusic();
         this.manageKeys();
+        this.BlackOverlay.fadeOut(0.027);
     }
 
     initMusic() {
-        this.Background.sound.volume = 0.4;
+        this.Background.sound.volume = 0.3;
         this.Background.sound.loop = true;
         this.Background.sound.play();
     }
@@ -84,6 +94,7 @@ export default class CharacterSelect {
         this.Background.update();
         this.animatePlayer1();
         this.animatePlayer2();
+        this.BlackOverlay.update();
     }
 
     animatePlayer1() {
@@ -128,48 +139,68 @@ export default class CharacterSelect {
         this.P2Selector.update();
     }
 
+    playUiSound(sound) {
+        sound.currentTime = 0;
+        sound.play();
+    }
+
     moveCursor = (event) => {
         switch (event.key) {
             // Player 1 Selector
             case 'w':
-                if (this.P1CursorPos.y <= 0) return;
+                if (this.P1CursorPos.y <= 0 || globalData.P1) return;
+                this.playUiSound(this.cursorSound);
                 this.P1CursorPos.y --;
                 break;
             case 's':
-                if (this.P1CursorPos.y >= 2 || (this.P1CursorPos.y === 1 && [0, 2].includes(this.P1CursorPos.x))) return;
+                if (this.P1CursorPos.y >= 2 || (this.P1CursorPos.y === 1 && [0, 2].includes(this.P1CursorPos.x)) || globalData.P1) return;
+                this.playUiSound(this.cursorSound);
                 this.P1CursorPos.y ++;
                 break;
             case 'a':
-                if (this.P1CursorPos.x <= 0 || (this.P1CursorPos.y === 2)) return;
+                if (this.P1CursorPos.x <= 0 || (this.P1CursorPos.y === 2) || globalData.P1) return;
+                this.playUiSound(this.cursorSound);
                 this.P1CursorPos.x --;
                 break;
             case 'd':
-                if (this.P1CursorPos.x >= 2 || (this.P1CursorPos.y === 2)) return;
+                if (this.P1CursorPos.x >= 2 || (this.P1CursorPos.y === 2) || globalData.P1) return;
+                this.playUiSound(this.cursorSound);
                 this.P1CursorPos.x ++;
                 break;
 
             // Player 2 Selector
             case 'ArrowUp':
-                if (this.P2CursorPos.y <= 0) return;
+                if (this.P2CursorPos.y <= 0 || globalData.P2) return;
+                this.playUiSound(this.cursorSound);
                 this.P2CursorPos.y --;
                 break;
             case 'ArrowDown':
-                if (this.P2CursorPos.y >= 2 || (this.P2CursorPos.y === 1 && [0, 2].includes(this.P2CursorPos.x))) return;
+                if (this.P2CursorPos.y >= 2 || (this.P2CursorPos.y === 1 && [0, 2].includes(this.P2CursorPos.x)) || globalData.P2) return;
+                this.playUiSound(this.cursorSound);
                 this.P2CursorPos.y ++;
                 break;
             case 'ArrowLeft':
-                if (this.P2CursorPos.x <= 0 || (this.P2CursorPos.y === 2)) return;
+                if (this.P2CursorPos.x <= 0 || (this.P2CursorPos.y === 2) || globalData.P2) return;
+                this.playUiSound(this.cursorSound);
                 this.P2CursorPos.x --;
                 break;
             case 'ArrowRight':
-                if (this.P2CursorPos.x >= 2 || (this.P2CursorPos.y === 2)) return;
+                if (this.P2CursorPos.x >= 2 || (this.P2CursorPos.y === 2) || globalData.P2) return;
+                this.playUiSound(this.cursorSound);
                 this.P2CursorPos.x ++;
                 break;
             case ' ':
-                this.shutDown();
+                if (globalData.P1) return;
+                globalData.P1 = this.characterList[this.P1CursorPos.y][this.P1CursorPos.x];
+                this.playUiSound(this.selectSound);
+                break
+            case 'p':
+                if (globalData.P2) return;
+                globalData.P2 = this.characterList[this.P2CursorPos.y][this.P2CursorPos.x];
+                this.playUiSound(this.selectSound);
                 break;
         }
-        
+
         // Player 1 Thumb and flag update
         this.P1Selected = this.characterList[this.P1CursorPos.y][this.P1CursorPos.x];
         this.P1Thumb.image.src = `./img/fighters/${this.P1Selected.id}/${this.P1Selected.id}_thumb.png`;
@@ -183,10 +214,18 @@ export default class CharacterSelect {
         this.P2Flag.image.src  = `./img/flags/${this.P2Selected.country.name}.png`;
         this.P2Flag.position.x = this.P2Selected.country.x;
         this.P2Flag.position.y = this.P2Selected.country.y;
+
+        if (globalData.P1 && globalData.P2) {
+            this.BlackOverlay.fadeIn(0.027);
+
+            setTimeout(() => {
+                this.shutDown();
+            }, 1500);
+        };
     }
 
     removeKeys() {
-        
+        window.removeEventListener('keydown', this.moveCursor);
     }
 
     manageKeys() {
@@ -194,6 +233,9 @@ export default class CharacterSelect {
     }
 
     shutDown() {
-
+        this.removeKeys();
+        this.Background.sound.pause();
+        globalData.musicTransitionTime = this.Background.sound.currentTime;
+        globalData.next = 'stageselect';
     }
 }
