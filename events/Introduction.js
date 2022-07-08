@@ -18,12 +18,6 @@ export default class Introduction {
         this.BlackOverlay.height  = CANVAS_HEIGHT;
         this.BlackOverlay.opacity = 0;
 
-        // White Solid Color Overlay
-        this.WhiteOverlay         = new SolidColor({ position: { x:0, y: 0 }, color: 'white'});
-        this.WhiteOverlay.width   = CANVAS_WIDTH;
-        this.WhiteOverlay.height  = CANVAS_HEIGHT;
-        this.WhiteOverlay.opacity = 0;
-
         // Thunder Render
         this.Thunder = new Sprite({
             position: { x: 504, y: 176 },
@@ -41,41 +35,6 @@ export default class Introduction {
         });
         this.Fox.scale = 0.8;
         this.Fox.opacity = 0;
-
-        // Thunder Font
-        this.ThunderFont = new Sprite({
-            position: { x: CANVAS_WIDTH, y: 106 },
-            imgSrc: './img/thunder_font.png',
-            frames: 1
-        });
-        this.ThunderFont.scale = 1.5;
-
-        // Fox Font
-        this.FoxFont = new Sprite({
-            position: { x: -316, y: 111 },
-            imgSrc: './img/fox_font.png',
-            frames: 1
-        });
-        this.FoxFont.scale = 1.5;
-
-        // Animated logo
-        this.logo = new Sprite({
-            position: { x: 280.6, y: 110 },
-            imgSrc: './img/logo_sprite.png',
-            frames: 8
-        });
-        this.logo.scale   = 1.5;
-        this.logo.opacity = 0;
-
-        // "PRESS SPACE" text
-        this.PressSpace = new Sprite({
-            position: { x: 315.8, y: 330 },
-            imgSrc: './img/press_space.png',
-            frames: 2
-        });
-        this.PressSpace.scale     = 0.7;
-        this.PressSpace.frameSkip = 50;
-        this.PressSpace.opacity   = 0;
 
         this.currentText  = -4;
         this.textInterval = 500;
@@ -101,9 +60,6 @@ export default class Introduction {
                 break;
             case 3:
                 this.sceneThree();
-                break;
-            case 4:
-                this.sceneFour();
                 break;
             default:
                 break;
@@ -135,55 +91,12 @@ export default class Introduction {
         this.Fox.fadeOut(0.009);
 
         setTimeout(() => {
-            this.subScene = 4;
-        }, 5000);
-        
+            this.shutDown();
+        }, 1500);
+
         this.BlackOverlay.update();
         this.Thunder.update();
         this.Fox.update();
-    }
-
-    sceneFour() {
-        let speed  = 10;
-        let inPosition = { th: false, fx: false};
-
-        if (this.ThunderFont.position.x + 21.6 > (CANVAS_WIDTH / 2) - ((this.ThunderFont.image.width * this.ThunderFont.scale) / 2)) {
-            this.ThunderFont.position.x -= speed;
-        } else {
-            inPosition.th = true;
-        }
-
-        if (this.FoxFont.position.x - 74.6 < (CANVAS_WIDTH / 2) - ((this.FoxFont.image.width * this.FoxFont.scale) / 2)) {
-            this.FoxFont.position.x += speed;
-        } else {
-            inPosition.fx = true;
-        }
-        
-        this.BlackOverlay.update();
-
-        if (inPosition.th && inPosition.fx) {
-            this.WhiteOverlay.fadeIn(0.05);
-
-            setTimeout(() => {
-                this.ThunderFont.opacity = 0;
-                this.FoxFont.opacity = 0;
-                this.logo.opacity = 1;
-                this.PressSpace.opacity = 1;
-                this.WhiteOverlay.fadeOut(0.05);
-            }, 1000);
-
-            this.WhiteOverlay.update();
-            this.logo.update();
-            this.PressSpace.update();
-
-            c.fillText('DEVELOPED BY MATHEUS DO LIVRAMENTO - 2022', 186, 500);
-            c.fillText('ALL ASSETS, MUSIC, STAGES, SOUNDS AND THE', 186, 525);
-            c.fillText('THUNDER FOX BRAND BELONG TO TAITO CORPORATION', 153, 550);
-            c.fillText('V' + globalData.version, 920, 550);
-        } else {
-            this.ThunderFont.update();
-            this.FoxFont.update();
-        }
     }
 
     drawTexts() {
@@ -211,7 +124,7 @@ export default class Introduction {
     }
 
     startGame = (event) => {
-        if (event.key === ' ') this.shutDown();
+        if (event.key === ' ') this.shutDown(true);
     }
 
     removeKeys() {
@@ -222,11 +135,16 @@ export default class Introduction {
         window.addEventListener('keydown', this.startGame);
     }
 
-    shutDown() {
-        this.removeKeys();
+    stopMusic() {
         this.Background.sound.pause();
         this.Background.sound.currentTime = 0;
-        globalData.next = 'characterselect';
+    }
+
+    shutDown(force = false) {
+        globalData.next = 'pressstart';
+        this.removeKeys();
+
+        if (force) this.stopMusic();
     }
 
 }
