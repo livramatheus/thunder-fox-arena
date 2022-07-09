@@ -13,6 +13,7 @@
 
 <ul>
     <li><a href="#legal">Legal - Information to Taito</a></li>
+    <li><a href="#how-to-play">How To Play</a></li>
     <li><a href="#current-status">Current Status</a></li>
     <li><a href="#about-the-project">About the project</a></li>
     <li><a href="#live-demo">Live demo</a></li>
@@ -42,6 +43,10 @@
     <li>I <b>don't sell</b> Thunder Fox Arena.</li>
     <li>I <b>will never</b> monetize Thunder Fox Arena in any shape or form.</li>
 </ul>
+
+<h2 id="how-to-play">🎮 How to Play?</h2>
+
+<img src="./img/how_to_play_github.png" style="width: 100%"/>
 
 <h2 id="current-status">⌚ Current Status</h2>
 <p>
@@ -113,6 +118,7 @@
 <h2>📜 Tabela de conteúdo</h2>
 
 <ul>
+    <li><a href="#how-to-play-br">Como Jogar</a></li>
     <li><a href="#current-status-br">Status Atual</a></li>
     <li><a href="#about-the-project-br">Sobre o projeto</a></li>
     <li><a href="#live-demo-br">Live demo</a></li>
@@ -120,6 +126,10 @@
     <li><a href="#code-contributing-br">Código/Contribuindo</a></li>
     <li><a href="#autor-br">Autor</a></li>
 </ul>
+
+<h2 id="how-to-play-br">🎮 Como Jogar?</h2>
+
+<img src="./img/how_to_play_github.png" style="width: 100%"/>
 
 <h2 id="current-status-br">⌚ Status Atual</h2>
 <p>
