@@ -1,5 +1,6 @@
 import Background from '../assets/Background.js';
 import SolidColor from '../assets/SolidColor.js';
+import KeyMap from '../misc/KeyMap.js';
 
 export default class StageSelect {
 
@@ -72,17 +73,19 @@ export default class StageSelect {
 
     moveCursor = (event) => {
         switch (event.key) {
-            case 'ArrowUp':
+            case KeyMap.Player1.up.key:
                 if (this.cursorPos <= 0) return;
                 this.playUiSound(this.cursorSound);
                 this.cursorPos --;
                 break;
-            case 'ArrowDown':
+            case KeyMap.Player1.down.key:
                 if (this.cursorPos >= this.stageList.length - 1) return;
                 this.playUiSound(this.cursorSound);
                 this.cursorPos ++;
                 break;
-            case ' ':
+            case KeyMap.Player1.start.key:
+                this.playUiSound(this.selectSound);
+                globalData.ST = this.stageList[this.cursorPos].class;
                 this.shutDown();
                 break;
         }    
@@ -97,9 +100,7 @@ export default class StageSelect {
     }
 
     shutDown() {
-        this.playUiSound(this.selectSound);
         this.removeKeys();
-        globalData.ST = this.stageList[this.cursorPos].class;
         globalData.next = 'fight';
         this.Overlay.sound.pause();
         this.Overlay.sound.currentTime = 0;
