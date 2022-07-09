@@ -1,3 +1,5 @@
+import SolidColor from '../assets/SolidColor.js';
+
 export default class Fight {
 
     constructor(Player1, Player2, Stage) {
@@ -19,10 +21,23 @@ export default class Fight {
             ArrowUp   : { pressed: false }
         }
 
+        // Black Solid Color Overlay
+        this.BlackOverlay         = new SolidColor({ position: { x:0, y: 0 }, color: 'black'});
+        this.BlackOverlay.width   = CANVAS_WIDTH;
+        this.BlackOverlay.height  = CANVAS_HEIGHT;
+        this.BlackOverlay.opacity = 1;
+        this.BlackOverlay.fadeOut(0.005);
+
         this.Player1.changePosition('left');
         this.Player2.isReversed = true;
-        this.Player1.position = { x: 200 - this.Player1.boxOffset.x - this.Player1.width               , y: CANVAS_HEIGHT - 110 - Player1.height - 1 };
-        this.Player2.position = { x: CANVAS_WIDTH - 200 - this.Player2.boxOffset.x - this.Player2.width, y: CANVAS_HEIGHT - 110 - Player2.height - 1 };
+        this.Player1.position = {
+            x: 200 - this.Player1.boxOffset.x - this.Player1.width,
+            y: CANVAS_HEIGHT - 110 - Player1.height - 20
+        };
+        this.Player2.position = {
+            x: CANVAS_WIDTH - 200 - this.Player2.boxOffset.x - this.Player2.width,
+            y: CANVAS_HEIGHT - 110 - Player2.height - 20
+        };
 
         this.initStageMusic();
         this.decreaseTimer();
@@ -93,6 +108,7 @@ export default class Fight {
         }
 
         this.checkPositions();
+        this.BlackOverlay.update();
     }
 
     initPlayer1Actions() {
