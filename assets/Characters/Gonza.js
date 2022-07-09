@@ -2,7 +2,7 @@ import Fighter from '../Fighter.js';
 import Attack from '../Attack.js';
 
 const Gonza = new Fighter({
-    position: { x: 600, y: 0 },
+    position: { x: 0, y: 0 },
     imgSrc: './img/fighters/gonza/gonza_idle.png',
     sprites: {
         idle: {

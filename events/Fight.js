@@ -19,7 +19,11 @@ export default class Fight {
             ArrowUp   : { pressed: false }
         }
 
-        Player1.changePosition('left');
+        this.Player1.changePosition('left');
+        this.Player2.isReversed = true;
+        this.Player1.position = { x: 200 - this.Player1.boxOffset.x - this.Player1.width               , y: CANVAS_HEIGHT - 110 - Player1.height - 1 };
+        this.Player2.position = { x: CANVAS_WIDTH - 200 - this.Player2.boxOffset.x - this.Player2.width, y: CANVAS_HEIGHT - 110 - Player2.height - 1 };
+
         this.initStageMusic();
         this.decreaseTimer();
         this.enableTopBar();
