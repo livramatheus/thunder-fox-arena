@@ -1,5 +1,6 @@
 import Fighter from '../Fighter.js';
 import Attack from '../Attack.js';
+import KeyMap from '../../misc/KeyMap.js';
 
 const Gonza = new Fighter({
     position: { x: 0, y: 0 },
@@ -66,11 +67,11 @@ Gonza.offset = {
     y: 70
 };
 
-const Attack1 = new Attack('attack_1', 'u', 20, 1, {x: 80, y: 50}, 130, 80);
+const Attack1 = new Attack('attack_1', 'action1', 20, 1, {x: 80, y: 50}, 130, 80);
 Attack1.knockBack = { x: 30, y: 0 };
 Attack1.color = 'green';
 
-const Attack2 = new Attack('attack_2', 'i', 30, Array.from({length: 10}, (_, i) => i + 2), {x: 80, y: -60}, 140, 220);
+const Attack2 = new Attack('attack_2', 'action2', 30, Array.from({length: 10}, (_, i) => i + 2), {x: 80, y: -60}, 140, 220);
 Attack2.knockBack = { x: 30, y: -5 };
 Attack2.color = 'white';
 Attack2.callback = (Fighter) => {

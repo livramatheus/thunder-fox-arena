@@ -1,4 +1,5 @@
 import SolidColor from '../assets/SolidColor.js';
+import KeyMap from '../misc/KeyMap.js';
 
 export default class Fight {
 
@@ -10,16 +11,6 @@ export default class Fight {
         this.Stage   = Stage;
         this.timerId = null;
         this.timer   = 99;
-
-        this.keys = {
-            a         : { pressed: false },
-            d         : { pressed: false },
-            w         : { pressed: false },
-            s         : { pressed: false },
-            ArrowRight: { pressed: false },
-            ArrowLeft : { pressed: false },
-            ArrowUp   : { pressed: false }
-        }
 
         // Black Solid Color Overlay
         this.BlackOverlay         = new SolidColor({ position: { x:0, y: 0 }, color: 'black'});
@@ -112,40 +103,37 @@ export default class Fight {
     }
 
     initPlayer1Actions() {
-        if (this.keys.a.pressed && this.Player1.lastKey === 'a') {
+        if (KeyMap.Player1.left.pressed && this.Player1.lastKey === KeyMap.Player1.left.key) {
             if (this.Player1.canWalkLeft(this.Player2)) {
                 this.Player1.walkBack();
             } else {
-                this.keys.a.pressed = false;
+                KeyMap.Player1.left.pressed = false;
             }
-        } else if (this.keys.d.pressed && this.Player1.lastKey === 'd') {
+        } else if (KeyMap.Player1.right.pressed && this.Player1.lastKey === KeyMap.Player1.right.key) {
             if (this.Player1.canWalkRight(this.Player2)) {
                 this.Player1.walkFront();
             } else {
-                this.keys.d.pressed = false;
+                KeyMap.Player1.right.pressed = false;
             }
-        } else
-        if (this.keys.s.pressed && this.Player1.lastKey === 's') {
-            this.Player1.switchSprite('ducking');
         } else {
             this.Player1.switchSprite('idle');
         }
-
+        
         this.Player1.manageJumpingSprites();
     }
 
     initPlayer2Actions() {
-        if (this.keys.ArrowRight.pressed && this.Player2.lastKey === 'ArrowRight') {
+        if (KeyMap.Player2.right.pressed && this.Player2.lastKey === KeyMap.Player2.right.key) {
             if (this.Player2.canWalkRight(this.Player1)) {
                 this.Player2.walkFront();
             } else {
-                this.keys.ArrowRight.pressed = false;
+                KeyMap.Player2.right.pressed = false;
             }
-        } else if (this.keys.ArrowLeft.pressed && this.Player2.lastKey === 'ArrowLeft') {
+        } else if (KeyMap.Player2.left.pressed && this.Player2.lastKey === KeyMap.Player2.left.key) {
             if (this.Player2.canWalkLeft(this.Player1)) {
                 this.Player2.walkBack();
             } else {
-                this.keys.ArrowLeft.pressed = false;
+                KeyMap.Player2.left.pressed = false;
             }
         } else {
             this.Player2.switchSprite('idle');
@@ -176,77 +164,57 @@ export default class Fight {
         return this.isTimeOver() || (!this.Player1.alive || !this.Player2.alive);
     }
 
+    manageKeyUp = (event) => {
+        const allowedKeys = ['right', 'left', 'up', 'down', 'action1', 'action2', 'action3', 'action4', 'start'];
+        let P1orP2        = null;
+
+        if (KeyMap.isP1Key(event.key)) {
+            P1orP2 = 'Player1';
+        } else if (KeyMap.isP2Key(event.key)) {
+            P1orP2 = 'Player2';
+        } else {
+            return;
+        }
+
+        let translatedKey = KeyMap.translate(event.key);
+        if (!allowedKeys.includes(translatedKey)) return;
+
+        KeyMap[P1orP2][translatedKey].pressed = false;
+    }
+
+    manageKeyDown = (event) => {
+        if (this.isRoundOver()) return;
+
+        const allowedKeys = ['right', 'left', 'up', 'down', 'action1', 'action2', 'action3', 'action4', 'start'];
+        let P1orP2        = null;
+
+        if (KeyMap.isP1Key(event.key)) {
+            P1orP2 = 'Player1';
+        } else if (KeyMap.isP2Key(event.key)) {
+            P1orP2 = 'Player2';
+        } else {
+            return;
+        }
+        
+        let translatedKey = KeyMap.translate(event.key);
+        if (!allowedKeys.includes(translatedKey)) return;
+
+        if (this[P1orP2].alive) {
+            KeyMap[P1orP2][translatedKey].pressed = true;
+            this[P1orP2].lastKey = KeyMap[P1orP2][translatedKey].key;
+
+            // @todo - This should be refactored:
+            if (KeyMap[P1orP2].up.key == event.key) this[P1orP2].jump();
+
+            this[P1orP2].attacks.forEach((Attack) => {
+                if (Attack.key === translatedKey) this[P1orP2].attack(Attack, this.Player2);
+            });
+        }
+    }
+
     manageKeys() {
-        window.addEventListener('keydown', (event) => {
-            if (this.isRoundOver()) return;
-
-            if (this.Player1.alive) {
-                switch (event.key) {
-                    case 'd':
-                        this.keys.d.pressed = true;
-                        this.Player1.lastKey = 'd';
-                        break;
-                    case 'a':
-                        this.keys.a.pressed = true;
-                        this.Player1.lastKey = 'a';
-                        break;
-                    case 'w':
-                        this.Player1.jump();
-                        break;
-                    case 's':
-                        this.keys.s.pressed = true;
-                        this.Player1.lastKey = 's';
-                        break;
-                }
-
-                this.Player1.attacks.forEach((Attack) => {
-                    if (Attack.key === event.key) this.Player1.attack(Attack, this.Player2);
-                });
-            }
-        
-            if (this.Player2.alive) {
-                switch (event.key) {
-                    case 'ArrowRight':
-                        this.keys.ArrowRight.pressed = true;
-                        this.Player2.lastKey = 'ArrowRight';
-                        break;
-                    case 'ArrowLeft':
-                        this.keys.ArrowLeft.pressed = true;
-                        this.Player2.lastKey = 'ArrowLeft';
-                        break;
-                    case 'ArrowUp':
-                        this.Player2.jump();
-                        break;
-                }
-                
-                this.Player2.attacks.forEach((Attack) => {
-                    if (Attack.key === event.key) this.Player2.attack(Attack, this.Player1);
-                });
-            }
-        });
-                
-        window.addEventListener('keyup', (event) => {
-            switch (event.key) {
-                // Player
-                case 'd':
-                    this.keys.d.pressed = false;
-                    break;
-                case 'a':
-                    this.keys.a.pressed = false;
-                    break;
-                case 's':
-                    this.keys.s.pressed = false;
-                    break;
-        
-                // Enemy
-                case 'ArrowRight':
-                    this.keys.ArrowRight.pressed = false;
-                    break;
-                case 'ArrowLeft':
-                    this.keys.ArrowLeft.pressed = false;
-                    break;
-            }
-        });
+        window.addEventListener('keydown', this.manageKeyDown);
+        window.addEventListener('keyup'  , this.manageKeyUp  );
     }
 
     shutDown() {}

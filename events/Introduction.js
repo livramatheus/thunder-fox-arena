@@ -2,6 +2,7 @@ import Background from '../assets/Background.js';
 import SolidColor from '../assets/SolidColor.js';
 import Sprite from '../assets/Sprite.js';
 import Plot from '../misc/Plot.js';
+import KeyMap from '../misc/KeyMap.js';
 
 export default class Introduction {
 
@@ -124,7 +125,7 @@ export default class Introduction {
     }
 
     startGame = (event) => {
-        if (event.key === ' ') this.shutDown(true);
+        if (event.key === KeyMap.Player1.start.key) this.shutDown(true);
     }
 
     removeKeys() {

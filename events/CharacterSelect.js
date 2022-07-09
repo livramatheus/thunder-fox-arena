@@ -1,6 +1,7 @@
 import Background from '../assets/Background.js';
 import Sprite from '../assets/Sprite.js';
 import SolidColor from '../assets/SolidColor.js';
+import KeyMap from '../misc/KeyMap.js';
 
 export default class CharacterSelect {
 
@@ -144,62 +145,57 @@ export default class CharacterSelect {
         sound.play();
     }
 
-    moveCursor = (event) => {
-        switch (event.key) {
-            // Player 1 Selector
-            case 'w':
-                if (this.P1CursorPos.y <= 0 || globalData.P1) return;
+    manageCursor(key, player) {
+        switch (key) {
+            case 'up':
+                if (this[`${player}CursorPos`].y <= 0 || globalData[player]) return;
                 this.playUiSound(this.cursorSound);
-                this.P1CursorPos.y --;
+                this[`${player}CursorPos`].y --;
                 break;
-            case 's':
-                if (this.P1CursorPos.y >= 2 || (this.P1CursorPos.y === 1 && [0, 2].includes(this.P1CursorPos.x)) || globalData.P1) return;
+            case 'down':
+                if (
+                    this[`${player}CursorPos`].y >= 2 || (this[`${player}CursorPos`].y === 1 &&
+                    [0, 2].includes(this[`${player}CursorPos`].x)) || globalData[player]
+                ) return;
                 this.playUiSound(this.cursorSound);
-                this.P1CursorPos.y ++;
+                this[`${player}CursorPos`].y ++;
                 break;
-            case 'a':
-                if (this.P1CursorPos.x <= 0 || (this.P1CursorPos.y === 2) || globalData.P1) return;
+            case 'left':
+                if (this[`${player}CursorPos`].x <= 0 || (this[`${player}CursorPos`].y === 2) || globalData[player]) return;
                 this.playUiSound(this.cursorSound);
-                this.P1CursorPos.x --;
+                this[`${player}CursorPos`].x --;
                 break;
-            case 'd':
-                if (this.P1CursorPos.x >= 2 || (this.P1CursorPos.y === 2) || globalData.P1) return;
+            case 'right':
+                if (this[`${player}CursorPos`].x >= 2 || (this[`${player}CursorPos`].y === 2) || globalData[player]) return;
                 this.playUiSound(this.cursorSound);
-                this.P1CursorPos.x ++;
+                this[`${player}CursorPos`].x ++;
                 break;
-
-            // Player 2 Selector
-            case 'ArrowUp':
-                if (this.P2CursorPos.y <= 0 || globalData.P2) return;
-                this.playUiSound(this.cursorSound);
-                this.P2CursorPos.y --;
-                break;
-            case 'ArrowDown':
-                if (this.P2CursorPos.y >= 2 || (this.P2CursorPos.y === 1 && [0, 2].includes(this.P2CursorPos.x)) || globalData.P2) return;
-                this.playUiSound(this.cursorSound);
-                this.P2CursorPos.y ++;
-                break;
-            case 'ArrowLeft':
-                if (this.P2CursorPos.x <= 0 || (this.P2CursorPos.y === 2) || globalData.P2) return;
-                this.playUiSound(this.cursorSound);
-                this.P2CursorPos.x --;
-                break;
-            case 'ArrowRight':
-                if (this.P2CursorPos.x >= 2 || (this.P2CursorPos.y === 2) || globalData.P2) return;
-                this.playUiSound(this.cursorSound);
-                this.P2CursorPos.x ++;
-                break;
-            case ' ':
-                if (globalData.P1) return;
-                globalData.P1 = this.characterList[this.P1CursorPos.y][this.P1CursorPos.x];
+            case 'start':
+                if (globalData[player]) return;
+                globalData[player] = this.characterList[this[`${player}CursorPos`].y][this[`${player}CursorPos`].x];
                 this.playUiSound(this.selectSound);
-                break
-            case 'p':
-                if (globalData.P2) return;
-                globalData.P2 = this.characterList[this.P2CursorPos.y][this.P2CursorPos.x];
-                this.playUiSound(this.selectSound);
+                break;
+            default:
                 break;
         }
+    }
+
+    moveCursor = (event) => {
+        const allowedKeys = ['right', 'left', 'up', 'down', 'start'];
+        let P1orP2        = null;
+
+        if (KeyMap.isP1Key(event.key)) {
+            P1orP2 = 'P1';
+        } else if (KeyMap.isP2Key(event.key)) {
+            P1orP2 = 'P2';
+        } else {
+            return;
+        }
+        
+        let translatedKey = KeyMap.translate(event.key);
+        if (!allowedKeys.includes(translatedKey)) return;
+
+        this.manageCursor(translatedKey, P1orP2);
 
         // Player 1 Thumb and flag update
         this.P1Selected = this.characterList[this.P1CursorPos.y][this.P1CursorPos.x];

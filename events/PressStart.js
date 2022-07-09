@@ -1,5 +1,6 @@
 import Sprite from '../assets/Sprite.js';
 import SolidColor from '../assets/SolidColor.js';
+import KeyMap from '../misc/KeyMap.js';
 
 export default class PressStart {
 
@@ -101,7 +102,7 @@ export default class PressStart {
     }
 
     leave = (event) => {
-        if (event.key === ' ') this.shutDown();
+        if (event.key === KeyMap.Player1.start.key) this.shutDown();
     }
 
     removeKeys() {
