@@ -57,11 +57,11 @@ export default class FirstScreen {
     }
 
     removeKeys() {
-        window.removeEventListener('click', this.startIntroduction);
+        document.querySelector("#canvas").removeEventListener('click', this.startIntroduction);
     }
 
     manageKeys() {
-        window.addEventListener('click', this.startIntroduction);
+        document.querySelector("#canvas").addEventListener('click', this.startIntroduction);
     }
 
     shutDown() {
