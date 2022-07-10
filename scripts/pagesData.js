@@ -66,6 +66,61 @@ const getPagesData = () => {
             <li>I <b>don't sell</b> Thunder Fox Arena.</li>
             <li>I <b>will never</b> monetize Thunder Fox Arena in any shape or form.</li>
         </ul>`,
+        'info-how-to-play': `
+        <h2>How to Play</h2>
+        
+        <br />
+
+        <table id="how-to-play-table">
+            <tr>
+                <th colspan="2">Player 1</th>
+                <th colspan="2">Player 2</th>
+            </tr>
+            <tr>
+                <td class="how-to-play-img-cell">
+                    <img src="img/keys/p1_movement.png" />
+                </td>
+                <td>
+                    Movement
+                </td>
+                <td class="how-to-play-img-cell">
+                    <img src="img/keys/p2_movement.png" />
+                </td>
+                <td>
+                    Movement
+                </td>
+            </tr>
+            <tr>
+                <td class="how-to-play-img-cell">
+                    <img src="img/keys/p1_actions.png" />
+                </td>
+                <td>
+                    <p>Attack 1</p>
+                    <p>Attack 2</p>
+                    <p>Attack 3</p>
+                    <p>Attack 4 / Back</p>
+                </td>
+                <td class="how-to-play-img-cell">
+                    <img src="img/keys/p2_actions.png" />
+                </td>
+                <td>
+                    <p>Attack 1</p>
+                    <p>Attack 2</p>
+                    <p>Attack 3</p>
+                    <p>Attack 4 / Back</p>
+                </td>
+            </tr>
+            <tr>
+                <td class="how-to-play-img-cell">
+                    <img src="img/keys/p1_confirm.png" />
+                </td>
+                <td>Confirm / Pause</td>
+                <td class="how-to-play-img-cell">
+                    <img src="img/keys/p2_confirm.png" />
+                </td>
+                <td>Confirm / Pause</td>
+            </tr>
+        </table>`,
         'info-author': `
         <h2>Author</h2>
         <p>
