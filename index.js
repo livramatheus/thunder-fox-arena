@@ -5,6 +5,7 @@ import StageSelect from "./events/StageSelect.js";
 import CharacterSelect from "./events/CharacterSelect.js";
 import PressStart from "./events/PressStart.js";
 import MainMenu from "./events/MainMenu.js";
+import HowToPlay from "./events/HowToPlay.js";
 
 async function animate() {
     globalData.animFramId = window.requestAnimationFrame(animate);
@@ -16,6 +17,9 @@ async function animate() {
                 break;
             case 'mainmenu':
                 globalData.currentScene = new MainMenu();
+                break;
+            case 'howtoplay':
+                globalData.currentScene = new HowToPlay();
                 break;
             case 'firstscreen':
                 globalData.currentScene = new FirstScreen();

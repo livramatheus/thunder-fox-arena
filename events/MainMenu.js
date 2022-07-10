@@ -35,7 +35,7 @@ export default class PressStart {
             { id: undefined        , text: 'ARCADE'       , x: 60 , y: 350 },
             { id: 'characterselect', text: 'LOCAL VERSUS' , x: 236, y: 350 },
             { id: undefined        , text: 'ONLINE VERSUS', x: 506, y: 350 },
-            { id: undefined        , text: 'HOW TO PLAY'  , x: 790, y: 350 }
+            { id: 'howtoplay'      , text: 'HOW TO PLAY'  , x: 790, y: 350 }
         ];
 
         this.manageKeys();
