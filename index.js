@@ -4,6 +4,7 @@ import Introduction from "./events/Introduction.js";
 import StageSelect from "./events/StageSelect.js";
 import CharacterSelect from "./events/CharacterSelect.js";
 import PressStart from "./events/PressStart.js";
+import MainMenu from "./events/MainMenu.js";
 
 async function animate() {
     globalData.animFramId = window.requestAnimationFrame(animate);
@@ -12,6 +13,9 @@ async function animate() {
         switch (globalData.next) {
             case 'pressstart':
                 globalData.currentScene = new PressStart();
+                break;
+            case 'mainmenu':
+                globalData.currentScene = new MainMenu();
                 break;
             case 'firstscreen':
                 globalData.currentScene = new FirstScreen();

@@ -114,7 +114,7 @@ export default class PressStart {
     }
 
     shutDown() {
-        globalData.next = 'characterselect';
+        globalData.next = 'mainmenu';
         this.removeKeys();
     }
 
