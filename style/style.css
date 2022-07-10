@@ -241,3 +241,21 @@ body {
     background: url('../img/ui/life_bar_square.png');
     background-size: auto 24px;
 }
+
+#how-to-play-table {
+    width: 100%
+}
+
+#how-to-play-table th,
+#how-to-play-table td {
+    padding: 1rem 0;
+}
+
+#how-to-play-table p {
+    margin-top: 10px;
+    margin-bottom: 25px;
+}
+
+.how-to-play-img-cell {
+    display: flex; justify-content: center;
+}

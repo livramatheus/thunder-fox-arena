@@ -37,6 +37,13 @@ export default class Introduction {
         this.Fox.scale = 0.8;
         this.Fox.opacity = 0;
 
+        this.Player1Confirm = new Sprite({
+            position: { x: 450, y: 530 },
+            imgSrc: './img/keys/p1_confirm.png',
+            frames: 1
+        });
+        this.Player1Confirm.opacity = 0.5
+
         this.currentText  = -4;
         this.textInterval = 500;
         this.subScene = 1;
@@ -112,6 +119,12 @@ export default class Introduction {
                 c.fillText(Plot[this.currentText + 3], 210 + (37 - Plot[this.currentText + 3].length) * 5.5, 280);
 
                 this.textInterval = 3700;
+
+                c.fillStyle = "rgba(255, 255, 255, 0.5)";
+                c.fillText('PRESS', 360, 560);
+                this.Player1Confirm.update();
+                c.fillText('TO SKIP', 550, 560);
+                c.fillStyle = "white";
             }
             this.currentText += 4;
 
