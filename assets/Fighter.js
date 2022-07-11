@@ -110,7 +110,8 @@ export default class Fighter extends Sprite {
 
     hit(damage) {
         this.health -= damage;
-
+        this.health = this.health < 0 ? 0 : this.health;
+        
         if (this.health <= 0) {
             this.knockBack(this.defeatKnock);
             this.switchSprite('defeat');
