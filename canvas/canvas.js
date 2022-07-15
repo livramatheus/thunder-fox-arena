@@ -6,12 +6,12 @@ const CANVAS_HEIGHT = 576;
 const globalData = {
     animFramId: null,
     currentScene: null,
-    next: 'mainmenu',
+    next: 'firstscreen',
     ST: null,
     P1: null,
     P2: null,
     gameLoading: true,
-    version: '0.8.5',
+    version: '0.8.6',
     musicTransitionTime: null,
     delay: null
 }
