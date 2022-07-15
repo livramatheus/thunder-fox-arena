@@ -15,12 +15,8 @@ export default class Fighter extends Sprite {
         this.height    = 0;
         this.width     = 0;
         this.isAttacking;
-        this.health = 100;
         this.curFrame = 0;
         this.sprites = sprites;
-        this.isReversed = false;
-        this.lastSprite = 'idle';
-        this.alive = true;
         this.defeatKnock = {
             x: 0,
             y: 0
@@ -41,6 +37,14 @@ export default class Fighter extends Sprite {
             sprites[sprite].image.src  = sprites[sprite].imgSrc;
             sprites[sprite].imageR.src = sprites[sprite].imgSrc.split('.png')[0] + '_r.png';
         }
+    }
+
+    reset() {
+        this.health     = 100;
+        this.alive      = true;
+        this.lastSprite = 'idle';
+        this.isReversed = false;
+        this.facing     = 'right';
     }
 
     changePosition(position) {

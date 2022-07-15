@@ -6,13 +6,14 @@ const CANVAS_HEIGHT = 576;
 const globalData = {
     animFramId: null,
     currentScene: null,
-    next: 'firstscreen',
+    next: 'mainmenu',
     ST: null,
     P1: null,
     P2: null,
     gameLoading: true,
-    version: '0.7.5',
-    musicTransitionTime: null
+    version: '0.8.5',
+    musicTransitionTime: null,
+    delay: null
 }
 
 const canvas = document.querySelector('canvas');

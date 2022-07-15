@@ -11,6 +11,7 @@ export default class Fight {
         this.Stage   = Stage;
         this.timerId = null;
         this.timer   = 99;
+        this.roundOverTransition = false;
 
         // Black Solid Color Overlay
         this.BlackOverlay         = new SolidColor({ position: { x:0, y: 0 }, color: 'black'});
@@ -18,16 +19,29 @@ export default class Fight {
         this.BlackOverlay.height  = CANVAS_HEIGHT;
         this.BlackOverlay.opacity = 1;
         this.BlackOverlay.fadeOut(0.005);
+    }
+    
+    reset() {
+        this.timerId = null;
+        this.timer   = 99;
+        this.roundOverTransition = false;
+
+        this.Player1.reset();
+        this.Player2.reset();
 
         this.Player1.changePosition('left');
-        this.Player2.isReversed = true;
+        this.Player2.isReversed = false;
+        
+        document.querySelector(this.Player1.lifebarId).style.width = "100%";
+        document.querySelector(this.Player2.lifebarId).style.width = "100%";
+
         this.Player1.position = {
             x: 200 - this.Player1.boxOffset.x - this.Player1.width,
-            y: CANVAS_HEIGHT - 110 - Player1.height - 20
+            y: CANVAS_HEIGHT - 110 - this.Player1.height - 20
         };
         this.Player2.position = {
             x: CANVAS_WIDTH - 200 - this.Player2.boxOffset.x - this.Player2.width,
-            y: CANVAS_HEIGHT - 110 - Player2.height - 20
+            y: CANVAS_HEIGHT - 110 - this.Player2.height - 20
         };
 
         this.initStageMusic();
@@ -76,6 +90,23 @@ export default class Fight {
      * in order that every component gets re-rendered continuously
      */
     animate = () => {
+        if (this.isRoundOver()) {
+            this.removeKeys();
+            this.roundOverTransition = true;
+            
+            // Starts a delay
+            if (globalData.delay == null) globalData.delay = 0;
+
+            if (globalData.delay >= 120) {
+                this.BlackOverlay.fadeIn(0.03);
+                
+                if (this.BlackOverlay.opacity == 1) {
+                    globalData.delay = null;
+                    this.shutDown();
+                }
+            }
+        }
+
         c.fillStyle = 'black';
         c.fillRect(0, 0, canvas.width, canvas.height);
         this.Stage.update();
@@ -94,12 +125,15 @@ export default class Fight {
         if (atkp1) this.Player1.manageAttack(atkp1, this.Player2);
         if (atkp2) this.Player2.manageAttack(atkp2, this.Player1);
         
+        this.BlackOverlay.update();
+        
+        if (this.roundOverTransition) return;
+
         if (this.Player1.health <= 0 || this.Player2.health <= 0) {
             this.checkWinner();
         }
 
         this.checkPositions();
-        this.BlackOverlay.update();
     }
 
     initPlayer1Actions() {
@@ -187,11 +221,14 @@ export default class Fight {
 
         const allowedKeys = ['right', 'left', 'up', 'down', 'action1', 'action2', 'action3', 'action4', 'start'];
         let P1orP2        = null;
+        let Enemy         = null;
 
         if (KeyMap.isP1Key(event.key)) {
             P1orP2 = 'Player1';
+            Enemy  = 'Player2';
         } else if (KeyMap.isP2Key(event.key)) {
             P1orP2 = 'Player2';
+            Enemy  = 'Player1';
         } else {
             return;
         }
@@ -207,7 +244,7 @@ export default class Fight {
             if (KeyMap[P1orP2].up.key == event.key) this[P1orP2].jump();
 
             this[P1orP2].attacks.forEach((Attack) => {
-                if (Attack.key === translatedKey) this[P1orP2].attack(Attack, this.Player2);
+                if (Attack.key === translatedKey) this[P1orP2].attack(Attack, this[Enemy]);
             });
         }
     }
@@ -217,5 +254,19 @@ export default class Fight {
         window.addEventListener('keyup'  , this.manageKeyUp  );
     }
 
-    shutDown() {}
+    removeKeys() {
+        window.removeEventListener('keydown', this.manageKeyDown);
+        window.removeEventListener('keyup'  , this.manageKeyUp  );
+    }
+    
+    shutDown() {
+        document.querySelector("#display-text").style.display = 'none';
+        document.querySelector("#top-bar").style.display      = 'none';
+        this.Stage.sound.pause();
+        this.Stage.sound.currentTime = 0;
+        globalData.P1 = null;
+        globalData.P2 = null;
+        globalData.ST = null;
+        globalData.next = 'characterselect'
+    }
 }
