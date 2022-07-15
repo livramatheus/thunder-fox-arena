@@ -7,7 +7,35 @@ import PressStart from "./events/PressStart.js";
 import MainMenu from "./events/MainMenu.js";
 import HowToPlay from "./events/HowToPlay.js";
 
-async function animate() {
+// Characters
+import Thunder from './assets/Characters/Thunder.js';
+import Gonza from './assets/Characters/Gonza.js';
+
+// Stages
+import Barriers from './assets/Stages/Barriers.js';
+import Carrier from './assets/Stages/Carrier.js';
+import ColdFields from './assets/Stages/ColdFields.js';
+import ControlRoom from './assets/Stages/ControlRoom.js';
+import GinarzasHq from './assets/Stages/GinarzasHq.js';
+import Hangar from './assets/Stages/Hangar.js';
+import MiningSite from './assets/Stages/MiningSite.js';
+
+const characters = {
+    Thunder,
+    Gonza
+};
+
+const stages = {
+    Barriers,
+    Carrier,
+    ColdFields,
+    ControlRoom,
+    GinarzasHq,
+    Hangar,
+    MiningSite
+}
+
+function animate() {
     globalData.animFramId = window.requestAnimationFrame(animate);
 
     if (globalData.next) {
@@ -34,11 +62,12 @@ async function animate() {
                 globalData.currentScene = new CharacterSelect();
                 break;
             case 'fight':
-                const Player = await import(`./assets/Characters/${globalData.P1.class}.js`);
-                const Enemy  = await import(`./assets/Characters/${globalData.P2.class}.js`);
-                const Stage  = await import(`./assets/Stages/${globalData.ST}.js`);
-
-                globalData.currentScene = new Fight(Player.default, Enemy.default, Stage.default);
+                globalData.currentScene = new Fight(
+                    characters[globalData.P1.class],
+                    characters[globalData.P2.class],
+                    stages[globalData.ST]
+                );
+                globalData.currentScene.reset();
                 break;
             default:
                 break;
@@ -46,7 +75,9 @@ async function animate() {
 
         globalData.next = null;
     }
-    
+
+    // Delay handler - delay only works if a limit number is set
+    if (typeof globalData.delay === 'number') globalData.delay ++;
     globalData.currentScene.animate();
 
 }
