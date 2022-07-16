@@ -125,6 +125,14 @@ export default class Fight {
         if (atkp1) this.Player1.manageAttack(atkp1, this.Player2);
         if (atkp2) this.Player2.manageAttack(atkp2, this.Player1);
         
+        this.Player1.projectiles.forEach((p) => {
+            if (p.active) this.Player1.manageProjectile(p, this.Player2);
+        });
+
+        this.Player2.projectiles.forEach((p) => {
+            if (p.active) this.Player2.manageProjectile(p, this.Player1);
+        });
+
         this.BlackOverlay.update();
         
         if (this.roundOverTransition) return;
@@ -132,7 +140,15 @@ export default class Fight {
         if (this.Player1.health <= 0 || this.Player2.health <= 0) {
             this.checkWinner();
         }
+        
+        this.Player1.projectiles.forEach((p) => {
+            p.update();
+        });
 
+        this.Player2.projectiles.forEach((p) => {
+            p.update();
+        });
+        
         this.checkPositions();
     }
 
@@ -245,6 +261,10 @@ export default class Fight {
 
             this[P1orP2].attacks.forEach((Attack) => {
                 if (Attack.key === translatedKey) this[P1orP2].attack(Attack, this[Enemy]);
+            });
+
+            this[P1orP2].projectiles.forEach((Projectile) => {
+                if (Projectile.key === translatedKey) Projectile.fire(this[P1orP2]);
             });
         }
     }

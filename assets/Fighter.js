@@ -26,7 +26,8 @@ export default class Fighter extends Sprite {
         this.walkFrontSpeed = 2;
         this.walkBackSpeed  = -2;
         this.boxOffset = {x: 0, y: 0};
-        this.attacks = [];
+        this.attacks     = [];
+        this.projectiles = [];
         this.lifebarId;
 
         for (const sprite in this.sprites) {
@@ -79,6 +80,35 @@ export default class Fighter extends Sprite {
         );
     }
     
+    projectileCollision(Projectile, Victim) {
+        let projectileBox = Projectile.getProjectileBoxCoordinates();
+        let victimBox   = Victim.getHitBoxCoordinates();
+        let vertConds   = (
+            projectileBox.y + projectileBox.h >= victimBox.y &&
+            projectileBox.y < victimBox.y + victimBox.h
+        )
+
+        if (this.facing === 'right') {
+            return (
+                projectileBox.x + projectileBox.w >= victimBox.x + victimBox.w &&
+                projectileBox.x <= victimBox.x + victimBox.w &&
+                vertConds
+            );
+        }
+
+        return (
+            projectileBox.x > victimBox.x &&
+            projectileBox.x + projectileBox.w < victimBox.x + victimBox.w &&
+            vertConds
+        );
+    }
+
+    manageProjectile(Projectile, Victim) {
+        if(this.projectileCollision(Projectile, Victim)) {
+            Projectile.hit(Victim);
+        }
+    }
+
     manageAttack(Attack, Victim) {
         if (Attack.callback) {
             Attack.callback(this);
@@ -135,6 +165,7 @@ export default class Fighter extends Sprite {
         if (this.lastSprite == 'attack_1' && this.curFrame < this.sprites.attack_1.frames - 1) return;
         if (this.lastSprite == 'attack_2' && this.curFrame < this.sprites.attack_2.frames - 1) return;
         if (this.lastSprite == 'attack_3' && this.curFrame < this.sprites.attack_3.frames - 1) return;
+        if (this.lastSprite == 'attack_4' && this.curFrame < this.sprites.attack_4.frames - 1) return;
         if (this.lastSprite == 'attack_ducking' && this.curFrame < this.sprites.attack_ducking.frames - 1) return;
         if (this.lastSprite == 'hit' && this.curFrame < this.sprites.hit.frames - 1) return;
 
