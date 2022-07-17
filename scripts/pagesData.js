@@ -30,9 +30,9 @@ const getPagesData = () => {
         <p>
             <b>Start date:</b> May, 9th 2022
             <br/>
-            <b>Hours taken so far:</b> ~51
+            <b>Hours taken so far:</b> ~68
             <br/>
-            <b>Estimate completion:</b> 60%
+            <b>Estimate completion:</b> 80%
         </p>
     
         <h3>Code/Contributing</h3>
