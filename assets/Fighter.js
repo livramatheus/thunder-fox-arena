@@ -29,6 +29,8 @@ export default class Fighter extends Sprite {
         this.attacks     = [];
         this.projectiles = [];
         this.lifebarId;
+        this.isBlocking = false;
+        this.blockSfx = new Audio('./sound/sound_41.mp3');
 
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
@@ -122,8 +124,13 @@ export default class Fighter extends Sprite {
             )
         ) {
             this.isAttacking = false;
-            if(Attack.knockBack) Victim.knockBack(Attack.knockBack);
-            if(Attack.damage) Victim.hit(Attack.damage);
+            
+            if(Attack.knockBack && !Victim.isBlocking) Victim.knockBack(Attack.knockBack);
+            if(Attack.damage) {
+                let dmg = Victim.isBlocking ? Attack.damage / 2 : Attack.damage;
+                Victim.hit(dmg);
+            }
+
             document.querySelector(Victim.lifebarId).style.width = Victim.health + "%";   
         }
         
@@ -151,7 +158,12 @@ export default class Fighter extends Sprite {
             this.knockBack(this.defeatKnock);
             this.switchSprite('defeat');
         } else {
-            this.switchSprite('hit');
+            if (this.isBlocking) {
+                this.blockSfx.currentTime = 0;
+                this.blockSfx.play();
+            } else {
+                this.switchSprite('hit');
+            }
         }
     }
 

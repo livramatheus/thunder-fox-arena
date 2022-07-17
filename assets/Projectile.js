@@ -102,8 +102,10 @@ export default class Projectile extends Sprite {
         }
 
         // Manipulate the Victim object on collision
-        Victim.knockBack(this.knockBack);
-        Victim.hit(this.damage);
+        if (!Victim.isBlocking) Victim.knockBack(this.knockBack);
+        
+        let dmg = Victim.isBlocking ? this.damage / 2 : this.damage;
+        Victim.hit(dmg);
         document.querySelector(Victim.lifebarId).style.width = Victim.health + "%";  
     }
 
