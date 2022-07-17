@@ -1,5 +1,6 @@
 import Fighter from '../Fighter.js';
 import Attack from '../Attack.js';
+import Projectile from '../Projectile.js';
 
 const Thunder = new Fighter({
     position: { x: 0, y: 0 },
@@ -45,6 +46,13 @@ const Thunder = new Fighter({
             frames: 6,
             sound: './sound/sound_43.mp3',
             frameSkip: 10
+        },
+        attack_4: {
+            id: 'attack_4',
+            imgSrc: './img/fighters/thunder/thunder_attack_4.png',
+            frames: 3,
+            sound: './sound/sound_17.mp3',
+            frameSkip: 8
         },
         hit: {
             id: 'hit',
@@ -115,8 +123,32 @@ Attack3.callback = (Fighter) => {
     }
 } 
 
+const Attack4 = new Attack('attack_4', 'action4', 0, 1, { x: 50, y: 20 } , 0, 0);
+Attack4.knockBack = { x: 0, y: 0 };
+Attack4.condition = (Fighter) => !Fighter.projectiles.find(Proj => Proj.active === true);
+
+const Projectile1 = new Projectile({
+    imgSrc: './img/projectiles/tubao_projectile.png',
+    frames: 1,
+    damage: 5,
+    key: 'action4',
+    speed: 10,
+    impactSound: './sound/sound_32.mp3',
+    impactImg: './img/explosion_1.png',
+    berrelOffset: {
+        left:  { x: -180, y: 85 },
+        right: { x: 70, y: 85 }
+    },
+    width: 61,
+    height: 19
+});
+Projectile1.knockBack = { x: 50, y: -4 };
+Projectile1.condition = (Fighter, Proj) => !Proj.active;
+
 Thunder.attacks.push(Attack1);
 Thunder.attacks.push(Attack2);
 Thunder.attacks.push(Attack3);
+Thunder.attacks.push(Attack4);
+Thunder.projectiles.push(Projectile1);
 
 export default Thunder;
