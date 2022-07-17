@@ -137,7 +137,8 @@ export default class Fighter extends Sprite {
 
     attack(Attack, Victim) {
         if (Attack.condition && !Attack.condition(this)) return;
-        
+        if (this.lastSprite == Attack.sprite) return;
+
         this.switchSprite(Attack.sprite);
         this.isAttacking = true;
     }
