@@ -122,8 +122,8 @@ export default class Fighter extends Sprite {
             )
         ) {
             this.isAttacking = false;
-            Victim.knockBack(Attack.knockBack);
-            Victim.hit(Attack.damage);
+            if(Attack.knockBack) Victim.knockBack(Attack.knockBack);
+            if(Attack.damage) Victim.hit(Attack.damage);
             document.querySelector(Victim.lifebarId).style.width = Victim.health + "%";   
         }
         

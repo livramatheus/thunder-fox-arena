@@ -124,7 +124,7 @@ Attack3.callback = (Fighter) => {
 } 
 
 const Attack4 = new Attack('attack_4', 'action4', 0, 1, { x: 50, y: 20 } , 0, 0);
-Attack4.knockBack = { x: 0, y: 0 };
+Attack4.knockBack = null;
 Attack4.condition = (Fighter) => !Fighter.projectiles.find(Proj => Proj.active === true);
 
 const Projectile1 = new Projectile({
