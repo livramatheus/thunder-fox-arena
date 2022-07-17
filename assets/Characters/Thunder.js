@@ -88,7 +88,7 @@ Thunder.boxOffset = {
 
 Thunder.offset = {
     x: 0,
-    y: -45
+    y: -5
 };
 
 const Attack1 = new Attack('attack_1', 'action1', 20, 1, { x: 50, y: 20 } , 90, 50);
