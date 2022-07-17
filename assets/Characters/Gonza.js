@@ -44,6 +44,12 @@ const Gonza = new Fighter({
             frames: 2,
             frameSkip: 50
         },
+        attack_4: {
+            id: 'attack_4',
+            imgSrc: './img/fighters/gonza/gonza_attack_4.png',
+            frames: 2,
+            frameSkip: 100
+        },
         hit: {
             id: 'hit',
             imgSrc: './img/fighters/gonza/gonza_hit.png',
@@ -92,8 +98,15 @@ const Attack3 = new Attack('attack_3', 'action3', 20, 0, {x: -30, y: 50}, 180, 5
 Attack3.knockBack = { x: 30, y: 0 };
 Attack3.color = 'yellow';
 
+const Attack4 = new Attack('attack_4', 'action4', 0, 1, {x: 80, y: 50}, 0, 0);
+Attack4.knockBack = null;
+Attack4.callback = (Fighter) => {
+    Fighter.isBlocking = true;
+};
+
 Gonza.attacks.push(Attack1);
 Gonza.attacks.push(Attack2);
 Gonza.attacks.push(Attack3);
+Gonza.attacks.push(Attack4);
 
 export default Gonza;
