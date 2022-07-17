@@ -175,12 +175,15 @@ export default class Fighter extends Sprite {
             return;
         }
 
-        if (this.lastSprite == 'attack_1' && this.curFrame < this.sprites.attack_1.frames - 1) return;
-        if (this.lastSprite == 'attack_2' && this.curFrame < this.sprites.attack_2.frames - 1) return;
-        if (this.lastSprite == 'attack_3' && this.curFrame < this.sprites.attack_3.frames - 1) return;
-        if (this.lastSprite == 'attack_4' && this.curFrame < this.sprites.attack_4.frames - 1) return;
-        if (this.lastSprite == 'attack_ducking' && this.curFrame < this.sprites.attack_ducking.frames - 1) return;
-        if (this.lastSprite == 'hit' && this.curFrame < this.sprites.hit.frames - 1) return;
+        // Defeat sprites always has priority - All other animations will end immediately in favor of defeat
+        if (sprite != 'defeat') {
+            if (this.lastSprite == 'attack_1' && this.curFrame < this.sprites.attack_1.frames - 1) return;
+            if (this.lastSprite == 'attack_2' && this.curFrame < this.sprites.attack_2.frames - 1) return;
+            if (this.lastSprite == 'attack_3' && this.curFrame < this.sprites.attack_3.frames - 1) return;
+            if (this.lastSprite == 'attack_4' && this.curFrame < this.sprites.attack_4.frames - 1) return;
+            if (this.lastSprite == 'attack_ducking' && this.curFrame < this.sprites.attack_ducking.frames - 1) return;
+            if (this.lastSprite == 'hit' && this.curFrame < this.sprites.hit.frames - 1) return;
+        }
 
         if (this.sprites[sprite].sound) {
             let snd = new Audio(this.sprites[sprite].sound);
@@ -194,6 +197,8 @@ export default class Fighter extends Sprite {
             this.image       = this.isReversed ? this.sprites[sprite].imageR : this.sprites[sprite].image;
             this.curFrame    = 0;
         }
+
+        this.isBlocking = false;
     }
 
     isJumping() {
