@@ -91,10 +91,13 @@ export default class PressStart {
             this.logo.update();
             this.PressSpace.update();
 
+            c.font = "16px 'Press Start 2P', cursive";
             c.fillText('DEVELOPED BY MATHEUS DO LIVRAMENTO - 2022', 186, 500);
             c.fillText('ALL ASSETS, MUSIC, STAGES, SOUNDS AND THE', 186, 525);
             c.fillText('THUNDER FOX BRAND BELONG TO TAITO CORPORATION', 153, 550);
-            c.fillText('V' + globalData.version, 920, 550);
+
+            c.font = "14px 'Press Start 2P', cursive";
+            c.fillText('V' + globalData.version, 905, 550);
         } else {
             this.ThunderFont.update();
             this.FoxFont.update();
