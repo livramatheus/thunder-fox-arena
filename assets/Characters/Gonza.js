@@ -38,6 +38,12 @@ const Gonza = new Fighter({
             frames: 15,
             frameSkip: 7
         },
+        attack_3: {
+            id: 'attack_3',
+            imgSrc: './img/fighters/gonza/gonza_attack_3.png',
+            frames: 2,
+            frameSkip: 50
+        },
         hit: {
             id: 'hit',
             imgSrc: './img/fighters/gonza/gonza_hit.png',
@@ -69,7 +75,7 @@ Gonza.offset = {
 
 const Attack1 = new Attack('attack_1', 'action1', 20, 1, {x: 80, y: 50}, 130, 80);
 Attack1.knockBack = { x: 30, y: 0 };
-Attack1.color = 'green';
+Attack1.color = 'blue';
 
 const Attack2 = new Attack('attack_2', 'action2', 30, Array.from({length: 10}, (_, i) => i + 2), {x: 80, y: -60}, 140, 220);
 Attack2.knockBack = { x: 30, y: -5 };
@@ -82,7 +88,12 @@ Attack2.callback = (Fighter) => {
     }
 };
 
+const Attack3 = new Attack('attack_3', 'action3', 20, 0, {x: -30, y: 50}, 180, 50);
+Attack3.knockBack = { x: 30, y: 0 };
+Attack3.color = 'yellow';
+
 Gonza.attacks.push(Attack1);
 Gonza.attacks.push(Attack2);
+Gonza.attacks.push(Attack3);
 
 export default Gonza;
