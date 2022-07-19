@@ -186,6 +186,7 @@ body {
 #player-health,
 #enemy-health {
     background: rgb(18, 207, 11);
+    transition: width 0.5s;
 }
 
 #player-health {
