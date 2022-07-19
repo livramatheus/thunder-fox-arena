@@ -219,9 +219,7 @@ export default class CharacterSelect {
         if (globalData.P1 && globalData.P2) {
             this.BlackOverlay.fadeIn(0.027);
 
-            setTimeout(() => {
-                this.shutDown();
-            }, 1500);
+            this.shutDown();
         };
     }
 
@@ -235,8 +233,11 @@ export default class CharacterSelect {
 
     shutDown() {
         this.removeKeys();
-        this.Background.sound.pause();
-        globalData.musicTransitionTime = this.Background.sound.currentTime;
-        globalData.next = 'stageselect';
+
+        setTimeout(() => {
+            this.Background.sound.pause();
+            globalData.musicTransitionTime = this.Background.sound.currentTime;
+            globalData.next = 'stageselect';
+        }, 1500);
     }
 }
