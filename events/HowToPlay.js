@@ -71,14 +71,14 @@ export default class HowToPlay {
         c.fillText('ATTACK 2'       , 210, 338);
         c.fillText('ATTACK 3'       , 210, 378);
         c.fillText('ATTACK 4 / BACK', 210, 418);
-        c.fillText('CONFRIM / PAUSE', 210, 498);
+        c.fillText('CONFIRM / PAUSE', 210, 498);
 
         c.fillText('MOVEMENT'       , 780, 190);
         c.fillText('ATTACK 1'       , 780, 295);
         c.fillText('ATTACK 2'       , 780, 338);
         c.fillText('ATTACK 3'       , 780, 378);
         c.fillText('ATTACK 4 / BACK', 780, 418);
-        c.fillText('CONFRIM / PAUSE', 780, 498);
+        c.fillText('CONFIRM / PAUSE', 780, 498);
 
         this.Player1Movement.update();
         this.Player1Actions.update();
