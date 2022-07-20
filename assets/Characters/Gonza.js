@@ -94,7 +94,7 @@ Attack2.callback = (Fighter) => {
     }
 };
 
-const Attack3 = new Attack('attack_3', 'action3', 20, 0, {x: -30, y: 50}, 180, 50);
+const Attack3 = new Attack('attack_3', 'action3', 20, 0, {x: 75, y: 50}, 180, 50);
 Attack3.knockBack = { x: 30, y: 0 };
 Attack3.color = 'yellow';
 
