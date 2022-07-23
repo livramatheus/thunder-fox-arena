@@ -87,11 +87,7 @@ const Attack2 = new Attack('attack_2', 'action2', 30, Array.from({length: 10}, (
 Attack2.knockBack = { x: 3, y: -5 };
 Attack2.color = 'white';
 Attack2.callback = (Fighter) => {
-    if (Fighter.facing === 'right') {
-        Fighter.velocity.x = Fighter.walkFrontSpeed / 2;
-    } else {
-        Fighter.velocity.x = Fighter.walkFrontSpeed / 2 * -1;
-    }
+    Fighter.linearMovement({ x: Fighter.isReversed ? -1.2 : 1.2, y: 0 });
 };
 
 const Attack3 = new Attack('attack_3', 'action3', 20, 0, {x: 75, y: 50}, 180, 50);

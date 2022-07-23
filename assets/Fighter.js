@@ -34,6 +34,12 @@ export default class Fighter extends Sprite {
             dummyX: 0,
             active: false
         }
+        this.movement = {
+            x: 0,
+            y: 0,
+            dummyX: 0,
+            active: false
+        };
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
             sprites[sprite].imageR = new Image();
@@ -221,6 +227,13 @@ export default class Fighter extends Sprite {
         this.knock.active = true;
     }
 
+    linearMovement(force) {
+        this.velocity.y      = force.y;
+        this.movement.x      = force.x;
+        this.movement.dummyX = Math.abs(force.x * 10);
+        this.movement.active = true;
+    }
+
     manageJumpingSprites() {
         if (this.isJumping()) {
             this.switchSprite('jumping');
@@ -362,11 +375,30 @@ export default class Fighter extends Sprite {
         }
     }
 
+    manageLinearMovement() {
+        if (!this.movement.active) return; 
+
+        if (this.getIsNotTouchingScreenEdges()) {
+            this.movement.x      = 0;
+            this.movement.dummyX = 0;
+            this.movement.active = false;
+            return;
+        }
+
+        this.velocity.x       = this.movement.x;
+        this.movement.dummyX -= 1;
+
+        if (this.movement.dummyX <= 0 && this.velocity.y <= 0) {
+            this.movement.active = false
+        }
+    }
+
     update() {
         this.draw();
         if (this.alive) this.animateFrame();
 
         this.manageKnockBack();
+        this.manageLinearMovement();
 
         this.attacks.forEach((Attack) => {
             Attack.position.x = this.position.x + Attack.offset.x;
