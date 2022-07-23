@@ -153,13 +153,13 @@ export default class Fight {
     }
 
     initPlayer1Actions() {
-        if (KeyMap.Player1.left.pressed && this.Player1.lastKey === KeyMap.Player1.left.key) {
+        if (KeyMap.Player1.left.pressed) {
             if (this.Player1.canWalkLeft(this.Player2)) {
                 this.Player1.walkBack();
             } else {
                 KeyMap.Player1.left.pressed = false;
             }
-        } else if (KeyMap.Player1.right.pressed && this.Player1.lastKey === KeyMap.Player1.right.key) {
+        } else if (KeyMap.Player1.right.pressed) {
             if (this.Player1.canWalkRight(this.Player2)) {
                 this.Player1.walkFront();
             } else {
@@ -173,13 +173,13 @@ export default class Fight {
     }
 
     initPlayer2Actions() {
-        if (KeyMap.Player2.right.pressed && this.Player2.lastKey === KeyMap.Player2.right.key) {
+        if (KeyMap.Player2.right.pressed) {
             if (this.Player2.canWalkRight(this.Player1)) {
                 this.Player2.walkFront();
             } else {
                 KeyMap.Player2.right.pressed = false;
             }
-        } else if (KeyMap.Player2.left.pressed && this.Player2.lastKey === KeyMap.Player2.left.key) {
+        } else if (KeyMap.Player2.left.pressed) {
             if (this.Player2.canWalkLeft(this.Player1)) {
                 this.Player2.walkBack();
             } else {
