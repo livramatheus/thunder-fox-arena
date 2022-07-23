@@ -99,18 +99,8 @@ Attack3.knockBack = { x: 3, y: -3.2 };
 Attack3.color = 'black';
 Attack3.condition = (Fighter) => !Fighter.isInAir();
 Attack3.callback = (Fighter) => {
-    if (Fighter.velocity.x  === 0 && Fighter.velocity.y === 0) {
-        Attack3.customParams.initialDirection = Fighter.facing;
-    }
-
     if (Attack3.condition(Fighter)) {
-        Fighter.velocity.y = -12;
-    }
-
-    Fighter.velocity.x = Fighter.walkFrontSpeed * 2.6;
-    
-    if (Attack3.customParams.initialDirection === 'left') {
-        Fighter.velocity.x *= -1;
+        Fighter.linearMovement({ x: Fighter.isReversed ? -7 : 7, y: -13 });
     }
 };
 
@@ -119,18 +109,8 @@ Attack4.knockBack = { x: 4, y: -3.5 };
 Attack4.color = 'yellow';
 Attack4.condition = (Fighter) => !Fighter.isInAir();
 Attack4.callback = (Fighter) => {
-    if (Fighter.velocity.x  === 0 && Fighter.velocity.y === 0) {
-        Attack4.customParams.initialDirection = Fighter.facing;
-    }
-    
     if (Attack4.condition(Fighter)) {
-        Fighter.velocity.y = -15;
-    }
-    
-    Fighter.velocity.x = Fighter.walkFrontSpeed * 2.8;
-    
-    if (Attack4.customParams.initialDirection === 'left') {
-        Fighter.velocity.x *= -1;
+        Fighter.linearMovement({ x: Fighter.isReversed ? -8 : 8, y: -16 });
     }
 };
 

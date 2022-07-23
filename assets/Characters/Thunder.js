@@ -103,8 +103,7 @@ Attack2.color = 'black';
 Attack2.condition = (Fighter) => !Fighter.isInAir();
 Attack2.callback = (Fighter) => {
     if (Attack2.condition(Fighter)) {
-        Fighter.velocity.y -= 10;
-        Fighter.position.x += 50;
+        Fighter.linearMovement({ x: Fighter.isReversed ? -3 : 3, y: -8 });
     }
 }
 
