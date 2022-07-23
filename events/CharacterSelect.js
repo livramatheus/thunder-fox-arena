@@ -49,7 +49,7 @@ export default class CharacterSelect {
         });
         this.P2Thumb = new Sprite({
             position: { x: 730, y: 290 },
-            imgSrc: `./img/fighters/${this.P2Selected.id}/${this.P2Selected.id}_thumb.png`,
+            imgSrc: `./img/fighters/${this.P2Selected.id}/${this.P2Selected.id}_thumb_r.png`,
             frames: 1
         });
         this.P1Flag = new Sprite({
@@ -211,7 +211,7 @@ export default class CharacterSelect {
         
         // Player 2 Thumb and flag update
         this.P2Selected = this.characterList[this.P2CursorPos.y][this.P2CursorPos.x];
-        this.P2Thumb.image.src = `./img/fighters/${this.P2Selected.id}/${this.P2Selected.id}_thumb.png`;
+        this.P2Thumb.image.src = `./img/fighters/${this.P2Selected.id}/${this.P2Selected.id}_thumb_r.png`;
         this.P2Flag.image.src  = `./img/flags/${this.P2Selected.country.name}.png`;
         this.P2Flag.position.x = this.P2Selected.country.x;
         this.P2Flag.position.y = this.P2Selected.country.y;
