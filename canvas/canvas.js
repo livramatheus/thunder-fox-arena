@@ -11,7 +11,7 @@ const globalData = {
     P1: null,
     P2: null,
     gameLoading: true,
-    version: '0.13.18',
+    version: '0.14.18',
     musicTransitionTime: null,
     delay: null
 }
