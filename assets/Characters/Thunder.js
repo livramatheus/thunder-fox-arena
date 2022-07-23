@@ -81,6 +81,8 @@ const Thunder = new Fighter({
     name: 'THUNDER'
 });
 
+Thunder.folderName = 'thunder';
+
 Thunder.width  = 50;
 Thunder.height = 180;
 

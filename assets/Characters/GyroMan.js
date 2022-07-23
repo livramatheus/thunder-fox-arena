@@ -67,6 +67,8 @@ const GyroMan = new Fighter({
     name: 'GYRO-MAN'
 });
 
+GyroMan.folderName = 'gyro_man';
+
 GyroMan.walkFrontSpeed   = 3;
 GyroMan.walkBackSpeed    = -3;
 GyroMan.jumpForce        = - 17;

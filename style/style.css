@@ -124,7 +124,7 @@ body {
 #bars {
     position: absolute;
     display: flex;
-    width: 94%;
+    width: 83%;
     align-items: center;
 }
 
@@ -136,7 +136,7 @@ body {
     position: absolute;
     color: white;
     padding-top: 70px;
-    width: 94%;
+    width: 83%;
     display: flex;
     justify-content: space-between;
 }
@@ -259,4 +259,27 @@ body {
 
 .how-to-play-img-cell {
     display: flex; justify-content: center;
+}
+
+#fight-portraits {
+    position: absolute;
+    display: flex;
+    top: 22px;
+    width: 98%;
+    justify-content: space-between;
+}
+
+.fight-portrait {
+    position: relative;
+    width: 68px;
+    height: 73px;
+    background-color: black;
+    border: 2px solid rgb(216, 203, 203);
+    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.fight-portrait img {
+    width: 64px;
+    height: 69px;
+    background-size: cover;
 }

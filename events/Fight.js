@@ -8,6 +8,8 @@ export default class Fight {
         this.Player2 = Player2;
         this.Player1.lifebarId = '#player-health';
         this.Player2.lifebarId = '#enemy-health';
+        this.Player1.portraitId = '#fight-p1-portrait';
+        this.Player2.portraitId = '#fight-p2-portrait';
         this.Stage   = Stage;
         this.timerId = null;
         this.timer   = 99;
@@ -34,6 +36,9 @@ export default class Fight {
         
         document.querySelector(this.Player1.lifebarId).style.width = "100%";
         document.querySelector(this.Player2.lifebarId).style.width = "100%";
+
+        document.querySelector(this.Player1.portraitId).src = `img/fighters/${this.Player1.folderName}/${this.Player1.folderName}_thumb.png`;
+        document.querySelector(this.Player2.portraitId).src = `img/fighters/${this.Player2.folderName}/${this.Player2.folderName}_thumb_r.png`;
 
         this.Player1.position = {
             x: 200 - this.Player1.boxOffset.x - this.Player1.width,
