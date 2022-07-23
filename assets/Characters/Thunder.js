@@ -81,11 +81,6 @@ const Thunder = new Fighter({
     name: 'THUNDER'
 });
 
-Thunder.defeatKnock = {
-    x: 0,
-    y: -10
-};
-
 Thunder.width  = 50;
 Thunder.height = 180;
 
@@ -100,10 +95,10 @@ Thunder.offset = {
 };
 
 const Attack1 = new Attack('attack_1', 'action1', 20, 1, { x: 50, y: 20 } , 90, 50);
-Attack1.knockBack = { x: 20, y: 0 };
+Attack1.knockBack = { x: 1.3, y: -1.2 };
 
 const Attack2 = new Attack('attack_2', 'action2', 30, 1, { x: 50, y: 100 }, 70, 50);
-Attack2.knockBack = { x: 30, y: -3 };
+Attack2.knockBack = { x: 2, y: -1.4 };
 Attack2.color = 'black';
 Attack2.condition = (Fighter) => !Fighter.isInAir();
 Attack2.callback = (Fighter) => {
@@ -114,7 +109,7 @@ Attack2.callback = (Fighter) => {
 }
 
 const Attack3 = new Attack('attack_3', 'action3', 30, 2, { x: 20, y: 20 }, 80, 160);
-Attack3.knockBack = { x: 40, y: -7 };
+Attack3.knockBack = { x: 5, y: -7 };
 Attack3.color = 'brown';
 Attack3.condition = (Fighter) => !Fighter.isInAir();
 Attack3.callback = (Fighter) => {
@@ -142,13 +137,10 @@ const Projectile1 = new Projectile({
     width: 61,
     height: 19
 });
-Projectile1.knockBack = { x: 50, y: -4 };
+Projectile1.knockBack = { x: 2.3, y: -4 };
 Projectile1.condition = (Fighter, Proj) => !Proj.active;
 
-Thunder.attacks.push(Attack1);
-Thunder.attacks.push(Attack2);
-Thunder.attacks.push(Attack3);
-Thunder.attacks.push(Attack4);
-Thunder.projectiles.push(Projectile1);
+Thunder.attacks     = [Attack1, Attack2, Attack3, Attack4];
+Thunder.projectiles = [Projectile1];
 
 export default Thunder;

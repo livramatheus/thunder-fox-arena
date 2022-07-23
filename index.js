@@ -10,6 +10,7 @@ import HowToPlay from "./events/HowToPlay.js";
 // Characters
 import Thunder from './assets/Characters/Thunder.js';
 import Gonza from './assets/Characters/Gonza.js';
+import GyroMan from './assets/Characters/GyroMan.js';
 
 // Stages
 import Barriers from './assets/Stages/Barriers.js';
@@ -22,7 +23,8 @@ import MiningSite from './assets/Stages/MiningSite.js';
 
 const characters = {
     Thunder,
-    Gonza
+    Gonza,
+    GyroMan
 };
 
 const stages = {
