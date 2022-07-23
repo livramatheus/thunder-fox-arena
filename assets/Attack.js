@@ -14,6 +14,7 @@ export default class Attack {
         this.height = height;
         this.knockBack = { x: 0, y: 0 };
         this.color = 'blue';
+        this.customParams = {};
 
         /*
          * Callback - Is a callback function that should be used to manipulate
