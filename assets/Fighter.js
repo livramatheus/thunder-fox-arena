@@ -332,9 +332,22 @@ export default class Fighter extends Sprite {
         c.globalAlpha = 1.0;
     }
 
+    getIsNotTouchingScreenEdges() {
+        let hitbox = this.getHitBoxCoordinates();
+        
+        return (!this.isReversed && hitbox.x <= 0) || (this.isReversed && hitbox.x >= CANVAS_WIDTH);
+    }
+
     manageKnockBack() {
         if (!this.knock.active) return;
         
+        if (this.getIsNotTouchingScreenEdges()) {
+            this.knock.x      = 0;
+            this.knock.dummyX = 0;
+            this.knock.active = false;
+            return;
+        }
+
         let xForce = this.knock.x;
 
         if (!this.isReversed) {
