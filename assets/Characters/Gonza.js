@@ -80,11 +80,11 @@ Gonza.offset = {
 };
 
 const Attack1 = new Attack('attack_1', 'action1', 20, 1, {x: 80, y: 50}, 130, 80);
-Attack1.knockBack = { x: 30, y: 0 };
+Attack1.knockBack = { x: 1.3, y: -4 };
 Attack1.color = 'blue';
 
 const Attack2 = new Attack('attack_2', 'action2', 30, Array.from({length: 10}, (_, i) => i + 2), {x: 80, y: -60}, 140, 220);
-Attack2.knockBack = { x: 30, y: -5 };
+Attack2.knockBack = { x: 3, y: -5 };
 Attack2.color = 'white';
 Attack2.callback = (Fighter) => {
     if (Fighter.facing === 'right') {
@@ -95,7 +95,7 @@ Attack2.callback = (Fighter) => {
 };
 
 const Attack3 = new Attack('attack_3', 'action3', 20, 0, {x: 75, y: 50}, 180, 50);
-Attack3.knockBack = { x: 30, y: 0 };
+Attack3.knockBack = { x: 2, y: -3 };
 Attack3.color = 'yellow';
 
 const Attack4 = new Attack('attack_4', 'action4', 0, 1, {x: 80, y: 50}, 0, 0);
@@ -104,9 +104,6 @@ Attack4.callback = (Fighter) => {
     Fighter.isBlocking = true;
 };
 
-Gonza.attacks.push(Attack1);
-Gonza.attacks.push(Attack2);
-Gonza.attacks.push(Attack3);
-Gonza.attacks.push(Attack4);
+Gonza.attacks = [Attack1, Attack2, Attack3, Attack4];
 
 export default Gonza;

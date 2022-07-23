@@ -17,10 +17,7 @@ export default class Fighter extends Sprite {
         this.isAttacking;
         this.curFrame = 0;
         this.sprites = sprites;
-        this.defeatKnock = {
-            x: 0,
-            y: 0
-        };
+        this.knockIntensifier = { x: 0, y: 0 };
         this.name = name;
         this.jumpForce = -13;
         this.walkFrontSpeed = 2;
@@ -31,7 +28,12 @@ export default class Fighter extends Sprite {
         this.lifebarId;
         this.isBlocking = false;
         this.blockSfx = new Audio('./sound/sound_41.mp3');
-
+        this.knock = {
+            x: 0,
+            y: 0,
+            dummyX: 0,
+            active: false
+        }
         for (const sprite in this.sprites) {
             sprites[sprite].image  = new Image();
             sprites[sprite].imageR = new Image();
@@ -155,7 +157,6 @@ export default class Fighter extends Sprite {
         this.health = this.health < 0 ? 0 : this.health;
         
         if (this.health <= 0) {
-            this.knockBack(this.defeatKnock);
             this.switchSprite('defeat');
         } else {
             if (this.isBlocking) {
@@ -214,14 +215,10 @@ export default class Fighter extends Sprite {
     }
 
     knockBack(force) {
-        let xForce = force.x;
-
-        if (!this.isReversed) {
-            xForce = force.x * -1;
-        }
-
-        this.velocity.x = xForce;
-        this.velocity.y = force.y;
+        this.velocity.y   = force.y  + this.knockIntensifier.y;
+        this.knock.x      = force.x  + this.knockIntensifier.x;
+        this.knock.dummyX = (force.x + this.knockIntensifier.x) * 10;
+        this.knock.active = true;
     }
 
     manageJumpingSprites() {
@@ -329,10 +326,29 @@ export default class Fighter extends Sprite {
         c.globalAlpha = 1.0;
     }
 
+    manageKnockBack() {
+        if (!this.knock.active) return;
+        
+        let xForce = this.knock.x;
+
+        if (!this.isReversed) {
+            xForce = xForce * -1;
+        }
+
+        this.velocity.x    = xForce;
+        this.knock.dummyX -= 1;
+
+        if (this.knock.dummyX <= 0 && this.velocity.y <= 0) {
+            this.knock.active = false
+        }
+    }
+
     update() {
         this.draw();
         if (this.alive) this.animateFrame();
-        
+
+        this.manageKnockBack();
+
         this.attacks.forEach((Attack) => {
             Attack.position.x = this.position.x + Attack.offset.x;
             Attack.position.y = this.position.y + Attack.offset.y;
