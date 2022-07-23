@@ -230,33 +230,39 @@ export default class Fighter extends Sprite {
     }
 
     canWalkRight(Enemy) {
-        let canWalk             = true;
-        let verticalCollision   = (
+        let canWalk     = true;
+        let hitbox      = this.getHitBoxCoordinates();
+        let hitboxEnemy = Enemy.getHitBoxCoordinates();
+        
+        let verticalCollision = (
             this.position.y + this.height < Enemy.position.y ||
             this.position.y > Enemy.position.y + Enemy.height
         );
-        let screenEdgeCollision = (this.position.x + this.boxOffset.x + (this.width * 1.5) >= CANVAS_WIDTH);
+        let screenEdgeCollision = (hitbox.x < CANVAS_WIDTH);
 
         if (this.facing === 'right') {
-            canWalk = this.position.x + this.width + this.boxOffset.x <= Enemy.position.x + Enemy.boxOffset.x || verticalCollision;
+            canWalk = hitbox.x + hitbox.w < hitboxEnemy.x + hitboxEnemy.w || verticalCollision;
         }
 
-        return !screenEdgeCollision && canWalk;
+        return screenEdgeCollision && canWalk;
     }
 
     canWalkLeft(Enemy) {
-        let canWalk             = true;
+        let canWalk     = true;
+        let hitbox      = this.getHitBoxCoordinates();
+        let hitboxEnemy = Enemy.getHitBoxCoordinates();
+
         let verticalCollision   = (
             this.position.y + this.height < Enemy.position.y ||
             this.position.y > Enemy.position.y + Enemy.height
         );
-        let screenEdgeCollision = this.position.x + this.boxOffset.x <= 0;
+        let screenEdgeCollision = hitbox.x > 0;
 
         if (this.facing === 'left') {
-            canWalk = this.position.x + this.boxOffset.x >= Enemy.position.x + Enemy.boxOffset.x + Enemy.width || verticalCollision;
+            canWalk = hitbox.x + hitbox.w >= hitboxEnemy.x + hitboxEnemy.w || verticalCollision;
         }
 
-        return !screenEdgeCollision && canWalk;
+        return screenEdgeCollision && canWalk;
     }
 
     walkFront() {
