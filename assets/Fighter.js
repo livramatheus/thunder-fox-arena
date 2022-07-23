@@ -19,6 +19,7 @@ export default class Fighter extends Sprite {
         this.sprites = sprites;
         this.knockIntensifier = { x: 0, y: 0 };
         this.name = name;
+        this.folderName;
         this.jumpForce = -13;
         this.walkFrontSpeed = 2;
         this.walkBackSpeed  = -2;

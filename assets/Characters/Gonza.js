@@ -66,6 +66,8 @@ const Gonza = new Fighter({
     name: 'GONZA'
 });
 
+Gonza.folderName = 'gonza';
+
 Gonza.height = 230;
 Gonza.width  = 80;
 
