@@ -9,7 +9,7 @@ export default class CharacterSelect {
         this.characterList = [
             [
                 { id: 'thunder' , name: 'THUNDER' , class: 'Thunder', country: { name: 'germany' , x: 490, y: 32  }, unlocked: true  },
-                { id: 'fox'     , name: 'FOX'     , class: 'Fox'    , country: { name: 'belgium' , x: 470, y: 40  }, unlocked: false },
+                { id: 'fox'     , name: 'FOX'     , class: 'Fox'    , country: { name: 'belgium' , x: 470, y: 40  }, unlocked: true },
                 { id: 'gonza'   , name: 'GONZA'   , class: 'Gonza'  , country: { name: 'colombia', x: 340, y: 110 }, unlocked: true  }
             ],
             [
