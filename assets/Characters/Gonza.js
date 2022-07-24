@@ -53,14 +53,16 @@ const Gonza = new Fighter({
         hit: {
             id: 'hit',
             imgSrc: './img/fighters/gonza/gonza_hit.png',
-            frames: 6,
-            sound: './sound/sound_50.mp3'
+            frames: 3,
+            sound: './sound/sound_50.mp3',
+            frameSkip: 10
         },
         defeat: {
             id: 'defeat',
             imgSrc: './img/fighters/gonza/gonza_defeat.png',
-            frames: 15,
-            sound: './sound/sound_52.mp3'
+            frames: 5,
+            sound: './sound/sound_52.mp3',
+            frameSkip: 10
         }
     },
     name: 'GONZA'
