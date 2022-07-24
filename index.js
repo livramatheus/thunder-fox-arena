@@ -9,6 +9,7 @@ import HowToPlay from "./events/HowToPlay.js";
 
 // Characters
 import Thunder from './assets/Characters/Thunder.js';
+import Fox from './assets/Characters/Fox.js';
 import Gonza from './assets/Characters/Gonza.js';
 import GyroMan from './assets/Characters/GyroMan.js';
 
@@ -23,6 +24,7 @@ import MiningSite from './assets/Stages/MiningSite.js';
 
 const characters = {
     Thunder,
+    Fox,
     Gonza,
     GyroMan
 };
