@@ -30,15 +30,15 @@ const Thunder = new Fighter({
         attack_1: {
             id: 'attack_1',
             imgSrc: './img/fighters/thunder/thunder_attack_1.png',
-            frames: 3,
+            frames: 4,
             sound: './sound/sound_07.mp3'
         },
         attack_2: {
             id: 'attack_2',
             imgSrc: './img/fighters/thunder/thunder_attack_2.png',
-            frames: 3,
+            frames: 4,
             sound: './sound/sound_10.mp3',
-            frameSkip: 20
+            frameSkip: 15
         },
         attack_3: {
             id: 'attack_3',
@@ -50,14 +50,15 @@ const Thunder = new Fighter({
         attack_4: {
             id: 'attack_4',
             imgSrc: './img/fighters/thunder/thunder_attack_4.png',
-            frames: 3,
+            frames: 4,
             sound: './sound/sound_17.mp3',
-            frameSkip: 8
+            frameSkip: 6
         },
         hit: {
             id: 'hit',
             imgSrc: './img/fighters/thunder/thunder_hit.png',
-            frames: 8
+            frames: 4,
+            frameSkip: 10
         },
         defeat: {
             id: 'defeat',
@@ -105,7 +106,7 @@ Attack2.color = 'black';
 Attack2.condition = (Fighter) => !Fighter.isInAir();
 Attack2.callback = (Fighter) => {
     if (Attack2.condition(Fighter)) {
-        Fighter.linearMovement({ x: Fighter.isReversed ? -3 : 3, y: -8 });
+        Fighter.linearMovement({ x: Fighter.isReversed ? -3 : 3, y: -9 });
     }
 }
 
