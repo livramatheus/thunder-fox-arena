@@ -30,8 +30,9 @@ const Thunder = new Fighter({
         attack_1: {
             id: 'attack_1',
             imgSrc: './img/fighters/thunder/thunder_attack_1.png',
-            frames: 4,
-            sound: './sound/sound_07.mp3'
+            frames: 5,
+            sound: './sound/sound_10.mp3',
+            frameSkip: 6
         },
         attack_2: {
             id: 'attack_2',
@@ -97,8 +98,9 @@ Thunder.offset = {
     y: -5
 };
 
-const Attack1 = new Attack('attack_1', 'action1', 20, 1, { x: 50, y: 20 } , 90, 50);
-Attack1.knockBack = { x: 1.3, y: -1.2 };
+const Attack1 = new Attack('attack_1', 'action1', 20, 2, { x: 50, y: 20 } , 120, 60);
+Attack1.knockBack = { x: 2, y: -1.6 };
+Attack1.color = 'white';
 
 const Attack2 = new Attack('attack_2', 'action2', 30, 1, { x: 50, y: 100 }, 70, 50);
 Attack2.knockBack = { x: 2, y: -1.4 };
