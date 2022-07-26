@@ -15,7 +15,7 @@ export default class CharacterSelect {
             [
                 { id: 'gyro_man', name: 'GYRO MAN', class: 'GyroMan', country: { name: 'peru'   , x: 330, y: 128 }, unlocked: true },
                 { id: 'grazan'  , name: 'GRAZAN'  , class: 'Grazan' , country: { name: 'japan'  , x: 680, y: 62  }, unlocked: false },
-                { id: 'eider'   , name: 'EIDER'   , class: 'Eider'  , country: { name: 'unknown', x: 710, y: 92  }, unlocked: false }
+                { id: 'eider'   , name: 'EIDER'   , class: 'Eider'  , country: { name: 'unknown', x: 710, y: 92  }, unlocked: true }
             ], [
                 null,
                 { id: 'ginarza' , name: 'GINARZA' , class: 'Ginarza', country: { name: 'hungary', x: 500, y: 42 }, unlocked: false },
