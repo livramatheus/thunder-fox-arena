@@ -18,7 +18,7 @@ export default class CharacterSelect {
                 { id: 'eider'   , name: 'EIDER'   , class: 'Eider'  , country: { name: 'unknown', x: 710, y: 92  }, unlocked: true }
             ], [
                 null,
-                { id: 'ginarza' , name: 'GINARZA' , class: 'Ginarza', country: { name: 'hungary', x: 500, y: 42 }, unlocked: false },
+                { id: 'ginarza' , name: 'GINARZA' , class: 'Ginarza', country: { name: 'hungary', x: 500, y: 42 }, unlocked: true },
                 null,
             ]
         ];
