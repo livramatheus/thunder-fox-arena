@@ -13,6 +13,7 @@ import Fox from './assets/Characters/Fox.js';
 import Gonza from './assets/Characters/Gonza.js';
 import GyroMan from './assets/Characters/GyroMan.js';
 import Eider from './assets/Characters/Eider.js';
+import Ginarza from './assets/Characters/Ginarza.js';
 
 // Stages
 import Barriers from './assets/Stages/Barriers.js';
@@ -28,7 +29,8 @@ const characters = {
     Fox,
     Gonza,
     GyroMan,
-    Eider
+    Eider,
+    Ginarza
 };
 
 const stages = {
