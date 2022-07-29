@@ -20,12 +20,14 @@ const Ginarza = new Fighter({
         jumping: {
             id: 'jumping',
             imgSrc: './img/fighters/ginarza/ginarza_jumping.png',
-            frames: 3
+            frames: 3,
+            frameSkip: 15
         },
         falling: {
             id: 'falling',
             imgSrc: './img/fighters/ginarza/ginarza_falling.png',
-            frames: 3
+            frames: 3,
+            frameSkip: 42
         },
         attack_1: {
             id: 'attack_1',

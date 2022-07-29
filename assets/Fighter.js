@@ -280,12 +280,16 @@ export default class Fighter extends Sprite {
     }
 
     walkFront() {
-        this.switchSprite('walking');
+        if (!this.isInAir()) {
+            this.switchSprite('walking')
+        }
         this.velocity.x = this.walkFrontSpeed;
     }
 
     walkBack() {
-        this.switchSprite('walking');
+        if (!this.isInAir()) {
+            this.switchSprite('walking')
+        }
         this.velocity.x = this.walkBackSpeed;
     }
 

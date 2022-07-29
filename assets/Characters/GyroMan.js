@@ -18,12 +18,14 @@ const GyroMan = new Fighter({
         jumping: {
             id: 'jumping',
             imgSrc: './img/fighters/gyro_man/gyro_man_jumping.png',
-            frames: 2
+            frames: 2,
+            frameSkip: 20
         },
         falling: {
             id: 'falling',
             imgSrc: './img/fighters/gyro_man/gyro_man_falling.png',
-            frames: 3
+            frames: 3,
+            frameSkip: 50
         },
         attack_1: {
             id: 'attack_1',

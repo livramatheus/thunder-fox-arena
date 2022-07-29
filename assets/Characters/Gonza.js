@@ -1,6 +1,5 @@
 import Fighter from '../Fighter.js';
 import Attack from '../Attack.js';
-import KeyMap from '../../misc/KeyMap.js';
 
 const Gonza = new Fighter({
     position: { x: 0, y: 0 },
@@ -19,12 +18,14 @@ const Gonza = new Fighter({
         jumping: {
             id: 'jumping',
             imgSrc: './img/fighters/gonza/gonza_jumping.png',
-            frames: 2
+            frames: 2,
+            frameSkip: 30
         },
         falling: {
             id: 'falling',
             imgSrc: './img/fighters/gonza/gonza_falling.png',
-            frames: 3
+            frames: 3,
+            frameSkip: 18
         },
         attack_1: {
             id: 'attack_1',

@@ -20,12 +20,14 @@ const Grazan = new Fighter({
         jumping: {
             id: 'jumping',
             imgSrc: './img/fighters/grazan/grazan_jumping.png',
-            frames: 3
+            frames: 2,
+            frameSkip: 20
         },
         falling: {
             id: 'falling',
             imgSrc: './img/fighters/grazan/grazan_falling.png',
-            frames: 2
+            frames: 3,
+            frameSkip: 40
         },
         attack_1: {
             id: 'attack_1',

@@ -121,8 +121,8 @@ export default class Fight {
         this.Player1.velocity.x = 0;
         this.Player2.velocity.x = 0;
 
-        this.initPlayer1Actions();
-        this.initPlayer2Actions();
+        this.initPlayersActions('Player1');
+        this.initPlayersActions('Player2');
 
         let atkp1 = this.Player1.attacks.find((atk) => atk.sprite === this.Player1.lastSprite);
         let atkp2 = this.Player2.attacks.find((atk) => atk.sprite === this.Player2.lastSprite);
@@ -157,44 +157,28 @@ export default class Fight {
         this.checkPositions();
     }
 
-    initPlayer1Actions() {
-        if (KeyMap.Player1.left.pressed) {
-            if (this.Player1.canWalkLeft(this.Player2)) {
-                this.Player1.walkBack();
-            } else {
-                KeyMap.Player1.left.pressed = false;
-            }
-        } else if (KeyMap.Player1.right.pressed) {
-            if (this.Player1.canWalkRight(this.Player2)) {
-                this.Player1.walkFront();
-            } else {
-                KeyMap.Player1.right.pressed = false;
-            }
-        } else {
-            this.Player1.switchSprite('idle');
-        }
-        
-        this.Player1.manageJumpingSprites();
-    }
+    initPlayersActions(Player) {
+        let Enemy = Player === 'Player1' ? 'Player2' : 'Player1';
 
-    initPlayer2Actions() {
-        if (KeyMap.Player2.right.pressed) {
-            if (this.Player2.canWalkRight(this.Player1)) {
-                this.Player2.walkFront();
-            } else {
-                KeyMap.Player2.right.pressed = false;
-            }
-        } else if (KeyMap.Player2.left.pressed) {
-            if (this.Player2.canWalkLeft(this.Player1)) {
-                this.Player2.walkBack();
-            } else {
-                KeyMap.Player2.left.pressed = false;
-            }
-        } else {
-            this.Player2.switchSprite('idle');
+        if (this[Player].isInAir()) {
+            this[Player].manageJumpingSprites();
         }
 
-        this.Player2.manageJumpingSprites();
+        if (KeyMap[Player].left.pressed) {
+            if (this[Player].canWalkLeft(this[Enemy])) {
+                this[Player].walkBack();
+            } else {
+                KeyMap[Player].left.pressed = false;
+            }
+        } else if (KeyMap[Player].right.pressed) {
+            if (this[Player].canWalkRight(this[Enemy])) {
+                this[Player].walkFront();
+            } else {
+                KeyMap[Player].right.pressed = false;
+            }
+        } else {
+            if (!this[Player].isInAir()) this[Player].switchSprite('idle');
+        }   
     }
 
     checkPositions() {
