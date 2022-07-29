@@ -20,12 +20,14 @@ const Eider = new Fighter({
         jumping: {
             id: 'jumping',
             imgSrc: './img/fighters/eider/eider_jumping.png',
-            frames: 2
+            frames: 2,
+            frameSkip: 18
         },
         falling: {
             id: 'falling',
             imgSrc: './img/fighters/eider/eider_falling.png',
-            frames: 3
+            frames: 3,
+            frameSkip: 28
         },
         attack_1: {
             id: 'attack_1',

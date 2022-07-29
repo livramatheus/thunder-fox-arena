@@ -20,12 +20,14 @@ const Fox = new Fighter({
         jumping: {
             id: 'jumping',
             imgSrc: './img/fighters/fox/fox_jumping.png',
-            frames: 2
+            frames: 2,
+            frameSkip: 18
         },
         falling: {
             id: 'falling',
             imgSrc: './img/fighters/fox/fox_falling.png',
-            frames: 3
+            frames: 3,
+            frameSkip: 28
         },
         attack_1: {
             id: 'attack_1',
