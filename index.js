@@ -12,6 +12,7 @@ import Thunder from './assets/Characters/Thunder.js';
 import Fox from './assets/Characters/Fox.js';
 import Gonza from './assets/Characters/Gonza.js';
 import GyroMan from './assets/Characters/GyroMan.js';
+import Grazan from './assets/Characters/Grazan.js';
 import Eider from './assets/Characters/Eider.js';
 import Ginarza from './assets/Characters/Ginarza.js';
 
@@ -29,6 +30,7 @@ const characters = {
     Fox,
     Gonza,
     GyroMan,
+    Grazan,
     Eider,
     Ginarza
 };
