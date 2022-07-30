@@ -13,7 +13,8 @@ const Gonza = new Fighter({
         walking: {
             id: 'walking',
             imgSrc: './img/fighters/gonza/gonza_walking.png',
-            frames: 5
+            frames: 5,
+            frameSkip: 12
         },
         jumping: {
             id: 'jumping',
