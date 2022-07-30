@@ -57,7 +57,8 @@ const Ginarza = new Fighter({
         hit: {
             id: 'hit',
             imgSrc: './img/fighters/ginarza/ginarza_hit.png',
-            frames: 5
+            frames: 5,
+            sound: './sound/sound_50.mp3'
         },
         defeat: {
             id: 'defeat',
