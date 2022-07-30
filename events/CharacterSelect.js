@@ -8,17 +8,17 @@ export default class CharacterSelect {
     constructor() {
         this.characterList = [
             [
-                { id: 'thunder' , name: 'THUNDER' , class: 'Thunder', country: { name: 'germany' , x: 490, y: 32  }, unlocked: true  },
-                { id: 'fox'     , name: 'FOX'     , class: 'Fox'    , country: { name: 'belgium' , x: 470, y: 40  }, unlocked: true },
-                { id: 'gonza'   , name: 'GONZA'   , class: 'Gonza'  , country: { name: 'colombia', x: 340, y: 110 }, unlocked: true  }
+                { id: 'thunder' , name: 'THUNDER' , class: 'Thunder', country: { name: 'germany' , x: 490, y: 32  } },
+                { id: 'fox'     , name: 'FOX'     , class: 'Fox'    , country: { name: 'belgium' , x: 470, y: 40  } },
+                { id: 'gonza'   , name: 'GONZA'   , class: 'Gonza'  , country: { name: 'colombia', x: 340, y: 110 } }
             ],
             [
-                { id: 'gyro_man', name: 'GYRO MAN', class: 'GyroMan', country: { name: 'peru'   , x: 330, y: 128 }, unlocked: true },
-                { id: 'grazan'  , name: 'GRAZAN'  , class: 'Grazan' , country: { name: 'japan'  , x: 680, y: 62  }, unlocked: true },
-                { id: 'eider'   , name: 'EIDER'   , class: 'Eider'  , country: { name: 'unknown', x: 710, y: 92  }, unlocked: true }
+                { id: 'gyro_man', name: 'GYRO MAN', class: 'GyroMan', country: { name: 'peru'   , x: 330, y: 128 } },
+                { id: 'grazan'  , name: 'GRAZAN'  , class: 'Grazan' , country: { name: 'japan'  , x: 680, y: 62  } },
+                { id: 'eider'   , name: 'EIDER'   , class: 'Eider'  , country: { name: 'unknown', x: 710, y: 92  } }
             ], [
                 null,
-                { id: 'ginarza' , name: 'GINARZA' , class: 'Ginarza', country: { name: 'hungary', x: 500, y: 42 }, unlocked: true },
+                { id: 'ginarza' , name: 'GINARZA' , class: 'Ginarza', country: { name: 'hungary', x: 500, y: 42 } },
                 null,
             ]
         ];
@@ -175,8 +175,8 @@ export default class CharacterSelect {
                 let otherPlayeer = player === 'P1' ? 'P2' : 'P1';
 
                 // Does not allow the selection of given character if:
-                // Not selected yet OR is not unlocked OR is not selecter by the other player
-                if (globalData[player] || !selectedChar.unlocked || (globalData[otherPlayeer] && globalData[otherPlayeer].id === selectedChar.id)) return;
+                // Not selected yet OR is not selecter by the other player
+                if (globalData[player] || (globalData[otherPlayeer] && globalData[otherPlayeer].id === selectedChar.id)) return;
                 globalData[player] = selectedChar;
                 this.playUiSound(this.selectSound);
                 break;
