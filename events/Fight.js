@@ -41,11 +41,11 @@ export default class Fight {
         document.querySelector(this.Player2.portraitId).src = `img/fighters/${this.Player2.folderName}/${this.Player2.folderName}_thumb_r.png`;
 
         this.Player1.position = {
-            x: 200 - this.Player1.boxOffset.x - this.Player1.width,
+            x: 100,
             y: CANVAS_HEIGHT - 110 - this.Player1.height - 20
         };
         this.Player2.position = {
-            x: CANVAS_WIDTH - 200 - this.Player2.boxOffset.x - this.Player2.width,
+            x: CANVAS_WIDTH - 100 - this.Player2.sprites.idle.image.width,
             y: CANVAS_HEIGHT - 110 - this.Player2.height - 20
         };
 
