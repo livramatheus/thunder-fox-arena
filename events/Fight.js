@@ -182,10 +182,10 @@ export default class Fight {
     }
 
     checkPositions() {
-        if (!(
-            this.Player1.position.x + this.Player1.boxOffset.x + this.Player1.width >
-            this.Player2.position.x + this.Player2.boxOffset.x + this.Player2.width
-        )) {
+        let P1Info = this.Player1.getHitBoxCoordinates();
+        let P2Info = this.Player2.getHitBoxCoordinates();
+
+        if (!(P1Info.x > P2Info.x + P2Info.w)) {
             this.Player1.changePosition('right');
             this.Player2.changePosition('left');
         } else {
