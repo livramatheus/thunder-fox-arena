@@ -110,11 +110,11 @@ const Projectile1 = new Projectile({
     impactSound: './sound/sound_32.mp3',
     impactImg: './img/explosion_1.png',
     berrelOffset: {
-        left:  { x: -150, y: 140 },
-        right: { x: 0   , y: 140 }
+        left:  { x: -60 , y: 145 },
+        right: { x: 0   , y: 145 }
     },
-    width: 61,
-    height: 19
+    width: 12,
+    height: 20
 });
 Projectile1.knockBack = { x: 2.3, y: -4 };
 Projectile1.condition = (Fighter, Proj) => !Fighter.projectiles.find(P => P.active === true);
@@ -130,8 +130,8 @@ const Projectile2 = new Projectile({
     key: 'action4',
     speed: 13,
     berrelOffset: {
-        left:  { x: -150, y: 125 },
-        right: { x: 0   , y: 125 }
+        left:  { x: -100, y: 135 },
+        right: { x: 50  , y: 135 }
     },
     width: 9,
     height: 9
