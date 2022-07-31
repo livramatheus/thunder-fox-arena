@@ -140,8 +140,8 @@ const Projectile1 = new Projectile({
         left:  { x: -180, y: 85 },
         right: { x: 70, y: 85 }
     },
-    width: 61,
-    height: 19
+    width: 12,
+    height: 20
 });
 Projectile1.knockBack = { x: 2.3, y: -4 };
 Projectile1.condition = (Fighter, Proj) => !Proj.active;
