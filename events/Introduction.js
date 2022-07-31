@@ -57,7 +57,7 @@ export default class Introduction {
     }
 
     initMusic() {
-        this.Background.sound.volume = 0.4;
+        this.Background.sound.volume = 0.15;
         this.Background.sound.play();
     }
 
