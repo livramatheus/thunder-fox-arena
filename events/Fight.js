@@ -14,16 +14,35 @@ export default class Fight {
         this.timerId = null;
         this.timer   = 99;
         this.roundOverTransition = false;
+        this.FileList = [];
+        this.loaded   = false;
 
         // Black Solid Color Overlay
         this.BlackOverlay         = new SolidColor({ position: { x:0, y: 0 }, color: 'black'});
         this.BlackOverlay.width   = CANVAS_WIDTH;
         this.BlackOverlay.height  = CANVAS_HEIGHT;
         this.BlackOverlay.opacity = 1;
-        this.BlackOverlay.fadeOut(0.005);
+    }
+    
+    loadAssets() {
+        const Queue   = new createjs.LoadQueue();
+        this.FileList = [];
+        this.loaded   = false
+
+        // Loading Fighter's assets
+        this.FileList = this.FileList.concat(this.Player1.getAssetList());
+        this.FileList = this.FileList.concat(this.Player2.getAssetList());
+
+        this.FileList.forEach(file => Queue.loadFile(file));
+
+        Queue.addEventListener("complete", (event) => {
+            this.loaded = true;
+        });
     }
     
     reset() {
+        this.loadAssets();
+
         this.timerId = null;
         this.timer   = 99;
         this.roundOverTransition = false;
@@ -48,11 +67,6 @@ export default class Fight {
             x: CANVAS_WIDTH - 100 - this.Player2.sprites.idle.image.width,
             y: CANVAS_HEIGHT - 110 - this.Player2.height - 20
         };
-
-        this.initStageMusic();
-        this.decreaseTimer();
-        this.enableTopBar();
-        this.manageKeys();
     }
     
     enableTopBar() {
@@ -95,21 +109,10 @@ export default class Fight {
      * in order that every component gets re-rendered continuously
      */
     animate = () => {
-        if (this.isRoundOver()) {
-            this.removeKeys();
-            this.roundOverTransition = true;
-            
-            // Starts a delay
-            if (globalData.delay == null) globalData.delay = 0;
-
-            if (globalData.delay >= 120) {
-                this.BlackOverlay.fadeIn(0.03);
-                
-                if (this.BlackOverlay.opacity == 1) {
-                    globalData.delay = null;
-                    this.shutDown();
-                }
-            }
+        if (!this.isRoundOver()) {
+            this.fightStartTransition();
+        } else {
+            this.fightEndTransition();
         }
 
         c.fillStyle = 'black';
@@ -155,6 +158,41 @@ export default class Fight {
         });
         
         this.checkPositions();
+    }
+
+    fightStartTransition() {
+        // Starts a delay
+        if (globalData.delay == null && !this.loaded) globalData.delay = 0;
+
+        // As soon as everything gets loaded + 120 frames, Black Overlay is removed and round starts
+        if (globalData.delay >= 120 && this.loaded) {
+            this.BlackOverlay.fadeOut(0.03);
+            
+            if (this.BlackOverlay.opacity == 1) {
+                this.initStageMusic();
+                this.decreaseTimer();
+                this.enableTopBar();
+                this.manageKeys();
+                globalData.delay = null;
+            }
+        }
+    }
+
+    fightEndTransition() {
+        this.removeKeys();
+        this.roundOverTransition = true;
+        
+        // Starts a delay
+        if (globalData.delay == null) globalData.delay = 0;
+
+        if (globalData.delay >= 500) {
+            this.BlackOverlay.fadeIn(0.03);
+            
+            if (this.BlackOverlay.opacity == 1) {
+                globalData.delay = null;
+                this.shutDown();
+            }
+        }
     }
 
     initPlayersActions(Player) {

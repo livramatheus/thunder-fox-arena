@@ -28,73 +28,46 @@ Queue.addEventListener("complete", (event) => {
 });
 
 const FileList = [
-    // MUSIC
-    './sound/music_01.mp3', './sound/music_03.mp3',
-    './sound/music_04.mp3', './sound/music_05.mp3',
-    './sound/music_06.mp3', './sound/music_07.mp3',
-    './sound/music_09.mp3', './sound/music_10.mp3',
-    './sound/music_11.mp3',
-    
-    // SOUNDS
-    './sound/sound_07.mp3', './sound/sound_10.mp3',
-    './sound/sound_43.mp3', './sound/sound_50.mp3',
-    './sound/sound_52.mp3', './sound/sound_56.mp3',
-    './sound/sound_21h.mp3', './sound/sound_22h.mp3',
+    // Base Sounds 
+    './sound/music_01.mp3',
+    './sound/sound_21h.mp3',
+    './sound/sound_22h.mp3',
 
-    // STAGES
-    './img/stages/barriers.png', './img/stages/carrier.png',
-    './img/stages/cold_fields.png', './img/stages/control_room.png',
-    './img/stages/ginarzas_hq.png', './img/stages/hangar.png',
-    './img/stages/mining_site.png',
-
-    // IMAGES
+    // UI
     './img/fox_font.png',
     './img/introduction_bg.png',
-    './img/stage_select.png',
     './img/thunder_font.png',
+    './img/character_select.png',
+    './img/stage_select.png',
+    './img/p1_selector.png',
+    './img/p2_selector.png',
 
-    // FIGHTERS
-    // Thunder
-    './img/fighters/thunder/thunder_attack_1.png',
-    './img/fighters/thunder/thunder_attack_1_r.png',
-    './img/fighters/thunder/thunder_attack_2.png',
-    './img/fighters/thunder/thunder_attack_2_r.png',
-    './img/fighters/thunder/thunder_attack_3.png',
-    './img/fighters/thunder/thunder_attack_3_r.png',
-    './img/fighters/thunder/thunder_attack_ducking.png',
-    './img/fighters/thunder/thunder_attack_ducking_r.png',
-    './img/fighters/thunder/thunder_defeat.png',
-    './img/fighters/thunder/thunder_defeat_r.png',
-    './img/fighters/thunder/thunder_ducking.png',
-    './img/fighters/thunder/thunder_ducking_r.png',
-    './img/fighters/thunder/thunder_falling.png',
-    './img/fighters/thunder/thunder_falling_r.png',
-    './img/fighters/thunder/thunder_hit.png',
-    './img/fighters/thunder/thunder_hit_r.png',
-    './img/fighters/thunder/thunder_idle.png',
-    './img/fighters/thunder/thunder_idle_r.png',
-    './img/fighters/thunder/thunder_jumping.png',
-    './img/fighters/thunder/thunder_jumping_r.png',
-    './img/fighters/thunder/thunder_walking.png',
-    './img/fighters/thunder/thunder_walking_r.png',
+    // KEYS
+    './img/keys/p1_actions.png',  './img/keys/p1_confirm.png',
+    './img/keys/p1_movement.png', './img/keys/p2_actions.png',
+    './img/keys/p2_confirm.png',  './img/keys/p2_movement.png',
 
-    // Gonza
-    './img/fighters/gonza/gonza_attack_1.png',
-    './img/fighters/gonza/gonza_attack_1_r.png',
-    './img/fighters/gonza/gonza_attack_2.png',
-    './img/fighters/gonza/gonza_attack_2_r.png',
-    './img/fighters/gonza/gonza_defeat.png',
-    './img/fighters/gonza/gonza_defeat_r.png',
-    './img/fighters/gonza/gonza_falling.png',
-    './img/fighters/gonza/gonza_falling_r.png',
-    './img/fighters/gonza/gonza_hit.png',
-    './img/fighters/gonza/gonza_hit_r.png',
-    './img/fighters/gonza/gonza_idle.png',
-    './img/fighters/gonza/gonza_idle_r.png',
-    './img/fighters/gonza/gonza_jumping.png',
-    './img/fighters/gonza/gonza_jumping_r.png',
-    './img/fighters/gonza/gonza_walking.png',
-    './img/fighters/gonza/gonza_walking_r.png',
+    // Portraits
+    './img/fighters/eider/eider_thumb.png',
+    './img/fighters/eider/eider_thumb_r.png',
+    './img/fighters/fox/fox_thumb.png',
+    './img/fighters/fox/fox_thumb_r.png',
+    './img/fighters/ginarza/ginarza_thumb.png',
+    './img/fighters/ginarza/ginarza_thumb_r.png',
+    './img/fighters/gonza/gonza_thumb.png',
+    './img/fighters/gonza/gonza_thumb_r.png',
+    './img/fighters/grazan/grazan_thumb.png',
+    './img/fighters/grazan/grazan_thumb_r.png',
+    './img/fighters/gyro_man/gyro_man_thumb.png',
+    './img/fighters/gyro_man/gyro_man_thumb_r.png',
+    './img/fighters/thunder/thunder_thumb_r.png',
+    './img/fighters/thunder/thunder_thumb_r.png',
+
+    // Flags
+    './img/flags/belgium.png', './img/flags/colombia.png',
+    './img/flags/germany.png', './img/flags/hungary.png',
+    './img/flags/japan.png',   './img/flags/peru.png',
+    './img/flags/unknown.png',
 ]
 
 FileList.forEach(file => Queue.loadFile(file));

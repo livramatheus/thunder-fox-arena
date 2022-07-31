@@ -402,6 +402,24 @@ export default class Fighter extends Sprite {
         }
     }
 
+    getAssetList() {
+        let fileList = [];
+
+        for (let item in this.sprites) {
+            fileList.push(`./img/fighters/${this.folderName}/${this.folderName}_${item}.png`);
+            fileList.push(`./img/fighters/${this.folderName}/${this.folderName}_${item}_r.png`);
+
+            if (this.sprites[item].sound) {
+                fileList.push(this.sprites[item].sound);
+            }
+        }
+
+        // Filter out duplicate assets
+        fileList = [...new Set(fileList)];
+
+        return fileList;
+    }
+
     update() {
         this.draw();
         if (this.alive) this.animateFrame();
