@@ -115,6 +115,9 @@ export default class Fighter extends Sprite {
     }
 
     manageProjectile(Projectile, Victim) {
+        // Prevents juggling
+        if (Victim.knock.active) return;
+
         if(this.projectileCollision(Projectile, Victim)) {
             Projectile.hit(Victim);
         }
@@ -132,6 +135,9 @@ export default class Fighter extends Sprite {
                 (typeof Attack.frameDmg === 'object' && Attack.frameDmg.includes(this.curFrame))
             )
         ) {
+            // Prevents juggling
+            if (Victim.knock.active) return;
+
             this.isAttacking = false;
             
             if(Attack.knockBack && !Victim.isBlocking) Victim.knockBack(Attack.knockBack);
@@ -362,8 +368,6 @@ export default class Fighter extends Sprite {
         if (this.getIsNotTouchingScreenEdges()) {
             this.knock.x      = 0;
             this.knock.dummyX = 0;
-            this.knock.active = false;
-            return;
         }
 
         let xForce = this.knock.x;
@@ -375,7 +379,7 @@ export default class Fighter extends Sprite {
         this.velocity.x    = xForce;
         this.knock.dummyX -= 1;
 
-        if (this.knock.dummyX <= 0 && this.velocity.y <= 0) {
+        if (this.knock.dummyX <= 0 && this.velocity.y === 0) {
             this.knock.active = false
         }
     }
