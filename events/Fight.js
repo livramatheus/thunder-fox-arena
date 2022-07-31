@@ -76,7 +76,7 @@ export default class Fight {
     }
 
     initStageMusic() {
-        this.Stage.sound.volume = 0.4;
+        this.Stage.sound.volume = 0.15;
         this.Stage.sound.loop = true;
         this.Stage.sound.play();
     }

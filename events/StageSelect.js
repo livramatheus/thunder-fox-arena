@@ -40,7 +40,7 @@ export default class StageSelect {
 
     initMusic() {
         this.Overlay.sound.currentTime = globalData.musicTransitionTime;
-        this.Overlay.sound.volume = 0.3;
+        this.Overlay.sound.volume = 0.15;
         this.Overlay.sound.loop = true;
         this.Overlay.sound.play();
     }

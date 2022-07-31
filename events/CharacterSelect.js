@@ -86,7 +86,7 @@ export default class CharacterSelect {
     }
 
     initMusic() {
-        this.Background.sound.volume = 0.3;
+        this.Background.sound.volume = 0.15;
         this.Background.sound.loop = true;
         this.Background.sound.play();
     }
