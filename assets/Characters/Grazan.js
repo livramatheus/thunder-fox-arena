@@ -87,8 +87,8 @@ Grazan.offset = {
     y: 67
 };
 
-const Attack1 = new Attack('attack_1', 'action1', 20, [5, 8], {x: 80, y: 65}, 80, 85);
-Attack1.knockBack = { x: 1.3, y: -4 };
+const Attack1 = new Attack('attack_1', 'action1', 10, [5, 8], {x: 80, y: 65}, 80, 85);
+Attack1.knockBack = { x: 4, y: -5 };
 Attack1.color = 'blue';
 
 const Attack2 = new Attack('attack_2', 'action2', 0, 1, {x: 0, y: 0}, 0, 0);
@@ -104,9 +104,9 @@ Attack3.condition = (Fighter) => !Fighter.projectiles.find(Proj => Proj.active =
 const Projectile1 = new Projectile({
     imgSrc: './img/projectiles/tubao_projectile.png',
     frames: 1,
-    damage: 5,
+    damage: 6,
     key: 'action3',
-    speed: 10,
+    speed: 8,
     impactSound: './sound/sound_32.mp3',
     impactImg: './img/explosion_1.png',
     berrelOffset: {
@@ -126,9 +126,9 @@ Attack4.condition = (Fighter) => !Fighter.projectiles.find(Proj => Proj.active =
 const Projectile2 = new Projectile({
     imgSrc: './img/projectiles/ar_projectile.png',
     frames: 1,
-    damage: 3,
+    damage: 4,
     key: 'action4',
-    speed: 13,
+    speed: 9,
     berrelOffset: {
         left:  { x: -100, y: 135 },
         right: { x: 50  , y: 135 }

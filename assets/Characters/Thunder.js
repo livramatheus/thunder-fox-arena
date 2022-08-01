@@ -100,11 +100,11 @@ Thunder.offset = {
     y: -5
 };
 
-const Attack1 = new Attack('attack_1', 'action1', 20, 2, { x: 50, y: 20 } , 120, 60);
+const Attack1 = new Attack('attack_1', 'action1', 4, 2, { x: 50, y: 20 } , 120, 60);
 Attack1.knockBack = { x: 2, y: -1.6 };
 Attack1.color = 'white';
 
-const Attack2 = new Attack('attack_2', 'action2', 30, 1, { x: 50, y: 100 }, 70, 50);
+const Attack2 = new Attack('attack_2', 'action2', 6, 1, { x: 50, y: 100 }, 70, 50);
 Attack2.knockBack = { x: 2, y: -1.4 };
 Attack2.color = 'black';
 Attack2.condition = (Fighter) => !Fighter.isInAir();
@@ -114,7 +114,7 @@ Attack2.callback = (Fighter) => {
     }
 }
 
-const Attack3 = new Attack('attack_3', 'action3', 30, 2, { x: 20, y: 20 }, 80, 160);
+const Attack3 = new Attack('attack_3', 'action3', 8, 2, { x: 20, y: 20 }, 80, 160);
 Attack3.knockBack = { x: 5, y: -7 };
 Attack3.color = 'brown';
 Attack3.condition = (Fighter) => !Fighter.isInAir();
@@ -131,9 +131,9 @@ Attack4.condition = (Fighter) => !Fighter.projectiles.find(Proj => Proj.active =
 const Projectile1 = new Projectile({
     imgSrc: './img/projectiles/tubao_projectile.png',
     frames: 1,
-    damage: 5,
+    damage: 6,
     key: 'action4',
-    speed: 10,
+    speed: 6,
     impactSound: './sound/sound_32.mp3',
     impactImg: './img/explosion_1.png',
     berrelOffset: {

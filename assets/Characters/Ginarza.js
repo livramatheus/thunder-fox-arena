@@ -78,6 +78,9 @@ Ginarza.knockIntensifier = { x: 1.3, y: -1.5 };
 Ginarza.width  = 80;
 Ginarza.height = 215;
 
+Ginarza.walkFrontSpeed = 2;
+Ginarza.walkBackSpeed = -2;
+
 Ginarza.boxOffset = {
     x: 75,
     y: 55
@@ -88,11 +91,11 @@ Ginarza.offset = {
     y: 27
 };
 
-const Attack1 = new Attack('attack_1', 'action1', 15, 5, { x: 50, y: 20 } , 100, 55);
+const Attack1 = new Attack('attack_1', 'action1', 10, 5, { x: 50, y: 20 } , 100, 55);
 Attack1.knockBack = { x: 2, y: -1.6 };
 Attack1.color = 'white';
 
-const Attack2 = new Attack('attack_2', 'action2', 25, [2, 3], { x: 50, y: 0 }, 50, 190);
+const Attack2 = new Attack('attack_2', 'action2', 8, [2, 3], { x: 50, y: 0 }, 50, 190);
 Attack2.knockBack = { x: 2.7, y: -2.1 };
 Attack2.color = 'red';
 Attack2.condition = (Fighter) => !Fighter.isInAir();
@@ -104,9 +107,9 @@ Attack3.condition = (Fighter) => !Fighter.projectiles.find(Proj => Proj.active =
 const Projectile1 = new Projectile({
     imgSrc: './img/projectiles/tubao_projectile.png',
     frames: 1,
-    damage: 5,
+    damage: 6,
     key: 'action3',
-    speed: 10,
+    speed: 7,
     impactSound: './sound/sound_32.mp3',
     impactImg: './img/explosion_1.png',
     berrelOffset: {
@@ -119,7 +122,7 @@ const Projectile1 = new Projectile({
 Projectile1.knockBack = { x: 2.3, y: -4 };
 Projectile1.condition = (Fighter, Proj) => !Proj.active;
 
-const Attack4 = new Attack('attack_4', 'action4', 30, [6, 7, 8], { x: 50, y: 20 } , 250, 50);
+const Attack4 = new Attack('attack_4', 'action4', 4, [6, 7, 8], { x: 50, y: 20 } , 250, 50);
 Attack4.knockBack = { x: 2.3, y: -1.6 };
 Attack.color = 'blue'
 
