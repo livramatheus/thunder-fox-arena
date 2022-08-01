@@ -85,18 +85,21 @@ Gonza.offset = {
     y: 70
 };
 
-const Attack1 = new Attack('attack_1', 'action1', 20, 1, {x: 80, y: 50}, 130, 80);
+Gonza.walkFrontSpeed = 2;
+Gonza.walkBackSpeed  = -2;
+
+const Attack1 = new Attack('attack_1', 'action1', 10, 1, {x: 80, y: 50}, 130, 80);
 Attack1.knockBack = { x: 1.3, y: -4 };
 Attack1.color = 'blue';
 
-const Attack2 = new Attack('attack_2', 'action2', 30, Array.from({length: 10}, (_, i) => i + 2), {x: 80, y: -60}, 140, 220);
+const Attack2 = new Attack('attack_2', 'action2', 6, Array.from({length: 10}, (_, i) => i + 2), {x: 80, y: -60}, 140, 220);
 Attack2.knockBack = { x: 3, y: -5 };
 Attack2.color = 'white';
 Attack2.callback = (Fighter) => {
     Fighter.linearMovement({ x: Fighter.isReversed ? -1.2 : 1.2, y: 0 });
 };
 
-const Attack3 = new Attack('attack_3', 'action3', 20, 0, {x: 75, y: 50}, 180, 50);
+const Attack3 = new Attack('attack_3', 'action3', 8, 0, {x: 75, y: 50}, 180, 50);
 Attack3.knockBack = { x: 2, y: -3 };
 Attack3.color = 'yellow';
 

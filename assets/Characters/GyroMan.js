@@ -89,16 +89,16 @@ GyroMan.offset = {
     y: 25
 };
 
-const Attack1 = new Attack('attack_1', 'action1', 5, 3, {x: 60, y: 50}, 65, 70);
+const Attack1 = new Attack('attack_1', 'action1', 2, 3, {x: 60, y: 50}, 70, 70);
 Attack1.knockBack = { x: 1.8, y: -2.3 };
 Attack1.color = 'blue';
 Attack1.condition = (Fighter) => !Fighter.isInAir();
 
-const Attack2 = new Attack('attack_2', 'action2', 8, 3, {x: 55, y: 20}, 70, 70);
+const Attack2 = new Attack('attack_2', 'action2', 4, 3, {x: 55, y: 20}, 75, 70);
 Attack2.knockBack = { x: 2.3, y: -3 };
 Attack2.color = 'white';
 
-const Attack3 = new Attack('attack_3', 'action3', 10, [2, 3, 4], {x: 40, y: 30}, 85, 150);
+const Attack3 = new Attack('attack_3', 'action3', 8, [2, 3, 4], {x: 40, y: 30}, 90, 160);
 Attack3.knockBack = { x: 3, y: -3.2 };
 Attack3.color = 'black';
 Attack3.condition = (Fighter) => !Fighter.isInAir();
@@ -108,7 +108,7 @@ Attack3.callback = (Fighter) => {
     }
 };
 
-const Attack4 = new Attack('attack_4', 'action4', 8, [3, 4], {x: 30, y: 50}, 135, 90);
+const Attack4 = new Attack('attack_4', 'action4', 10, [3, 4], {x: 30, y: 50}, 135, 140);
 Attack4.knockBack = { x: 4, y: -3.5 };
 Attack4.color = 'yellow';
 Attack4.condition = (Fighter) => !Fighter.isInAir();
