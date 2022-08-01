@@ -56,9 +56,11 @@
 <p>
     <b>Start date:</b> May, 9th 2022
     <br/>
-    <b>Hours taken so far:</b> ~68
+    <b>End date:</b> August, 1st 2022
     <br/>
-    <b>Estimate completion:</b> 80%
+    <b>Hours taken:</b> ~95
+    <br/>
+    <b>Status:</b> Complete
 </p>
 
 <h2 id="about-the-project">💻 About the project</h2>
@@ -139,9 +141,11 @@
 <p>
     <b>Data de início:</b> 9 de maio de 2022
     <br/>
-    <b>Horas de trabalho até o momento:</b> ~68
+    <b>Data de fim:</b> 1 de agosto de 2022
     <br/>
-    <b>Estimativa de conclusão:</b> 80%
+    <b>Horas de trabalho:</b> ~95
+    <br/>
+    <b>Status:</b> 100%
 </p>
 
 <h2 id="about-the-project-br">💻 Sobre o projeto</h2>
