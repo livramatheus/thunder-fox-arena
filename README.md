@@ -91,10 +91,10 @@
 
 <p>Check out this project running on <a href="https://livramatheus.github.io/thunder-fox-arena/">GitHub Pages</a></p>
 
-<img src="./img/github/thumb_1.webp" width="47%"/>
-<img src="./img/github/thumb_2.webp" width="47%"/>
-<img src="./img/github/thumb_3.webp" width="47%"/>
-<img src="./img/github/thumb_4.webp" width="47%"/>
+<img src="./img/github/thumb_1.webp" width="47%" align="left"/>
+<img src="./img/github/thumb_2.webp" width="47%" align="right"/>
+<img src="./img/github/thumb_3.webp" width="47%" align="left"/>
+<img src="./img/github/thumb_4.webp" width="47%" align="right"/>
 
 <h3 id="technologies-front">🔨 Technologies</h3>
 
@@ -173,10 +173,10 @@
 
 <p>Veja este projeto rodando no <a href="https://livramatheus.github.io/thunder-fox-arena/">GitHub Pages</a></p>
 
-<img src="./img/github/thumb_1.webp" width="47%"/>
-<img src="./img/github/thumb_2.webp" width="47%"/>
-<img src="./img/github/thumb_3.webp" width="47%"/>
-<img src="./img/github/thumb_4.webp" width="47%"/>
+<img src="./img/github/thumb_1.webp" width="47%" align="left"/>
+<img src="./img/github/thumb_2.webp" width="47%" align="right"/>
+<img src="./img/github/thumb_3.webp" width="47%" align="left"/>
+<img src="./img/github/thumb_4.webp" width="47%" align="right"/>
 
 <h3 id="technologies-front-br">🔨 Tecnologias</h3>
 
