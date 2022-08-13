@@ -16,7 +16,7 @@
     <li><a href="#how-to-play">How To Play</a></li>
     <li><a href="#current-status">Current Status</a></li>
     <li><a href="#about-the-project">About the project</a></li>
-    <li><a href="#live-demo">Live demo</a></li>
+    <li><a href="#live-demo">Play</a></li>
     <li><a href="#technologies-front">Technologies</a></li>
     <li><a href="#code-contributing">Code/Contributing</a></li>
     <li><a href="#author">Author</a></li>
@@ -87,9 +87,15 @@
     that I probably wouldn't be able to come up with on my own.
 </p>
 
-<h2 id="live-demo">🌐 Live demo</h2>
+<h2 id="live-demo">🔪 Play</h2>
 
-<p>Check out this project running on <a href="https://livramatheus.github.io/thunder-fox-arena/">GitHub Pages</a></p>
+<p>You can play Thunder Fox Arena by clicking the button below:</p>
+
+<a href="https://livramatheus.github.io/thunder-fox-arena/">
+    <img src="./img/github/play_btn.png">
+</a>
+
+<h3>Screenshots</h3>
 
 <img src="./img/github/thumb_1.webp" width="47%" align="left"/>
 <img src="./img/github/thumb_2.webp" width="47%" align="right"/>
@@ -127,7 +133,7 @@
     <li><a href="#how-to-play-br">Como Jogar</a></li>
     <li><a href="#current-status-br">Status Atual</a></li>
     <li><a href="#about-the-project-br">Sobre o projeto</a></li>
-    <li><a href="#live-demo-br">Live demo</a></li>
+    <li><a href="#live-demo-br">Jogar</a></li>
     <li><a href="#technologies-front-br">Tecnologias</a></li>
     <li><a href="#code-contributing-br">Código/Contribuindo</a></li>
     <li><a href="#autor-br">Autor</a></li>
@@ -169,9 +175,15 @@
     href="https://www.youtube.com/watch?v=vyqbNFMDRGQ">vídeo do YouTube</a> que me foi sugerido sobre desenvolvimento de jogos em JavaScript. Mesmo que eu seja um um desenvolvedor experiente, jogos estão fora da minha <em>zona de conforto</em>, então este tutorial me ensinou algumas soluções que eu provavelmente não conseguiria encontrar sozinho.
 </p>
 
-<h2 id="live-demo-br">🌐 Live demo</h2>
+<h2 id="live-demo-br">🔪 Jogar</h2>
 
-<p>Veja este projeto rodando no <a href="https://livramatheus.github.io/thunder-fox-arena/">GitHub Pages</a></p>
+<p>Você pode jogar Thunder Fox Arena ao clicar no botão abaixo:</p>
+
+<a href="https://livramatheus.github.io/thunder-fox-arena/">
+    <img src="./img/github/play_btn.png">
+</a>
+
+<h3>Screenshots</h3>
 
 <img src="./img/github/thumb_1.webp" width="47%" align="left"/>
 <img src="./img/github/thumb_2.webp" width="47%" align="right"/>
