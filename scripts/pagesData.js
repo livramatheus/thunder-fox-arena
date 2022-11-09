@@ -25,7 +25,7 @@ const getPagesData = () => {
         </p>
         <h3>Status</h3>
         <p>
-            In this section, I'll constantly update Thunder Fox Arena current status.
+            In this section, I'll constantly update Thunder Fox Arena status.
         </p>
         <p>
             <b>Start date:</b> May, 9th 2022
@@ -55,7 +55,7 @@ const getPagesData = () => {
         
         <p>
             As stated on the "About" page, this game was developed as a homage to the original Thunder Fox released 
-            back in 1991, for beign a game that makes a important part of my life, bringing back good childhood memories.
+            back in 1991, for being a game that makes a important part of my life, bringing back good childhood memories.
         </p>
         
         <p>
@@ -127,8 +127,7 @@ const getPagesData = () => {
         <h2>Author</h2>
         <p>
             <b>Matheus do Livramento</b>, 27 years old, is a back-end software engineer and former web development 
-            teacher with
-            passion about gaming, fitness and web development.
+            teacher with a passion for gaming, fitness and web development.
         </p>
         <p>
             Graduated in 2017 in computer science, also has a vast knowledge in full stack development and relational 

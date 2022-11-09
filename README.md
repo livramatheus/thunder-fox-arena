@@ -30,7 +30,7 @@
 
 <p>
     As stated on the "About" page, this game was developed as a homage to the original Thunder Fox released 
-    back in 1991, for beign a game that makes a important part of my life, bringing back good childhood memories.
+    back in 1991, for being a game that makes a important part of my life, bringing back good childhood memories.
 </p>
 
 <p>
@@ -50,7 +50,7 @@
 
 <h2 id="current-status">⌚ Current Status</h2>
 <p>
-    In this section, I'll constantly update Thunder Fox Arena current status.
+    In this section, I'll constantly update Thunder Fox Arena status.
 </p>
 
 <p>
@@ -145,7 +145,7 @@
 
 <h2 id="current-status-br">⌚ Status Atual</h2>
 <p>
-    Nesta seção, irei atualizar constantemente o estado atual do Thunder Fox Arena.
+    Nesta seção, irei atualizar constantemente o estado do Thunder Fox Arena.
 </p>
 
 <p>
