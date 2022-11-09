@@ -1,0 +1,26 @@
+{
+  "name": "thunder-fox-arena",
+  "version": "1.0.0",
+  "description": "Thunder Fox Arena is a 1 vs 1 reimagination made in JavaScript of the original 1991 game released for Sega Mega Drive.",
+  "main": "index.js",
+  "type":"module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livramatheus/thunder-fox-arena.git"
+  },
+  "keywords": [
+    "thunder",
+    "fox",
+    "javascript",
+    "genesis"
+  ],
+  "author": "Matheus do Livramento",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livramatheus/thunder-fox-arena/issues"
+  },
+  "homepage": "https://github.com/livramatheus/thunder-fox-arena#readme"
+}
