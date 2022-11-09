@@ -58,7 +58,7 @@
     <br/>
     <b>End date:</b> August, 1st 2022
     <br/>
-    <b>Hours taken:</b> ~95
+    <b>Hours taken:</b> ~98
     <br/>
     <b>Status:</b> Complete
 </p>
@@ -105,7 +105,10 @@
 <h3 id="technologies-front">🔨 Technologies</h3>
 
 <p>
-    This project was developed with <b>HTML, CSS and JavaScript</b>. The only third-party library used was <a href="https://createjs.com/preloadjs" target="_black">preloadjs</a> in order to prevent broken sprites and delayed sounds.
+    This project was developed with <b>HTML, CSS and JavaScript</b>. Thus, a few third-party libraries used were used, such as:
+
+*  <a href="https://createjs.com/preloadjs" target="_black">preloadjs</a> in order to prevent broken sprites and delayed sounds.
+*  <a href="https://github.com/alvaromontoro/gamecontroller.js" target="_black">gamecontroller.js</a> in order to handle gamepads, such as wireless controllers.
 </p>
 
 <p>
@@ -153,7 +156,7 @@
     <br/>
     <b>Data de fim:</b> 1 de agosto de 2022
     <br/>
-    <b>Horas de trabalho:</b> ~95
+    <b>Horas de trabalho:</b> ~98
     <br/>
     <b>Status:</b> 100%
 </p>
@@ -193,7 +196,10 @@
 <h3 id="technologies-front-br">🔨 Tecnologias</h3>
 
 <p>
-    Este projeto foi desenvolvido apenas com <b>HTML, CSS e JavaScript</b>. A única biblioteca de terceiros utilizada foi o <a href="https://createjs.com/preloadjs" target="_black">preloadjs</a> para previnir sprites quebrados ou atrasos no carregamento de sons.
+    Este projeto foi desenvolvido apenas com <b>HTML, CSS e JavaScript</b>. Assim, foram utilizadas algumas bibliotecas de terceiros utilizadas, tais como:
+
+* <a href="https://createjs.com/preloadjs" target="_black">preloadjs</a> para previnir sprites quebrados ou atrasos no carregamento de sons.
+*  <a href="https://github.com/alvaromontoro/gamecontroller.js" target="_black">gamecontroller.js</a> para lidar com controles sem fio, por exemplo.
 </p>
 
 <p>
