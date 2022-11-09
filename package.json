@@ -1,6 +1,6 @@
 {
   "name": "thunder-fox-arena",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Thunder Fox Arena is a 1 vs 1 reimagination made in JavaScript of the original 1991 game released for Sega Mega Drive.",
   "main": "index.js",
   "type":"module",

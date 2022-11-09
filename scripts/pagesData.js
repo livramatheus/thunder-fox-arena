@@ -32,7 +32,7 @@ const getPagesData = () => {
             <br/>
             <b>End date:</b> August, 1st 2022
             <br/>
-            <b>Hours taken:</b> ~95
+            <b>Hours taken:</b> ~98
             <br/>
             <b>Status:</b> Complete
         </p>
